@@ -1,0 +1,1 @@
+../../../RRCBaseModule/RRCBaseModule/Classes/QiniuSDK/Common/QNPHAssetResource.h

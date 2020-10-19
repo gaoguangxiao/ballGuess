@@ -1,0 +1,808 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5CCFE5BE74FC84C3355E4610 /* libPods-竞彩建模.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5046FE0249805E8B263F65A3 /* libPods-竞彩建模.a */; };
+		FF2D38692522E65D008896D7 /* RRCMatchRateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2D38682522E65D008896D7 /* RRCMatchRateModel.m */; };
+		FF2D38932522EF8B008896D7 /* GGCDateRateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2D38922522EF8B008896D7 /* GGCDateRateViewController.m */; };
+		FF745928248DCB2F00FDF646 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF745927248DCB2F00FDF646 /* AppDelegate.m */; };
+		FF74592B248DCB2F00FDF646 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF74592A248DCB2F00FDF646 /* SceneDelegate.m */; };
+		FF745931248DCB2F00FDF646 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF74592F248DCB2F00FDF646 /* Main.storyboard */; };
+		FF745933248DCB3200FDF646 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF745932248DCB3200FDF646 /* Assets.xcassets */; };
+		FF745936248DCB3200FDF646 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF745934248DCB3200FDF646 /* LaunchScreen.storyboard */; };
+		FF745939248DCB3200FDF646 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF745938248DCB3200FDF646 /* main.m */; };
+		FF745943248DCB3200FDF646 /* ____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF745942248DCB3200FDF646 /* ____Tests.m */; };
+		FF74594E248DCB3200FDF646 /* ____UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF74594D248DCB3200FDF646 /* ____UITests.m */; };
+		FF745962248DD9A800FDF646 /* ResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF745961248DD9A800FDF646 /* ResultModel.m */; };
+		FF745965248DDC5100FDF646 /* ResultViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF745964248DDC5100FDF646 /* ResultViewModel.m */; };
+		FF770BA624CA84B70008CDEB /* RRCLeagueConditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF770BA424CA84B70008CDEB /* RRCLeagueConditionViewController.m */; };
+		FF7A2DE424CBD79A00F6DE16 /* RRCLeaguesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7A2DE324CBD79A00F6DE16 /* RRCLeaguesModel.m */; };
+		FF7BD145249468F700262FC8 /* RRCScoreViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7BD141249468F700262FC8 /* RRCScoreViewModel.m */; };
+		FF7BD146249468F700262FC8 /* RRCMatchScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7BD144249468F700262FC8 /* RRCMatchScoreViewController.m */; };
+		FF85E8F8248F34CF00D67F99 /* GGXMatchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FF85E8F7248F34CF00D67F99 /* GGXMatchInfo.m */; };
+		FF85E8FA248F5EBE00D67F99 /* matchInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = FF85E8F9248F5EBE00D67F99 /* matchInfo.json */; };
+		FF85E904248F645600D67F99 /* ResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF85E900248F645600D67F99 /* ResultTableViewCell.xib */; };
+		FF85E905248F645600D67F99 /* GGCBigSmallBallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF85E901248F645600D67F99 /* GGCBigSmallBallViewController.m */; };
+		FF85E906248F645600D67F99 /* ResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF85E902248F645600D67F99 /* ResultTableViewCell.m */; };
+		FF85E90A248F64D800D67F99 /* GGCWarResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF85E909248F64D800D67F99 /* GGCWarResultViewController.m */; };
+		FF85E90E248F64FC00D67F99 /* GGXWarResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF85E90B248F64FB00D67F99 /* GGXWarResultCell.m */; };
+		FF85E90F248F64FC00D67F99 /* GGXWarResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF85E90C248F64FB00D67F99 /* GGXWarResultCell.xib */; };
+		FF85E913248F67AE00D67F99 /* GGCRiceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF85E911248F67AE00D67F99 /* GGCRiceListCell.m */; };
+		FF85E914248F67AE00D67F99 /* GGCRiceListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF85E912248F67AE00D67F99 /* GGCRiceListCell.xib */; };
+		FF85E923248FBBC300D67F99 /* GGCRiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF85E91F248FBBC300D67F99 /* GGCRiceListViewController.m */; };
+		FF85E92B2490DABB00D67F99 /* getMatch.json in Resources */ = {isa = PBXBuildFile; fileRef = FF85E92A2490DABA00D67F99 /* getMatch.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FF74593F248DCB3200FDF646 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF74591B248DCB2F00FDF646 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF745922248DCB2F00FDF646;
+			remoteInfo = "竞彩建模";
+		};
+		FF74594A248DCB3200FDF646 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF74591B248DCB2F00FDF646 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF745922248DCB2F00FDF646;
+			remoteInfo = "竞彩建模";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		27D5A8525CE8CD3D6E74BE7E /* Pods-竞彩建模.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-竞彩建模.debug.xcconfig"; path = "Target Support Files/Pods-竞彩建模/Pods-竞彩建模.debug.xcconfig"; sourceTree = "<group>"; };
+		5046FE0249805E8B263F65A3 /* libPods-竞彩建模.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-竞彩建模.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DF31F5D0D961AF997DF13EE /* Pods-竞彩建模.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-竞彩建模.release.xcconfig"; path = "Target Support Files/Pods-竞彩建模/Pods-竞彩建模.release.xcconfig"; sourceTree = "<group>"; };
+		FF2D38672522E65D008896D7 /* RRCMatchRateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RRCMatchRateModel.h; sourceTree = "<group>"; };
+		FF2D38682522E65D008896D7 /* RRCMatchRateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RRCMatchRateModel.m; sourceTree = "<group>"; };
+		FF2D38912522EF8B008896D7 /* GGCDateRateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGCDateRateViewController.h; sourceTree = "<group>"; };
+		FF2D38922522EF8B008896D7 /* GGCDateRateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGCDateRateViewController.m; sourceTree = "<group>"; };
+		FF745923248DCB2F00FDF646 /* 建模.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "建模.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF745926248DCB2F00FDF646 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FF745927248DCB2F00FDF646 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FF745929248DCB2F00FDF646 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		FF74592A248DCB2F00FDF646 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		FF745930248DCB2F00FDF646 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FF745932248DCB3200FDF646 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF745935248DCB3200FDF646 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FF745937248DCB3200FDF646 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF745938248DCB3200FDF646 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FF74593E248DCB3200FDF646 /* 竞彩建模Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "竞彩建模Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF745942248DCB3200FDF646 /* ____Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "____Tests.m"; sourceTree = "<group>"; };
+		FF745944248DCB3200FDF646 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF745949248DCB3200FDF646 /* 竞彩建模UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "竞彩建模UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF74594D248DCB3200FDF646 /* ____UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "____UITests.m"; sourceTree = "<group>"; };
+		FF74594F248DCB3200FDF646 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF745960248DD9A800FDF646 /* ResultModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResultModel.h; sourceTree = "<group>"; };
+		FF745961248DD9A800FDF646 /* ResultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResultModel.m; sourceTree = "<group>"; };
+		FF745963248DDC5100FDF646 /* ResultViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResultViewModel.h; sourceTree = "<group>"; };
+		FF745964248DDC5100FDF646 /* ResultViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResultViewModel.m; sourceTree = "<group>"; };
+		FF770BA424CA84B70008CDEB /* RRCLeagueConditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRCLeagueConditionViewController.m; sourceTree = "<group>"; };
+		FF770BA524CA84B70008CDEB /* RRCLeagueConditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRCLeagueConditionViewController.h; sourceTree = "<group>"; };
+		FF7A2DE224CBD79A00F6DE16 /* RRCLeaguesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRCLeaguesModel.h; sourceTree = "<group>"; };
+		FF7A2DE324CBD79A00F6DE16 /* RRCLeaguesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRCLeaguesModel.m; sourceTree = "<group>"; };
+		FF7BD141249468F700262FC8 /* RRCScoreViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRCScoreViewModel.m; sourceTree = "<group>"; };
+		FF7BD142249468F700262FC8 /* RRCScoreViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRCScoreViewModel.h; sourceTree = "<group>"; };
+		FF7BD143249468F700262FC8 /* RRCMatchScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRCMatchScoreViewController.h; sourceTree = "<group>"; };
+		FF7BD144249468F700262FC8 /* RRCMatchScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRCMatchScoreViewController.m; sourceTree = "<group>"; };
+		FF85E8F6248F34CF00D67F99 /* GGXMatchInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGXMatchInfo.h; sourceTree = "<group>"; };
+		FF85E8F7248F34CF00D67F99 /* GGXMatchInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGXMatchInfo.m; sourceTree = "<group>"; };
+		FF85E8F9248F5EBE00D67F99 /* matchInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = matchInfo.json; sourceTree = "<group>"; };
+		FF85E8FF248F645600D67F99 /* ResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultTableViewCell.h; sourceTree = "<group>"; };
+		FF85E900248F645600D67F99 /* ResultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultTableViewCell.xib; sourceTree = "<group>"; };
+		FF85E901248F645600D67F99 /* GGCBigSmallBallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCBigSmallBallViewController.m; sourceTree = "<group>"; };
+		FF85E902248F645600D67F99 /* ResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultTableViewCell.m; sourceTree = "<group>"; };
+		FF85E903248F645600D67F99 /* GGCBigSmallBallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCBigSmallBallViewController.h; sourceTree = "<group>"; };
+		FF85E908248F64D800D67F99 /* GGCWarResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGCWarResultViewController.h; sourceTree = "<group>"; };
+		FF85E909248F64D800D67F99 /* GGCWarResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGCWarResultViewController.m; sourceTree = "<group>"; };
+		FF85E90B248F64FB00D67F99 /* GGXWarResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGXWarResultCell.m; sourceTree = "<group>"; };
+		FF85E90C248F64FB00D67F99 /* GGXWarResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGXWarResultCell.xib; sourceTree = "<group>"; };
+		FF85E90D248F64FB00D67F99 /* GGXWarResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGXWarResultCell.h; sourceTree = "<group>"; };
+		FF85E910248F67AE00D67F99 /* GGCRiceListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGCRiceListCell.h; sourceTree = "<group>"; };
+		FF85E911248F67AE00D67F99 /* GGCRiceListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGCRiceListCell.m; sourceTree = "<group>"; };
+		FF85E912248F67AE00D67F99 /* GGCRiceListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GGCRiceListCell.xib; sourceTree = "<group>"; };
+		FF85E91E248FBBC300D67F99 /* GGCRiceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCRiceListViewController.h; sourceTree = "<group>"; };
+		FF85E91F248FBBC300D67F99 /* GGCRiceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCRiceListViewController.m; sourceTree = "<group>"; };
+		FF85E92A2490DABA00D67F99 /* getMatch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getMatch.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FF745920248DCB2F00FDF646 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5CCFE5BE74FC84C3355E4610 /* libPods-竞彩建模.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF74593B248DCB3200FDF646 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF745946248DCB3200FDF646 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9D91EAB604BD34C37C4F11C6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				27D5A8525CE8CD3D6E74BE7E /* Pods-竞彩建模.debug.xcconfig */,
+				8DF31F5D0D961AF997DF13EE /* Pods-竞彩建模.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AE3E40E094A96A3D67A91019 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5046FE0249805E8B263F65A3 /* libPods-竞彩建模.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF2D38902522EF69008896D7 /* DateRate */ = {
+			isa = PBXGroup;
+			children = (
+				FF2D38672522E65D008896D7 /* RRCMatchRateModel.h */,
+				FF2D38682522E65D008896D7 /* RRCMatchRateModel.m */,
+				FF2D38912522EF8B008896D7 /* GGCDateRateViewController.h */,
+				FF2D38922522EF8B008896D7 /* GGCDateRateViewController.m */,
+			);
+			path = DateRate;
+			sourceTree = "<group>";
+		};
+		FF2D38972522F421008896D7 /* MatchRate */ = {
+			isa = PBXGroup;
+			children = (
+				FF770BA524CA84B70008CDEB /* RRCLeagueConditionViewController.h */,
+				FF770BA424CA84B70008CDEB /* RRCLeagueConditionViewController.m */,
+				FF7A2DE224CBD79A00F6DE16 /* RRCLeaguesModel.h */,
+				FF7A2DE324CBD79A00F6DE16 /* RRCLeaguesModel.m */,
+			);
+			path = MatchRate;
+			sourceTree = "<group>";
+		};
+		FF74591A248DCB2F00FDF646 = {
+			isa = PBXGroup;
+			children = (
+				FF745925248DCB2F00FDF646 /* 竞彩建模 */,
+				FF745941248DCB3200FDF646 /* 竞彩建模Tests */,
+				FF74594C248DCB3200FDF646 /* 竞彩建模UITests */,
+				FF745924248DCB2F00FDF646 /* Products */,
+				9D91EAB604BD34C37C4F11C6 /* Pods */,
+				AE3E40E094A96A3D67A91019 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FF745924248DCB2F00FDF646 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF745923248DCB2F00FDF646 /* 建模.app */,
+				FF74593E248DCB3200FDF646 /* 竞彩建模Tests.xctest */,
+				FF745949248DCB3200FDF646 /* 竞彩建模UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF745925248DCB2F00FDF646 /* 竞彩建模 */ = {
+			isa = PBXGroup;
+			children = (
+				FF2D38972522F421008896D7 /* MatchRate */,
+				FF745926248DCB2F00FDF646 /* AppDelegate.h */,
+				FF745927248DCB2F00FDF646 /* AppDelegate.m */,
+				FF85E92A2490DABA00D67F99 /* getMatch.json */,
+				FF745932248DCB3200FDF646 /* Assets.xcassets */,
+				FF745963248DDC5100FDF646 /* ResultViewModel.h */,
+				FF745964248DDC5100FDF646 /* ResultViewModel.m */,
+				FF85E8F6248F34CF00D67F99 /* GGXMatchInfo.h */,
+				FF85E8F7248F34CF00D67F99 /* GGXMatchInfo.m */,
+				FF745960248DD9A800FDF646 /* ResultModel.h */,
+				FF745961248DD9A800FDF646 /* ResultModel.m */,
+				FF2D38902522EF69008896D7 /* DateRate */,
+				FF85E91D248FA9AA00D67F99 /* HomeList */,
+				FF745937248DCB3200FDF646 /* Info.plist */,
+				FF745934248DCB3200FDF646 /* LaunchScreen.storyboard */,
+				FF745938248DCB3200FDF646 /* main.m */,
+				FF74592F248DCB2F00FDF646 /* Main.storyboard */,
+				FF85E8F9248F5EBE00D67F99 /* matchInfo.json */,
+				FF745929248DCB2F00FDF646 /* SceneDelegate.h */,
+				FF74592A248DCB2F00FDF646 /* SceneDelegate.m */,
+				FF7BD13D2494627F00262FC8 /* StartPredictList */,
+				FF85E907248F64B600D67F99 /* WarResult */,
+			);
+			path = "竞彩建模";
+			sourceTree = "<group>";
+		};
+		FF745941248DCB3200FDF646 /* 竞彩建模Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FF745942248DCB3200FDF646 /* ____Tests.m */,
+				FF745944248DCB3200FDF646 /* Info.plist */,
+			);
+			path = "竞彩建模Tests";
+			sourceTree = "<group>";
+		};
+		FF74594C248DCB3200FDF646 /* 竞彩建模UITests */ = {
+			isa = PBXGroup;
+			children = (
+				FF74594D248DCB3200FDF646 /* ____UITests.m */,
+				FF74594F248DCB3200FDF646 /* Info.plist */,
+			);
+			path = "竞彩建模UITests";
+			sourceTree = "<group>";
+		};
+		FF7BD13D2494627F00262FC8 /* StartPredictList */ = {
+			isa = PBXGroup;
+			children = (
+				FF7BD143249468F700262FC8 /* RRCMatchScoreViewController.h */,
+				FF7BD144249468F700262FC8 /* RRCMatchScoreViewController.m */,
+				FF7BD142249468F700262FC8 /* RRCScoreViewModel.h */,
+				FF7BD141249468F700262FC8 /* RRCScoreViewModel.m */,
+			);
+			path = StartPredictList;
+			sourceTree = "<group>";
+		};
+		FF85E907248F64B600D67F99 /* WarResult */ = {
+			isa = PBXGroup;
+			children = (
+				FF85E903248F645600D67F99 /* GGCBigSmallBallViewController.h */,
+				FF85E901248F645600D67F99 /* GGCBigSmallBallViewController.m */,
+				FF85E8FF248F645600D67F99 /* ResultTableViewCell.h */,
+				FF85E902248F645600D67F99 /* ResultTableViewCell.m */,
+				FF85E900248F645600D67F99 /* ResultTableViewCell.xib */,
+				FF85E90D248F64FB00D67F99 /* GGXWarResultCell.h */,
+				FF85E90B248F64FB00D67F99 /* GGXWarResultCell.m */,
+				FF85E90C248F64FB00D67F99 /* GGXWarResultCell.xib */,
+				FF85E908248F64D800D67F99 /* GGCWarResultViewController.h */,
+				FF85E909248F64D800D67F99 /* GGCWarResultViewController.m */,
+			);
+			path = WarResult;
+			sourceTree = "<group>";
+		};
+		FF85E91D248FA9AA00D67F99 /* HomeList */ = {
+			isa = PBXGroup;
+			children = (
+				FF85E910248F67AE00D67F99 /* GGCRiceListCell.h */,
+				FF85E911248F67AE00D67F99 /* GGCRiceListCell.m */,
+				FF85E912248F67AE00D67F99 /* GGCRiceListCell.xib */,
+				FF85E91E248FBBC300D67F99 /* GGCRiceListViewController.h */,
+				FF85E91F248FBBC300D67F99 /* GGCRiceListViewController.m */,
+			);
+			path = HomeList;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FF745922248DCB2F00FDF646 /* 竞彩建模 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF745952248DCB3200FDF646 /* Build configuration list for PBXNativeTarget "竞彩建模" */;
+			buildPhases = (
+				7C6F55A1A898F9FC050CDE91 /* [CP] Check Pods Manifest.lock */,
+				FF74591F248DCB2F00FDF646 /* Sources */,
+				FF745920248DCB2F00FDF646 /* Frameworks */,
+				FF745921248DCB2F00FDF646 /* Resources */,
+				6719EBB9E0E26483FE5FDAF2 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "竞彩建模";
+			productName = "竞彩建模";
+			productReference = FF745923248DCB2F00FDF646 /* 建模.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FF74593D248DCB3200FDF646 /* 竞彩建模Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF745955248DCB3200FDF646 /* Build configuration list for PBXNativeTarget "竞彩建模Tests" */;
+			buildPhases = (
+				FF74593A248DCB3200FDF646 /* Sources */,
+				FF74593B248DCB3200FDF646 /* Frameworks */,
+				FF74593C248DCB3200FDF646 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF745940248DCB3200FDF646 /* PBXTargetDependency */,
+			);
+			name = "竞彩建模Tests";
+			productName = "竞彩建模Tests";
+			productReference = FF74593E248DCB3200FDF646 /* 竞彩建模Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FF745948248DCB3200FDF646 /* 竞彩建模UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF745958248DCB3200FDF646 /* Build configuration list for PBXNativeTarget "竞彩建模UITests" */;
+			buildPhases = (
+				FF745945248DCB3200FDF646 /* Sources */,
+				FF745946248DCB3200FDF646 /* Frameworks */,
+				FF745947248DCB3200FDF646 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF74594B248DCB3200FDF646 /* PBXTargetDependency */,
+			);
+			name = "竞彩建模UITests";
+			productName = "竞彩建模UITests";
+			productReference = FF745949248DCB3200FDF646 /* 竞彩建模UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF74591B248DCB2F00FDF646 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = renrencai;
+				TargetAttributes = {
+					FF745922248DCB2F00FDF646 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					FF74593D248DCB3200FDF646 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = FF745922248DCB2F00FDF646;
+					};
+					FF745948248DCB3200FDF646 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = FF745922248DCB2F00FDF646;
+					};
+				};
+			};
+			buildConfigurationList = FF74591E248DCB2F00FDF646 /* Build configuration list for PBXProject "竞彩建模" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FF74591A248DCB2F00FDF646;
+			productRefGroup = FF745924248DCB2F00FDF646 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF745922248DCB2F00FDF646 /* 竞彩建模 */,
+				FF74593D248DCB3200FDF646 /* 竞彩建模Tests */,
+				FF745948248DCB3200FDF646 /* 竞彩建模UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FF745921248DCB2F00FDF646 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF85E914248F67AE00D67F99 /* GGCRiceListCell.xib in Resources */,
+				FF745936248DCB3200FDF646 /* LaunchScreen.storyboard in Resources */,
+				FF85E92B2490DABB00D67F99 /* getMatch.json in Resources */,
+				FF745933248DCB3200FDF646 /* Assets.xcassets in Resources */,
+				FF85E904248F645600D67F99 /* ResultTableViewCell.xib in Resources */,
+				FF745931248DCB2F00FDF646 /* Main.storyboard in Resources */,
+				FF85E90F248F64FC00D67F99 /* GGXWarResultCell.xib in Resources */,
+				FF85E8FA248F5EBE00D67F99 /* matchInfo.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF74593C248DCB3200FDF646 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF745947248DCB3200FDF646 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6719EBB9E0E26483FE5FDAF2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-竞彩建模/Pods-竞彩建模-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-竞彩建模/Pods-竞彩建模-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-竞彩建模/Pods-竞彩建模-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C6F55A1A898F9FC050CDE91 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-竞彩建模-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FF74591F248DCB2F00FDF646 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF2D38932522EF8B008896D7 /* GGCDateRateViewController.m in Sources */,
+				FF85E905248F645600D67F99 /* GGCBigSmallBallViewController.m in Sources */,
+				FF85E913248F67AE00D67F99 /* GGCRiceListCell.m in Sources */,
+				FF2D38692522E65D008896D7 /* RRCMatchRateModel.m in Sources */,
+				FF85E8F8248F34CF00D67F99 /* GGXMatchInfo.m in Sources */,
+				FF85E923248FBBC300D67F99 /* GGCRiceListViewController.m in Sources */,
+				FF745962248DD9A800FDF646 /* ResultModel.m in Sources */,
+				FF7A2DE424CBD79A00F6DE16 /* RRCLeaguesModel.m in Sources */,
+				FF770BA624CA84B70008CDEB /* RRCLeagueConditionViewController.m in Sources */,
+				FF85E90A248F64D800D67F99 /* GGCWarResultViewController.m in Sources */,
+				FF745928248DCB2F00FDF646 /* AppDelegate.m in Sources */,
+				FF745939248DCB3200FDF646 /* main.m in Sources */,
+				FF7BD146249468F700262FC8 /* RRCMatchScoreViewController.m in Sources */,
+				FF85E90E248F64FC00D67F99 /* GGXWarResultCell.m in Sources */,
+				FF74592B248DCB2F00FDF646 /* SceneDelegate.m in Sources */,
+				FF85E906248F645600D67F99 /* ResultTableViewCell.m in Sources */,
+				FF745965248DDC5100FDF646 /* ResultViewModel.m in Sources */,
+				FF7BD145249468F700262FC8 /* RRCScoreViewModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF74593A248DCB3200FDF646 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF745943248DCB3200FDF646 /* ____Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF745945248DCB3200FDF646 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF74594E248DCB3200FDF646 /* ____UITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FF745940248DCB3200FDF646 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF745922248DCB2F00FDF646 /* 竞彩建模 */;
+			targetProxy = FF74593F248DCB3200FDF646 /* PBXContainerItemProxy */;
+		};
+		FF74594B248DCB3200FDF646 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF745922248DCB2F00FDF646 /* 竞彩建模 */;
+			targetProxy = FF74594A248DCB3200FDF646 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FF74592F248DCB2F00FDF646 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF745930248DCB2F00FDF646 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FF745934248DCB3200FDF646 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF745935248DCB3200FDF646 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FF745950248DCB3200FDF646 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		FF745951248DCB3200FDF646 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FF745953248DCB3200FDF646 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27D5A8525CE8CD3D6E74BE7E /* Pods-竞彩建模.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DJ8U64WJH;
+				INFOPLIST_FILE = "竞彩建模/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.7;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ggx.app;
+				PRODUCT_NAME = "建模";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FF745954248DCB3200FDF646 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DF31F5D0D961AF997DF13EE /* Pods-竞彩建模.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DJ8U64WJH;
+				INFOPLIST_FILE = "竞彩建模/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.7;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ggx.app;
+				PRODUCT_NAME = "建模";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FF745956248DCB3200FDF646 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DJ8U64WJH;
+				INFOPLIST_FILE = "竞彩建模Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ggx.----Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/竞彩建模.app/竞彩建模";
+			};
+			name = Debug;
+		};
+		FF745957248DCB3200FDF646 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DJ8U64WJH;
+				INFOPLIST_FILE = "竞彩建模Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ggx.----Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/竞彩建模.app/竞彩建模";
+			};
+			name = Release;
+		};
+		FF745959248DCB3200FDF646 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DJ8U64WJH;
+				INFOPLIST_FILE = "竞彩建模UITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ggx.----UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "竞彩建模";
+			};
+			name = Debug;
+		};
+		FF74595A248DCB3200FDF646 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DJ8U64WJH;
+				INFOPLIST_FILE = "竞彩建模UITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ggx.----UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "竞彩建模";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF74591E248DCB2F00FDF646 /* Build configuration list for PBXProject "竞彩建模" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF745950248DCB3200FDF646 /* Debug */,
+				FF745951248DCB3200FDF646 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF745952248DCB3200FDF646 /* Build configuration list for PBXNativeTarget "竞彩建模" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF745953248DCB3200FDF646 /* Debug */,
+				FF745954248DCB3200FDF646 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF745955248DCB3200FDF646 /* Build configuration list for PBXNativeTarget "竞彩建模Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF745956248DCB3200FDF646 /* Debug */,
+				FF745957248DCB3200FDF646 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF745958248DCB3200FDF646 /* Build configuration list for PBXNativeTarget "竞彩建模UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF745959248DCB3200FDF646 /* Debug */,
+				FF74595A248DCB3200FDF646 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FF74591B248DCB2F00FDF646 /* Project object */;
+}

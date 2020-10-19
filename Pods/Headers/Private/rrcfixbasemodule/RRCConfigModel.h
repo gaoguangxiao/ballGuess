@@ -1,0 +1,1 @@
+../../../rrcfixbasemodule/rrcfixbasemodule/Classes/Manager/Model/RRCConfigModel.h

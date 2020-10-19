@@ -1,0 +1,1 @@
+../../../matchscoremodule/matchscoremodule/Classes/UIImage+Matchscoremodule.h

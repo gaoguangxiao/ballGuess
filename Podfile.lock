@@ -1,0 +1,145 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - Masonry (1.1.0)
+  - matchmodule (0.3.7):
+    - rrcfixbasemodule
+  - matchscoremodule (0.3.1):
+    - matchmodule
+    - rrcfixbasemodule
+  - MBProgressHUD (1.2.0)
+  - MJExtension (3.2.1)
+  - MJRefresh (3.4.3)
+  - RRCBaseModule (0.5.4):
+    - AFNetworking (~> 3.2.1)
+    - MBProgressHUD
+    - RRCBaseModule/fmdb (= 0.5.4)
+    - RRCBaseModule/Manager (= 0.5.4)
+    - RRCBaseModule/OpenUDID (= 0.5.4)
+    - RRCBaseModule/QiniuSDK (= 0.5.4)
+    - RRCBaseModule/RRCCategary (= 0.5.4)
+    - RRCBaseModule/SDWebImage (= 0.5.4)
+    - RRCBaseModule/TYCyclePagerView (= 0.5.4)
+    - RRCBaseModule/WebProgressLayer (= 0.5.4)
+    - RRCBaseModule/YYText (= 0.5.4)
+    - RRCBaseUI
+  - RRCBaseModule/fmdb (0.5.4):
+    - AFNetworking (~> 3.2.1)
+    - MBProgressHUD
+    - RRCBaseUI
+  - RRCBaseModule/Manager (0.5.4):
+    - AFNetworking (~> 3.2.1)
+    - MBProgressHUD
+    - RRCBaseUI
+  - RRCBaseModule/OpenUDID (0.5.4):
+    - AFNetworking (~> 3.2.1)
+    - MBProgressHUD
+    - RRCBaseUI
+  - RRCBaseModule/QiniuSDK (0.5.4):
+    - AFNetworking (~> 3.2.1)
+    - MBProgressHUD
+    - RRCBaseUI
+  - RRCBaseModule/RRCCategary (0.5.4):
+    - AFNetworking (~> 3.2.1)
+    - MBProgressHUD
+    - RRCBaseUI
+  - RRCBaseModule/SDWebImage (0.5.4):
+    - AFNetworking (~> 3.2.1)
+    - MBProgressHUD
+    - RRCBaseUI
+  - RRCBaseModule/TYCyclePagerView (0.5.4):
+    - AFNetworking (~> 3.2.1)
+    - MBProgressHUD
+    - RRCBaseUI
+  - RRCBaseModule/WebProgressLayer (0.5.4):
+    - AFNetworking (~> 3.2.1)
+    - MBProgressHUD
+    - RRCBaseUI
+  - RRCBaseModule/YYText (0.5.4):
+    - AFNetworking (~> 3.2.1)
+    - MBProgressHUD
+    - RRCBaseUI
+  - RRCBaseUI (0.1.9)
+  - RRCBaseView (0.2.9):
+    - Masonry
+    - RRCBaseUI
+    - RRCBaseView/RRCToolView (= 0.2.9)
+    - RRCBaseView/TZImagePickerController (= 0.2.9)
+    - RRCBaseView/WMPageController (= 0.2.9)
+    - RRCBaseView/YNPageViewController (= 0.2.9)
+    - RRCBaseView/YZYHorizListView (= 0.2.9)
+  - RRCBaseView/RRCToolView (0.2.9):
+    - Masonry
+    - RRCBaseUI
+  - RRCBaseView/TZImagePickerController (0.2.9):
+    - Masonry
+    - RRCBaseUI
+  - RRCBaseView/WMPageController (0.2.9):
+    - Masonry
+    - RRCBaseUI
+  - RRCBaseView/YNPageViewController (0.2.9):
+    - Masonry
+    - RRCBaseUI
+  - RRCBaseView/YZYHorizListView (0.2.9):
+    - Masonry
+    - RRCBaseUI
+  - rrcfixbasemodule (0.2.2):
+    - MJExtension
+    - MJRefresh
+    - RRCBaseModule
+    - RRCBaseUI
+    - RRCBaseView
+    - RRCMaskView
+  - RRCMaskView (0.1.3)
+
+DEPENDENCIES:
+  - matchmodule
+  - matchscoremodule
+  - rrcfixbasemodule
+
+SPEC REPOS:
+  https://gitee.com/renrencai110/mxs.git:
+    - matchmodule
+    - matchscoremodule
+    - RRCBaseModule
+    - RRCBaseUI
+    - RRCBaseView
+    - rrcfixbasemodule
+    - RRCMaskView
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - Masonry
+    - MBProgressHUD
+    - MJExtension
+    - MJRefresh
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  matchmodule: 505d3483ace54152f89a6a5f8cf7e6e453b50e1d
+  matchscoremodule: fc33344ecdbc3be65bf9e5e1e00311f78d267312
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
+  MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
+  RRCBaseModule: 8fe5eb0c8a100a246e182146d649b388d383128f
+  RRCBaseUI: 5cd219a473edfe33e8496dfe7ae275c8e1150cf0
+  RRCBaseView: 096d1f7abd581f25c512e1e3051263dcd63f1102
+  rrcfixbasemodule: 66ffc68f2a012399932e122120fe52be6e456a1d
+  RRCMaskView: ce6fc4db2f98f884c42de95da6939b58377641ca
+
+PODFILE CHECKSUM: b242479aff8f70fc8f23f43e0c44337c30123e96
+
+COCOAPODS: 1.9.1

@@ -1,0 +1,1 @@
+../../../RRCBaseModule/RRCBaseModule/Classes/SDWebImage/SDWebImageCoder.h

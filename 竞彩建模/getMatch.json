@@ -1,0 +1,33 @@
+{
+    "code":0,
+    "data":{
+        "count":1,
+        "is_last_page":true,
+        "dxq_forecast_rate":null,
+        "yp_forecast_rate":null,
+        "score_forecast_rate":null,
+        "list":[
+            {
+                "id":51,
+                "league":"球会友谊",
+                "home":"布拉格斯拉维亚B队",
+                "away":"皮耳森B队",
+                "home_score_weight":"39.53",
+                "away_score_weight":"60.47",
+                "forecast_home_score":"1.38",
+                "forecast_away_score":"2.12",
+                "home_score":null,
+                "away_score":null,
+                "forecast_ball_num":"3.50",
+                "ball_num":null,
+                "match_id":1869901,
+                "dxq_pk":"3.75",
+                "yp_pk":"0",
+                "hhmm":"17:00",
+                "mmdd":"06-10 ",
+                "device_id":"fd4da94ff01764b58e57c932653857194139e9c5"
+            }
+        ]
+    },
+    "msg":"success"
+}
