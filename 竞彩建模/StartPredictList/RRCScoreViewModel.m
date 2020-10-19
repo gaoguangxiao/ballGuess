@@ -12,6 +12,7 @@
 #import "RRCTScoreModel.h" //引入要处理的model
 #import "RRCConfigManager.h"
 #import "RRCDeviceConfigure.h"
+#import "ResultModel.h"
 @implementation RRCScoreViewModel
 
 - (void)requestWithMatchCondition: (NSInteger )matchCondition
@@ -51,12 +52,11 @@
                 
                 [self handleScoreArray:arr1 andMatchContion:matchCondition];
                 //赛事排序 是否自定义
-                
-                if ([self sortEnableWithCondition:matchCondition]) {
-                    NSArray *defineArray = [self sortDescriptorOrign:arr1];
-                    [self.listArray addObjectsFromArray:defineArray];
-                }else{
-                    [self.listArray addObjectsFromArray:arr1];
+                for (NSInteger i = 0;i < arr1.count;i++) {
+                    RRCTScoreModel *re = arr1[i];
+                    if (![re.DXQDesc isEqualToString:@"-"] && ![re.JSPKDesc isEqualToString:@"-"]) {
+                        [self.listArray addObject:re];
+                    }
                 }
                 
                 if (self.delegate && [self.delegate respondsToSelector:@selector(dataFinishload:andlistArray:)]) {
@@ -153,11 +153,8 @@
         if ([_tempScore.home containsString:@"(中)"]) {
             _tempScore.home = [_tempScore.home substringToIndex:_tempScore.home.length - 3];
         }
-        //                _tempScore.overTimeShowStatus = 1;
-        //                _tempScore.overTimeContent = @"90分钟[1:1]，两回合制比分[1:1]，120分钟[1:1]，点球大战[2:1]，墨尔本港鲨鱼胜出";
         
         _tempScore.cellScoreHeight = 98 * Device_Ccale;
-        
         
         if ([_tempScore.state integerValue] == -1 || ([_tempScore.state integerValue] <= 5 && [_tempScore.state integerValue] >= 1)) {
             _tempScore.isShowHalf = YES;
@@ -191,10 +188,8 @@
         //是否能够置顶
         _tempScore.enableTop = [self enableLongPressTop:matchCondition];
         
-        //是否处理置顶状态
-//        if ([self enableLongPressTop:matchCondition]) {
-//            [self updatescoreModel:_tempScore];
-//        }
+        [self updatescoreModel:_tempScore];
+        
     }
     
 }
@@ -237,6 +232,39 @@
     });
     
 }
+
+-(void)reloadScoreListTopStatus:(NSArray *)newFinishArr andLoadDeleteResult:(loadDataBOOLBlock)complete{
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+        for (RRCTScoreModel *_tempScore in self.listArray) {
+            
+            for (ResultModel *resultModel in newFinishArr) {
+                //大小球赛果以及比分赛果合入比分列表
+                if ([_tempScore.home containsString:resultModel.home] && [_tempScore.away containsString:resultModel.away]) {
+                    
+                    NSArray *yzArr = [resultModel.finishYazhiText componentsSeparatedByString:@"\n"];
+                    
+                    _tempScore.YZ_FINISHTYEXTR = [NSString stringWithFormat:@"%@ %@ %@",yzArr[0],yzArr[1],yzArr[2]];
+                    
+                    NSArray *dxqArr = [resultModel.finishBigText componentsSeparatedByString:@"\n"];
+                    
+                    _tempScore.DXQ_FINISHTYEXTR = [NSString stringWithFormat:@"%@ %@ %@",dxqArr[0],dxqArr[1],dxqArr[2]];
+                    
+                    continue;
+                }
+            
+            }
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            complete(YES);
+        });
+        
+    });
+    
+}
+
 
 #pragma mark - puplic
 //是否能长按置顶
@@ -378,7 +406,7 @@
         
     }else{
         
-        obj.cellScoreHeight = 98 * Device_Ccale;
+        obj.cellScoreHeight = 106 * Device_Ccale;
         
     }
     
@@ -400,14 +428,19 @@
    
     RRCMatchSetModel *matchSet = [[RRCConfigManager sharedRRCConfigManager] loadPushLocalSet];
     
-    for (NSDictionary *timeStampDic in matchSet.matchTopLisDict.allValues) {
-        if ([timeStampDic isKindOfClass:[NSDictionary class]] && [timeStampDic[@"ID"] integerValue] == [scoreModel.ID integerValue]) {
+    for (NSDictionary *resultModel in matchSet.matchScoreListArr) {
+        //大小球赛果以及比分赛果合入比分列表
+        if ([scoreModel.home containsString:resultModel[@"home"]] && [scoreModel.away containsString:resultModel[@"away"]]) {
             
-            scoreModel.collectStatus = @"1";
+            NSArray *yzArr = [resultModel[@"finishYazhiText"] componentsSeparatedByString:@"\n"];
             
-            [self.matchListCar addObject:scoreModel];
+            scoreModel.YZ_FINISHTYEXTR = [NSString stringWithFormat:@"%@ %@ %@",yzArr[0],yzArr[1],yzArr[2]];
+            
+            NSArray *dxqArr = [resultModel[@"finishBigText"] componentsSeparatedByString:@"\n"];
+            
+            scoreModel.DXQ_FINISHTYEXTR = [NSString stringWithFormat:@"%@ %@ %@",dxqArr[0],dxqArr[1],dxqArr[2]];
         }
-        
+    
     }
 }
 

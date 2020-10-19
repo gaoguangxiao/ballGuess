@@ -99,7 +99,7 @@ static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
     dict[@"yppk"] = @[];
     dict[@"leagues"] = @[];
     
-    [_scoreViewModel requestReloadWithMatchCondition:0 parameters:dict success:^(NSArray *loadArr, BOOL isLoadsuc) {
+    [_scoreViewModel requestWithMatchCondition:0 parameters:dict success:^(NSArray *loadArr, BOOL isLoadsuc) {
         
         if (self.tableView.mj_header.isRefreshing) {
             [self.tableView.mj_header endRefreshing];
@@ -164,17 +164,22 @@ static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
         [waterModelArr addObject:m];
     }
 //        return;
-    [resultViewModel requestMultipleDataWithParameters:@{@"name":nameModelArr} andLocalArr:waterModelArr andComplete:^(BOOL isEnd) {
-        
+    [resultViewModel requestMultipleDataWithParameters:@{@"name":nameModelArr} andLocalArr:waterModelArr andComplete:^(NSArray * _Nonnull loadArr) {
+                
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
-        if (isEnd) {
+        if (loadArr.count) {
             
             [[RRCAlertManager sharedRRCAlertManager]showPostingWithtitle:@"预测成功"];
             
-            [self clearList];
+            [self->_scoreViewModel reloadScoreListTopStatus:loadArr andLoadDeleteResult:^(BOOL isEnd) {
+                
+                [self clearList];
+                
+                [self.tableView reloadData];
             
-            [self.tableView reloadData];
+            }];
+            
         }else{
             
             [[RRCAlertManager sharedRRCAlertManager]showPostingWithtitle:@"预测失败"];
@@ -190,9 +195,9 @@ static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
 -(void)dataFinishload:(NSInteger)matchCondition andlistArray:(NSArray *)array{
     //存储全部数据
     if (matchCondition == 0) {
-        RRCMatchSetModel *appSet = [[RRCConfigManager sharedRRCConfigManager]loadPushLocalSet];
-        appSet.matchScoreListArr = array;
-        [[RRCConfigManager sharedRRCConfigManager]updatePushLocalSetBySetModel:appSet];
+//        RRCMatchSetModel *appSet = [[RRCConfigManager sharedRRCConfigManager]loadPushLocalSet];
+//        appSet.matchScoreListArr = array;
+//        [[RRCConfigManager sharedRRCConfigManager]updatePushLocalSetBySetModel:appSet];
     }
     //更新关注数据
     dispatch_async(dispatch_get_main_queue(), ^{

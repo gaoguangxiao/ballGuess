@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSString *matchRateCount;
 
 //查询多个赛事
--(void)requestMultipleDataWithParameters:(NSDictionary *)parameters andLocalArr:(NSArray *)locaArray andComplete:(loadDataBOOLBlock)blockList;
+-(void)requestMultipleDataWithParameters:(NSDictionary *)parameters andLocalArr:(NSArray *)locaArray andComplete:(LoadDataArrayBlock)blockList;
 
 //保存赛事
 -(void)saveMatchListWithParameters:(NSDictionary *)parameters Complete:(loadDataBOOLBlock)blockList;

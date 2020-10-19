@@ -122,7 +122,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhl-jX-iO5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1442" y="-751"/>
+            <point key="canvasLocation" x="-1639" y="81"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="U78-ex-U8n">
@@ -134,13 +134,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="HRo-Ri-s3Q" kind="relationship" relationship="viewControllers" id="XIi-3U-1bH"/>
                         <segue destination="fa2-oo-O4e" kind="relationship" relationship="viewControllers" id="xrO-Oo-NQ2"/>
+                        <segue destination="HRo-Ri-s3Q" kind="relationship" relationship="viewControllers" id="XIi-3U-1bH"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAi-HT-RnF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2275" y="-362"/>
+            <point key="canvasLocation" x="-2769" y="-635"/>
         </scene>
         <!--列表-->
         <scene sceneID="YQE-CS-YtI">
@@ -267,7 +267,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9d-77-jKW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1442" y="-72"/>
+            <point key="canvasLocation" x="-1908" y="-742"/>
         </scene>
         <!--胜率-->
         <scene sceneID="6ZX-9T-KLF">
@@ -385,7 +385,7 @@
                                     <constraint firstItem="bIF-BH-DXS" firstAttribute="top" secondItem="y7H-Ey-K5F" secondAttribute="bottom" constant="0.5" id="y8z-n2-BTP"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eAD-sc-wMJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="135" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eAD-sc-wMJ">
                                 <rect key="frame" x="0.0" y="144" width="375" height="474"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>

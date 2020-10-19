@@ -15,6 +15,7 @@
 #import "RRCNetWorkManager.h"
 #import "YBColorConfigure.h"
 #import "RRCDeviceConfigure.h"
+#import "RRCConfigManager.h"
 @interface ResultViewModel ()
 
 //@property (nonatomic,assign)float dxqRedCount;//大小球红的个数
@@ -54,7 +55,7 @@
 }
 
 #pragma mark - 查询多个赛事
--(void)requestMultipleDataWithParameters:(NSDictionary *)parameters andLocalArr:(NSArray *)locaArray andComplete:(loadDataBOOLBlock)blockList{
+-(void)requestMultipleDataWithParameters:(NSDictionary *)parameters andLocalArr:(NSArray *)locaArray andComplete:(LoadDataArrayBlock)blockList{
     
     //返回多个请求的结果
     [[RRCNetWorkManager sharedTool]loadRequestWithURLString:@"getMatchDataArr" parameters:parameters success:^(CGDataResult * _Nonnull result) {
@@ -87,7 +88,7 @@
             //查询失败
             if (queryList.count == 0) {
                 
-                blockList(NO);
+                blockList(queryList);
             }
             
             //进行赛事记录保存
@@ -121,7 +122,7 @@
                     
                     if (i == queryList.count - 1) {
                         
-                        blockList(YES);
+                        blockList(queryList);
                         
                     }
                     
@@ -385,14 +386,32 @@
             //10场
             NSInteger count = array.count;
             
+            //时间+主客队名字
+            NSMutableArray *finishArr = [NSMutableArray new];
+            
+            
             for (NSInteger i = 0; i < count; i++) {
                 GGXMatchInfo *matchInfo= [GGXMatchInfo mj_objectWithKeyValues:array[i]];
                 
                 ResultModel *m = [self handleOnlyEndScoreWithData:matchInfo];
                 
                 [self.listArray addObject:m];
+                
+                NSMutableDictionary *dict = [NSMutableDictionary new];
+                [dict setValue:m.finishBigText forKey:@"finishBigText"];
+                [dict setValue:m.finishYazhiText forKey:@"finishYazhiText"];
+                
+                [dict setValue:m.home forKey:@"home"];
+                [dict setValue:m.away forKey:@"away"];
+                [dict setValue:m.mmdd forKey:@"mmdd"];
+                
+                [finishArr addObject:dict];
             }
             
+            //列表储存，用于预测列表
+            RRCMatchSetModel *appSet = [[RRCConfigManager sharedRRCConfigManager]loadPushLocalSet];
+            appSet.matchScoreListArr = finishArr;
+            [[RRCConfigManager sharedRRCConfigManager]updatePushLocalSetBySetModel:appSet];
             
             //整理赛事胜率
             [self sortMatchLeagueWithParameters:self.listArray Complete:^(NSArray * _Nonnull loadArr) {
@@ -408,11 +427,16 @@
 -(void)sortMatchLeagueWithParameters:(NSArray *)parameters Complete:(nonnull LoadDataArrayBlock)blockList{
     
     float dxqSortRedCount = 0;
+    float dxqSortAllCount = 0;
+    
     float yzSortRedCount  = 0;
+    float yzSortAllCount = 0;
+    
     float scoreSortRedCount = 0;
     float jcSortRedCount = 0;
     
     float sortAllCount = 0;
+    
     //原始数据，赛前下注，如果进行了，没下注就需要删除。每天最多12场。一场接一场
 //    NSArray *submitMoneyArr = @[@"10",@"20",@"60",@"180",@"540",@"1620",@"4860",@"14580",@"43740"];//最大支持八连黑 总资金65600元
 //    NSArray *submitMoneyArr = @[@"100",@"200",@"300",@"600",@"900",@"1500",@"2500",@"4000",@"6500"];//最大支持八连黑 总资金16600。
@@ -473,13 +497,17 @@
                     m.finishBigMoney = firstMoney;
                     if (m.finishBigSuc.integerValue == 1) {//本场红了
                         dxqSortRedCount ++;
+                        dxqSortAllCount ++;
                         dxqRedCount = 1;
                         dxqRemainPoint += firstDxqRedMoney.floatValue;//
 //                        NSLog(@"大小球本次盈利指数：%@",firstDxqRedMoney);
                     }else if (m.finishBigSuc.integerValue == 0){//本场黑了
                         dxqRedCount = -1;
+                        dxqSortAllCount ++;
                         dxqRemainPoint -= firstMoney.floatValue;
 //                        NSLog(@"大小球本次盈利指数：-%@",firstMoney);
+                    }else{
+                        
                     }
                     
                 }
@@ -493,11 +521,13 @@
                     //-2为连黑两场，那么投注额为索引第三位置
                     if (m.finishBigSuc.integerValue == 1) {//本场红了
                         dxqSortRedCount ++;
+                        dxqSortAllCount ++;
                         dxqRedCount = 1;
                         dxqRemainPoint += dxqRedNextMoney.floatValue;
 //                        NSLog(@"大小球本次盈利指数：%@",dxqRedNextMoney);
                     }else if (m.finishBigSuc.integerValue == 0){//本场黑了
                         dxqRedCount -= 1;
+                        dxqSortAllCount ++;
                         dxqRemainPoint -= dxqBlackNextMoney.floatValue;
 //                        NSLog(@"大小球本次盈利指数：-%@",dxqBlackNextMoney);
                     }
@@ -508,13 +538,18 @@
                 if (yzRedCount >= 0) {//上场比赛红了
                     if (m.finishYazhiSuc.integerValue == 1) {//本场红了
                         yzSortRedCount ++;
+                        yzSortAllCount ++;
                         yzRedCount = 1;
                         yzRemainPoint += firstYzRedMoney.floatValue;
 //                        NSLog(@"亚指本次盈利指数：%@,总盈利：%f.2",firstYzRedMoney,yzRemainPoint);
                     }else if (m.finishYazhiSuc.integerValue == 0){//本场黑了
                         yzRedCount = -1;
+                        yzSortAllCount ++;
                         yzRemainPoint -= firstMoney.floatValue;
 //                        NSLog(@"亚指本次盈利指数：-%@,总盈利：%f.2",firstMoney,yzRemainPoint);
+                    }else if (m.finishYazhiSuc.integerValue == 2){
+                        //走水不计场次
+                        
                     }
                     m.finishYazhiMoney = firstMoney;
                 }
@@ -528,13 +563,18 @@
                     //-2为连黑两场，那么投注额为索引第三位置
                     if (m.finishYazhiSuc.integerValue == 1) {//本场红了
                         yzSortRedCount ++;
+                        yzSortAllCount ++;
                         yzRedCount = 1;
                         yzRemainPoint += yzRedNextMoney.floatValue;
 //                        NSLog(@"亚指本次盈利指数：%@,总盈利：%f.2",yzRedNextMoney,yzRemainPoint);
                     }else if (m.finishYazhiSuc.integerValue == 0){//本场黑了
                         yzRedCount -= 1;
+                        yzSortAllCount ++;
                         yzRemainPoint -= yzBlackNextMoney.floatValue;
 //                        NSLog(@"亚指本次盈利指数：-%@,总盈利：%f.2",yzBlackNextMoney,yzRemainPoint);
+                    }else if (m.finishYazhiSuc.integerValue == 2){
+                        //走水不计场次
+                        
                     }
                     
                 }
@@ -545,11 +585,13 @@
                 //没有上场比赛
                 if (m.finishBigSuc.integerValue == 1) {//本场红了
                     dxqSortRedCount ++;
+                    dxqSortAllCount ++;
                     dxqRedCount = 1;
                     dxqRemainPoint += firstDxqRedMoney.floatValue;
 //                    NSLog(@"大小球本次盈利指数：%@",firstDxqRedMoney);
                 }else if (m.finishBigSuc.integerValue == 0){//本场黑了
                     dxqRedCount = -1;
+                    dxqSortAllCount ++;
                     dxqRemainPoint -= firstMoney.floatValue;
 //                    NSLog(@"大小球本次盈利指数：-%@",firstMoney);
                 }
@@ -558,13 +600,19 @@
                 //亚指倍投统计
                 if (m.finishYazhiSuc.integerValue == 1) {//本场红了
                     yzSortRedCount ++;
+                    yzSortAllCount ++;
                     yzRedCount = 1;
                     yzRemainPoint += firstYzRedMoney.floatValue;
+                    
 //                    NSLog(@"亚指本次盈利指数：%@,总盈利：%f.2",firstYzRedMoney,yzRemainPoint);
                 }else if (m.finishYazhiSuc.integerValue == 0){//本场黑了
                     yzRedCount = -1;
+                    yzSortAllCount ++;
                     yzRemainPoint -= firstMoney.floatValue;
 //                    NSLog(@"亚指本次盈利指数：-%@,总盈利：%f.2",firstMoney,yzRemainPoint);
+                }else if (m.finishYazhiSuc.integerValue == 2){
+                    //走水不计场次
+                    
                 }
                 m.finishYazhiMoney = firstMoney;
             }
@@ -576,6 +624,9 @@
             if ([m.finishWinSuc integerValue] == 1 || m.finishWinSSuc.integerValue == 1) {
                 jcSortRedCount ++;
             }
+//            if ([m.finishWinSSuc integerValue] == 1) {
+//                jcSortRedCount ++;
+//            }
             sortAllCount ++;
             
             
@@ -605,8 +656,8 @@
     }
     //100注 60%胜率 200 * 100 * (60% * 0.85 - 1 + 60%) = 盈利百分比 60 * 200 * 0.85 - 40 * 200
     
-    self.dxqRateText = [NSString stringWithFormat:@"%.0f场%.2f%%【%.f】",sortAllCount,dxqSortRedCount/sortAllCount * 100,dxqRemainPoint];
-    self.yzRateText  = [NSString stringWithFormat:@"%.0f场%.2f%%【%.f】",sortAllCount,yzSortRedCount/sortAllCount * 100,yzRemainPoint];
+    self.dxqRateText = [NSString stringWithFormat:@"%.0f/%.0f %.2f%%【%.f】",dxqSortRedCount,dxqSortAllCount,dxqSortRedCount/dxqSortAllCount * 100,dxqRemainPoint];
+    self.yzRateText  = [NSString stringWithFormat:@"%.0f/%.0f %.2f%%【%.f】",yzSortRedCount,yzSortAllCount,yzSortRedCount/yzSortAllCount * 100,yzRemainPoint];
     self.bdRateText  = [NSString stringWithFormat:@"%.2f%%",scoreSortRedCount/sortAllCount* 100];
     self.yzdxqRRateText = [NSString stringWithFormat:@"%@",@(dxqRemainPoint + yzRemainPoint)];
     self.jcRateText  = [NSString stringWithFormat:@"%.2f%%",jcSortRedCount/sortAllCount * 100];
@@ -615,7 +666,7 @@
     
 }
 
-
+#pragma mark - 上拉预览更多
 -(void)previewLoadMoreMatchListWithParameters:(NSDictionary *)parameters Complete:(nonnull LoadDataArrayIntegerBlock)blockList{
     
     [[RRCNetWorkManager sharedTool]loadRequestWithURLString:@"getMatch" parameters:parameters success:^(CGDataResult * _Nonnull result) {
@@ -1041,10 +1092,13 @@
 //大小球计算方式
 -(void)handleBigSmallText:(ResultModel *)scoreModel{
     
-    //大小球结果计算
-    float allScoreDif = scoreModel.allCompositeScore - scoreModel.companyBigSmallNumber.floatValue;
+    //大小球结果计算 companyBigSmallNumber - allCompositeScore
+    float allScoreDif = scoreModel.allCompositeScore - scoreModel.companyBigSmallNumber.floatValue ;//反
+//    float allScoreDif = scoreModel.companyBigSmallNumber.floatValue - scoreModel.allCompositeScore;
     
     scoreModel.finishScoreBigDif = [NSString stringWithFormat:@"%.2f",allScoreDif];
+    
+//    allScoreDif =-allScoreDif;
     
     if (allScoreDif > 0) {
         scoreModel.finishBigDif  = [NSString stringWithFormat:@"%.2f",scoreModel.dxq_dpk.floatValue];
@@ -1120,13 +1174,13 @@
 #pragma mark -计算亚指
 -(void)handleyzJK:(ResultModel *)scoreModel{
     //计算亚指结果
-    float allScoreYazhiDif = scoreModel.homeCompositeScore - scoreModel.awayCompositeScore + scoreModel.companyYazhiNumber;
-    
+    float allScoreYazhiDif = scoreModel.homeCompositeScore - scoreModel.awayCompositeScore + scoreModel.companyYazhiNumber;//主队-客队得分，大于0，-盘口还大0主队，
     scoreModel.finishScoreYazhiDif = [NSString stringWithFormat:@"%.2f",allScoreYazhiDif];
     
+    //取反
+    
     float absFCom = fabsf(scoreModel.companyYazhiNumber);
-    //如果盘口大于零 得分差 + 盘口指数
-//   如果盘口小于0，得分差 -
+
     if (allScoreYazhiDif > 0) {
         scoreModel.finishYazhiDif  = scoreModel.yp_spk;
         

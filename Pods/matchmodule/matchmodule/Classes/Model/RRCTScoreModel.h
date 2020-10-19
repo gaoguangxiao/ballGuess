@@ -28,8 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *mmdd;
 
 @property (nonatomic, strong) NSString *JSPKDesc;
-
-
 @property (nonatomic, strong) NSString *awayScore;
 @property (nonatomic, strong) NSString *ID;
 
@@ -45,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *DXQ_HJSPL;
 @property (nonatomic, strong) NSString *DXQDesc;
 @property (nonatomic, strong) NSString *DXQ_WJSPL;
+
 
 @property (nonatomic, strong) NSString *yellow1;
 @property (nonatomic, strong) NSString *yellow2;
@@ -178,6 +177,10 @@ NS_ASSUME_NONNULL_BEGIN
 //视频地址
 @property (nonatomic,copy) NSString *url;//破晓直播
 @property (nonatomic,copy) NSString *url_sec;//凯旋直播
+
+
+@property (nonatomic, strong) NSString *YZ_FINISHTYEXTR;
+@property (nonatomic, strong) NSString *DXQ_FINISHTYEXTR;
 
 -(RRCTScoreModel *)replaceMJDataByNewModel:(RRCTScoreModel *)m;
 

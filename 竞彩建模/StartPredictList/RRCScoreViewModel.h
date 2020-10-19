@@ -54,6 +54,9 @@ parameters: (NSDictionary *)parameters
 -(void)updateScoreListTopStatus:(NSIndexPath *)indexPath
             andLoadDeleteResult:(loadDataBOOLBlock)complete;
 
+
+-(void)reloadScoreListTopStatus:(NSArray *)newFinishArr andLoadDeleteResult:(loadDataBOOLBlock)complete;
+
 /// 重新排序列表数据
 -(void)resetSortListForTopStatus;
 

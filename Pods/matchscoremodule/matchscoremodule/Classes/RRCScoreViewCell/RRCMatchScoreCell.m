@@ -54,7 +54,7 @@
     [self.homeEnterView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(self.contentView);
         make.top.mas_equalTo(10 * Device_Ccale);
-        make.height.mas_equalTo(88 * Device_Ccale);
+        make.bottom.mas_equalTo(0 * Device_Ccale);
     }];
     
     [self.homeEnterBallbackImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -87,7 +87,7 @@
     [self.teamExponentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.teamVSScoreView.mas_bottom);
         make.left.right.mas_equalTo(self.contentView);
-        make.height.mas_equalTo(26 * Device_Ccale);
+        make.height.mas_equalTo(35 * Device_Ccale);
     }];
     
     [self.openCellEventBtn mas_makeConstraints:^(MASConstraintMaker *make) {

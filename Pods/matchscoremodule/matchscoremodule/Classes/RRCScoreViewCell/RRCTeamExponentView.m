@@ -11,7 +11,9 @@
 @interface RRCTeamExponentView ()
 
 @property (nonatomic, strong)UILabel *JPSKCOUNT;
+@property (nonatomic, strong)UILabel *RECOMENJPSKCOUNT;//亚指推荐
 @property (nonatomic, strong)UILabel *DXQCOUNT;
+@property (nonatomic, strong)UILabel *RECOMENDXQCOUNT;//大小球推荐
 
 @property (nonatomic, strong)UIButton *recommendCount;
 @property (nonatomic, strong)UIImageView *recommendImage;
@@ -31,9 +33,13 @@
 
 -(void)setUpView{
     [self addSubview:self.JPSKCOUNT];
+    [self addSubview:self.RECOMENJPSKCOUNT];
+    
     [self addSubview:self.DXQCOUNT];
+    [self addSubview:self.RECOMENDXQCOUNT];
+    
     [self addSubview:self.recommendCount];
-//    [self addSubview:self.recommendImage];
+    
     
     [self addSubview:self.openEventLineView];
     [self addSubview:self.openEventBtn];
@@ -43,9 +49,19 @@
         make.top.mas_equalTo(self);
     }];
     
+    [self.RECOMENJPSKCOUNT mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(12 * Device_Ccale);
+        make.top.mas_equalTo(self.JPSKCOUNT.mas_bottom).offset(3);
+    }];
+    
     [self.DXQCOUNT mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.JPSKCOUNT.mas_right).offset(12 * Device_Ccale);
+        make.left.mas_equalTo(kScreenWidth/2);
         make.centerY.mas_equalTo(self.JPSKCOUNT);
+    }];
+    
+    [self.RECOMENDXQCOUNT mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.DXQCOUNT.mas_left);
+        make.top.mas_equalTo(self.DXQCOUNT.mas_bottom).offset(3);
     }];
     
     [self.recommendCount mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -77,9 +93,12 @@
     self.t_scoreModel = scoreModel;
     
     _JPSKCOUNT.text = [NSString stringWithFormat:@"亚：%@ %@ %@",kSafeString(scoreModel.HJSPL),kSafeString(scoreModel.JSPKDesc),kSafeString( scoreModel.WJSPL)];
-    _DXQCOUNT.text  = [NSString stringWithFormat:@"大：%@ %@ %@",kSafeString(scoreModel.DXQ_HJSPL),kSafeString(scoreModel.DXQDesc),kSafeString(scoreModel.DXQ_WJSPL)];
+    _RECOMENJPSKCOUNT.text = [NSString stringWithFormat:@"预：%@", kSafeString(scoreModel.YZ_FINISHTYEXTR)];
     
-    [self yaAndDxTitleColor];
+    _DXQCOUNT.text  = [NSString stringWithFormat:@"大：%@ %@ %@",kSafeString(scoreModel.DXQ_HJSPL),kSafeString(scoreModel.DXQDesc),kSafeString(scoreModel.DXQ_WJSPL)];
+    _RECOMENDXQCOUNT.text = [NSString stringWithFormat:@"预：%@", kSafeString(scoreModel.DXQ_FINISHTYEXTR)];
+    
+//    [self yaAndDxTitleColor];
     
     if ([scoreModel.recommendNum integerValue] == 0) {
         [_recommendCount setTitle:@"" forState:UIControlStateNormal];
@@ -243,6 +262,15 @@
     return _JPSKCOUNT;
 }
 
+-(UILabel *)RECOMENJPSKCOUNT{
+    if (!_RECOMENJPSKCOUNT) {
+        _RECOMENJPSKCOUNT = [[UILabel alloc]init];
+        _RECOMENJPSKCOUNT.font = K_FontSizeViceTiny;
+        _RECOMENJPSKCOUNT.textColor = RRCGrayTextColor;
+    }
+    return _RECOMENJPSKCOUNT;
+}
+
 -(UILabel *)DXQCOUNT{
     if (!_DXQCOUNT) {
         _DXQCOUNT = [[UILabel alloc]init];
@@ -251,6 +279,16 @@
     }
     return _DXQCOUNT;
 }
+
+-(UILabel *)RECOMENDXQCOUNT{
+    if (!_RECOMENDXQCOUNT) {
+        _RECOMENDXQCOUNT = [[UILabel alloc]init];
+        _RECOMENDXQCOUNT.font = K_FontSizeViceTiny;
+        _RECOMENDXQCOUNT.textColor = RRCGrayTextColor;
+    }
+    return _RECOMENDXQCOUNT;
+}
+
 
 -(UIView *)openEventLineView{
     if (!_openEventLineView) {
