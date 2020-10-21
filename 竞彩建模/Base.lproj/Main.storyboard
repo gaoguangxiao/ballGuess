@@ -105,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J9U-ND-kwC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-703" y="-752"/>
+            <point key="canvasLocation" x="-650" y="-369"/>
         </scene>
         <!--预测-->
         <scene sceneID="Hgf-wO-MUu">
@@ -122,7 +122,75 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhl-jX-iO5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1639" y="81"/>
+            <point key="canvasLocation" x="-1639" y="-369"/>
+        </scene>
+        <!--设置-->
+        <scene sceneID="cOB-iw-Okl">
+            <objects>
+                <navigationController id="gnv-QJ-5ox" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="设置" image="power" catalog="system" id="uir-Oj-LO7"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nxM-Q2-OqX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vHo-CW-6bK" kind="relationship" relationship="rootViewController" id="bo1-4i-WYt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DAH-Y1-qpu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1604" y="428"/>
+        </scene>
+        <!--设置-->
+        <scene sceneID="RIh-JN-XRw">
+            <objects>
+                <viewController id="vHo-CW-6bK" customClass="RRCMatchSetViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uuS-9k-phm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dqj-ya-XgP">
+                                <rect key="frame" x="0.0" y="44" width="375" height="45"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfM-4E-bDZ">
+                                        <rect key="frame" x="12" y="5.5" width="147" height="34"/>
+                                        <state key="normal" title="亚指预测：开正买">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SKF-JC-Qlo">
+                                        <rect key="frame" x="314" y="7" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="ChangePredictDirection:" destination="vHo-CW-6bK" eventType="valueChanged" id="67i-bg-mag"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Lne-mZ-AQD"/>
+                                    <constraint firstItem="YfM-4E-bDZ" firstAttribute="leading" secondItem="dqj-ya-XgP" secondAttribute="leading" constant="12" id="TCZ-nb-E8g"/>
+                                    <constraint firstAttribute="trailing" secondItem="SKF-JC-Qlo" secondAttribute="trailing" constant="12" id="c74-NL-zMB"/>
+                                    <constraint firstItem="YfM-4E-bDZ" firstAttribute="centerY" secondItem="dqj-ya-XgP" secondAttribute="centerY" id="g1b-Tz-QnS"/>
+                                    <constraint firstItem="SKF-JC-Qlo" firstAttribute="centerY" secondItem="dqj-ya-XgP" secondAttribute="centerY" id="m14-5O-OyF"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qa3-uU-k9D"/>
+                        <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="dqj-ya-XgP" firstAttribute="trailing" secondItem="qa3-uU-k9D" secondAttribute="trailing" id="AhP-W1-5nE"/>
+                            <constraint firstItem="dqj-ya-XgP" firstAttribute="leading" secondItem="qa3-uU-k9D" secondAttribute="leading" id="Eyr-Sn-4Xk"/>
+                            <constraint firstItem="dqj-ya-XgP" firstAttribute="top" secondItem="qa3-uU-k9D" secondAttribute="top" id="Vf0-wB-cBF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="设置" id="9ii-Hd-GHa"/>
+                    <connections>
+                        <outlet property="preDirection" destination="SKF-JC-Qlo" id="LbV-qg-q42"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eG7-v2-fCq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-546.39999999999998" y="427.73613193403304"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="U78-ex-U8n">
@@ -136,6 +204,7 @@
                     <connections>
                         <segue destination="fa2-oo-O4e" kind="relationship" relationship="viewControllers" id="xrO-Oo-NQ2"/>
                         <segue destination="HRo-Ri-s3Q" kind="relationship" relationship="viewControllers" id="XIi-3U-1bH"/>
+                        <segue destination="gnv-QJ-5ox" kind="relationship" relationship="viewControllers" id="xOP-t7-TMK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAi-HT-RnF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -161,7 +230,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5wf-ub-3gP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2276" y="671"/>
+            <point key="canvasLocation" x="697" y="408"/>
         </scene>
         <!--列表-->
         <scene sceneID="tne-QT-ifu">
@@ -250,7 +319,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1442" y="671"/>
+            <point key="canvasLocation" x="1409" y="408"/>
         </scene>
         <!--赛果-->
         <scene sceneID="RKZ-7I-oHy">
@@ -267,7 +336,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9d-77-jKW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1908" y="-742"/>
+            <point key="canvasLocation" x="-1639" y="-1226"/>
         </scene>
         <!--胜率-->
         <scene sceneID="6ZX-9T-KLF">
@@ -450,7 +519,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xGa-4d-eID" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-703" y="-72"/>
+            <point key="canvasLocation" x="-650" y="-1227"/>
         </scene>
         <!--League Condition View Controller-->
         <scene sceneID="uM9-bT-Bzu">
@@ -531,7 +600,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xv2-R5-Wxf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="358" y="433"/>
+            <point key="canvasLocation" x="870" y="-1430"/>
         </scene>
         <!--Date Rate View Controller-->
         <scene sceneID="lHj-jl-G37">
@@ -626,11 +695,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dZW-J1-BpW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="358" y="-352"/>
+            <point key="canvasLocation" x="870" y="-726"/>
         </scene>
     </scenes>
     <resources>
         <image name="doc.append" catalog="system" width="115" height="128"/>
+        <image name="power" catalog="system" width="128" height="124"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="tabBarItem:FOj-P5-SjO:image" width="128" height="95">
             <mutableData key="keyedArchiveRepresentation">

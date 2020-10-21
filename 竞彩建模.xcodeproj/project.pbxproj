@@ -36,6 +36,7 @@
 		FF85E914248F67AE00D67F99 /* GGCRiceListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF85E912248F67AE00D67F99 /* GGCRiceListCell.xib */; };
 		FF85E923248FBBC300D67F99 /* GGCRiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF85E91F248FBBC300D67F99 /* GGCRiceListViewController.m */; };
 		FF85E92B2490DABB00D67F99 /* getMatch.json in Resources */ = {isa = PBXBuildFile; fileRef = FF85E92A2490DABA00D67F99 /* getMatch.json */; };
+		FF86DBE6253E8DA500B82BF9 /* RRCMatchSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF86DBE5253E8DA500B82BF9 /* RRCMatchSetViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,8 @@
 		FF85E91E248FBBC300D67F99 /* GGCRiceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCRiceListViewController.h; sourceTree = "<group>"; };
 		FF85E91F248FBBC300D67F99 /* GGCRiceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCRiceListViewController.m; sourceTree = "<group>"; };
 		FF85E92A2490DABA00D67F99 /* getMatch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getMatch.json; sourceTree = "<group>"; };
+		FF86DBE4253E8DA500B82BF9 /* RRCMatchSetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RRCMatchSetViewController.h; sourceTree = "<group>"; };
+		FF86DBE5253E8DA500B82BF9 /* RRCMatchSetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RRCMatchSetViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +208,7 @@
 				FF2D38972522F421008896D7 /* MatchRate */,
 				FF745926248DCB2F00FDF646 /* AppDelegate.h */,
 				FF745927248DCB2F00FDF646 /* AppDelegate.m */,
+				FF86DBE3253E8D8C00B82BF9 /* Setting */,
 				FF85E92A2490DABA00D67F99 /* getMatch.json */,
 				FF745932248DCB3200FDF646 /* Assets.xcassets */,
 				FF745963248DDC5100FDF646 /* ResultViewModel.h */,
@@ -284,6 +288,15 @@
 				FF85E91F248FBBC300D67F99 /* GGCRiceListViewController.m */,
 			);
 			path = HomeList;
+			sourceTree = "<group>";
+		};
+		FF86DBE3253E8D8C00B82BF9 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				FF86DBE4253E8DA500B82BF9 /* RRCMatchSetViewController.h */,
+				FF86DBE5253E8DA500B82BF9 /* RRCMatchSetViewController.m */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -466,6 +479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF2D38932522EF8B008896D7 /* GGCDateRateViewController.m in Sources */,
+				FF86DBE6253E8DA500B82BF9 /* RRCMatchSetViewController.m in Sources */,
 				FF85E905248F645600D67F99 /* GGCBigSmallBallViewController.m in Sources */,
 				FF85E913248F67AE00D67F99 /* GGCRiceListCell.m in Sources */,
 				FF2D38692522E65D008896D7 /* RRCMatchRateModel.m in Sources */,
@@ -660,7 +674,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ggx.app;
 				PRODUCT_NAME = "建模";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -680,7 +694,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ggx.app;
 				PRODUCT_NAME = "建模";
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -79,7 +79,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSString *finishBigSuc; //结果是否成功 -1未出赛果 0失败 1 成功 2走水
 @property (nonatomic , strong) NSString *finishBigDif; //大小球预测水位 如果大球那么就为大球水位，小球为小球水位
 @property (nonatomic , strong) NSString *finishScoreBigDif; //大小球预测差值
-@property (nonatomic , strong) UIColor  *finishBigTextColor;//文本颜色 1正常 0警告
+@property (nonatomic , strong) UIColor  *finishBigTextColor;//文本颜色 0正常 1警告
+@property (nonatomic , strong) NSString *finishBigTextColorNormal;//文本标志 0正常 1警告
 @property (nonatomic , strong) UIColor *finishBigViewColor;//未出赛果灰色背景 失败黑色背景 成功红色背景 走水绿色背景
 @property (nonatomic , strong) UIImage *finishBigImage;
 
@@ -90,7 +91,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSString *finishYazhiDif; //亚指预测差值 预测赛果水位
 @property (nonatomic , strong) NSString *finishScoreYazhiDif; //亚指预测差值 预测亚指差值
 @property (nonatomic , strong) UIColor *finishYazhiViewColor;//视图背景
-@property (nonatomic , strong) UIColor *finishYazhiTextColor;//文本颜色 1正常 0警告
+@property (nonatomic , strong) UIColor *finishYazhiTextColor;//文本颜色 0正常 1警告
+@property (nonatomic , strong) NSString *finishYazhiTextColorNormal;//文本标志 0正常 1警告
 @property (nonatomic , strong) UIImage *finishYazhiImage;
 
 @property (nonatomic , strong) NSString *benjinMoney;//本金剩余

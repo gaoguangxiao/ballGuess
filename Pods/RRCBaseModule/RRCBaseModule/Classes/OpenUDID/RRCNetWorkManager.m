@@ -68,6 +68,8 @@
     NSString *webserviceUrl = self.webUrl;
     NSMutableDictionary *parametersdic = [[NSMutableDictionary alloc]init];
     NSString *deviceId = [OpenUDID value];
+    deviceId = @"8a4636842d9f2736e3fcb57b0977e08851ecf8e0";
+//    e05582c4aa36e1f10f21c4396ebf1cb5827004de
     
     if (isfull) {
         webserviceUrl = URLString;

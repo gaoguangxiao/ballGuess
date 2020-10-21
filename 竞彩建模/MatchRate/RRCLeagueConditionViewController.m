@@ -87,9 +87,7 @@ static NSString * const leagueCoViewCellIdentifier= @"RRCCheckCollectionCell_ID"
         
         [leagueListArr addObjectsFromArray:temp_m.leagueList];
     }
-    
-    //    [_resultViewModel sortMatchLeagueWithParameters:leagueListArr Complete:^(NSArray * _Nonnull loadArr, NSInteger count) {
-    
+        
     if (self.submitChoseCondition) {
         self.submitChoseCondition(leagueListArr,vcTitle);
     }

@@ -37,17 +37,6 @@
             
             GGXMatchInfo *m = [GGXMatchInfo mj_objectWithKeyValues:result.data];
             [self handleScoreWithData:m];
-            
-            //            NSString *path = [[NSBundle mainBundle]pathForResource:@"matchInfo" ofType:@"json"];
-            //            NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-            //            //    对数据进行JSON格式化并返回字典形式
-            //            NSArray *array = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            //
-            //            for (NSInteger i = 0; i < array.count; i++) {
-            //                GGXMatchInfo *m = [GGXMatchInfo mj_objectWithKeyValues:array[i]];
-            //                [self handleScoreWithData:m];
-            //            }
-            
         }
         blockList(self.listArray,YES);
     }];
@@ -395,17 +384,35 @@
                 
                 ResultModel *m = [self handleOnlyEndScoreWithData:matchInfo];
                 
-                [self.listArray addObject:m];
+                //处理正常大小球
+//                if (m.finishBigTextColorNormal.integerValue == 0) {
+//                    [self.listArray addObject:m];
+//
+//                    NSMutableDictionary *dict = [NSMutableDictionary new];
+//                    [dict setValue:m.finishBigText forKey:@"finishBigText"];
+//                    [dict setValue:m.finishYazhiText forKey:@"finishYazhiText"];
+//
+//                    [dict setValue:m.home forKey:@"home"];
+//                    [dict setValue:m.away forKey:@"away"];
+//                    [dict setValue:m.mmdd forKey:@"mmdd"];
+//
+//                    [finishArr addObject:dict];
+//                }
                 
-                NSMutableDictionary *dict = [NSMutableDictionary new];
-                [dict setValue:m.finishBigText forKey:@"finishBigText"];
-                [dict setValue:m.finishYazhiText forKey:@"finishYazhiText"];
+//                if (m.finishYazhiTextColorNormal.integerValue != 0) {
+                    [self.listArray addObject:m];
+                    
+                    NSMutableDictionary *dict = [NSMutableDictionary new];
+                    [dict setValue:m.finishBigText forKey:@"finishBigText"];
+                    [dict setValue:m.finishYazhiText forKey:@"finishYazhiText"];
+                    
+                    [dict setValue:m.home forKey:@"home"];
+                    [dict setValue:m.away forKey:@"away"];
+                    [dict setValue:m.mmdd forKey:@"mmdd"];
+                    
+                    [finishArr addObject:dict];
+//                }
                 
-                [dict setValue:m.home forKey:@"home"];
-                [dict setValue:m.away forKey:@"away"];
-                [dict setValue:m.mmdd forKey:@"mmdd"];
-                
-                [finishArr addObject:dict];
             }
             
             //列表储存，用于预测列表
@@ -446,7 +453,7 @@
     //设置注量模式
     NSInteger rateMoneyIndex = [KUserDefault(@"RateMoneyArr") integerValue];
     if (rateMoneyIndex == 0) {
-        submitMoneyArr = @[@"100",@"100",@"100",@"100",@"100",@"100",@"100",@"100",@"100"];//均注 本金：1000
+        submitMoneyArr = @[@"100",@"100",@"100",@"100",@"100",@"100",@"100",@"100",@"100",@"100"];//均注 本金：1000
     }else if(rateMoneyIndex == 1){//总金额十分之一投注 700一个档次
 //        本金200 均注200/4 = 50 * 10 = 500。
 //        本金700 均注700/10 = 70 * 10 = 700
@@ -456,11 +463,11 @@
 //        if (winMoney%700 == 0) {
 //            NSInteger submitMoney = winMoney/700;//900
 //        }
-        submitMoneyArr = @[@"100",@"200",@"600",@"1800",@"5400",@"16200",@"48600",@"145800",@"437400"];//最大支持八连黑 总资金65600元
+        submitMoneyArr = @[@"100",@"200",@"600",@"1800",@"5400",@"16200",@"48600",@"145800",@"437400",@"437400"];//最大支持八连黑 总资金65600元
     }else if(rateMoneyIndex == 2){
-        submitMoneyArr = @[@"25",@"50",@"150",@"450",@"1350",@"4050",@"12150",@"36450",@"109350"];//最大支持八连黑 总资金10000。
+        submitMoneyArr = @[@"25",@"50",@"150",@"450",@"1350",@"4050",@"12150",@"36450",@"109350",@"109350"];//最大支持八连黑 总资金10000。
     }else if(rateMoneyIndex == 3){
-        submitMoneyArr = @[@"10",@"20",@"60",@"180",@"540",@"1620",@"4860",@"14580",@"43740"];//最大支持八连黑 总资金65600元
+        submitMoneyArr = @[@"10",@"20",@"60",@"180",@"540",@"1620",@"4860",@"14580",@"43740",@"43740"];//最大支持八连黑 总资金65600元
     }
     
     ResultModel *lastResultModel;//
@@ -555,22 +562,28 @@
                 }
                 else{//上场黑了
                     NSInteger submitMoneyIndex = labs(yzRedCount);
-                    
-                    NSString *yzRedNextMoney = [NSString stringWithFormat:@"%.2f",[submitMoneyArr[submitMoneyIndex] integerValue] * m.finishYazhiDif.floatValue];
-                    NSString *yzBlackNextMoney = submitMoneyArr[submitMoneyIndex];
-                    m.finishYazhiMoney = yzBlackNextMoney;
+                    NSString *yzNextMoney = @"";
+                    if (submitMoneyIndex >= submitMoneyArr.count){
+                        yzNextMoney = submitMoneyArr.lastObject;
+                    }else{
+                        yzNextMoney = submitMoneyArr[submitMoneyIndex];
+                    }
+
+                    m.finishYazhiMoney = yzNextMoney;
                     //-1：投注额为，索引第二位置
                     //-2为连黑两场，那么投注额为索引第三位置
                     if (m.finishYazhiSuc.integerValue == 1) {//本场红了
                         yzSortRedCount ++;
                         yzSortAllCount ++;
                         yzRedCount = 1;
+                        
+                        NSString *yzRedNextMoney = [NSString stringWithFormat:@"%.2f",[yzNextMoney integerValue] * m.finishYazhiDif.floatValue];
                         yzRemainPoint += yzRedNextMoney.floatValue;
 //                        NSLog(@"亚指本次盈利指数：%@,总盈利：%f.2",yzRedNextMoney,yzRemainPoint);
                     }else if (m.finishYazhiSuc.integerValue == 0){//本场黑了
                         yzRedCount -= 1;
                         yzSortAllCount ++;
-                        yzRemainPoint -= yzBlackNextMoney.floatValue;
+                        yzRemainPoint -= yzNextMoney.floatValue;
 //                        NSLog(@"亚指本次盈利指数：-%@,总盈利：%f.2",yzBlackNextMoney,yzRemainPoint);
                     }else if (m.finishYazhiSuc.integerValue == 2){
                         //走水不计场次
@@ -1097,7 +1110,9 @@
 //    float allScoreDif = scoreModel.companyBigSmallNumber.floatValue - scoreModel.allCompositeScore;
     
     scoreModel.finishScoreBigDif = [NSString stringWithFormat:@"%.2f",allScoreDif];
-    
+    if (![self updatePredictDirectionValue]) {
+        allScoreDif = -allScoreDif;
+    }
 //    allScoreDif =-allScoreDif;
     
     if (allScoreDif > 0) {
@@ -1106,8 +1121,10 @@
         
         if (scoreModel.dxq_dpk.floatValue < scoreModel.dxq_xpk.floatValue) {
             scoreModel.finishBigTextColor = RRCWhiteDarkColor;
+            scoreModel.finishBigTextColorNormal = @"0";
         }else{
             scoreModel.finishBigTextColor = RRCFFC60AColor;
+            scoreModel.finishBigTextColorNormal = @"1";
         }
         
     }else{
@@ -1116,8 +1133,10 @@
         
         if (scoreModel.dxq_dpk.floatValue > scoreModel.dxq_xpk.floatValue) {
             scoreModel.finishBigTextColor = RRCWhiteDarkColor;
+            scoreModel.finishBigTextColorNormal = @"0";
         }else{
             scoreModel.finishBigTextColor = RRCFFC60AColor;
+            scoreModel.finishBigTextColorNormal = @"1";
         }
     }
     
@@ -1177,7 +1196,10 @@
     float allScoreYazhiDif = scoreModel.homeCompositeScore - scoreModel.awayCompositeScore + scoreModel.companyYazhiNumber;//主队-客队得分，大于0，-盘口还大0主队，
     scoreModel.finishScoreYazhiDif = [NSString stringWithFormat:@"%.2f",allScoreYazhiDif];
     
-    //取反
+    //判断存储方向数值
+    if (![self updatePredictDirectionValue]) {
+        allScoreYazhiDif = -allScoreYazhiDif;
+    }
     
     float absFCom = fabsf(scoreModel.companyYazhiNumber);
 
@@ -1195,8 +1217,10 @@
         //如果上盘水位比下盘低，推荐上盘正常。字体绿色通过。否则黄色警告
         if (scoreModel.yp_spk.floatValue < scoreModel.yp_xpk.floatValue) {
             scoreModel.finishYazhiTextColor = RRCWhiteDarkColor;
+            scoreModel.finishYazhiTextColorNormal = @"0";
         }else{
             scoreModel.finishYazhiTextColor = RRCFFC60AColor;
+            scoreModel.finishYazhiTextColorNormal = @"1";
         }
         
     }else{
@@ -1212,8 +1236,10 @@
         
         if (scoreModel.yp_spk.floatValue > scoreModel.yp_xpk.floatValue) {
             scoreModel.finishYazhiTextColor = RRCWhiteDarkColor;
+            scoreModel.finishYazhiTextColorNormal = @"0";
         }else{
             scoreModel.finishYazhiTextColor = RRCFFC60AColor;
+            scoreModel.finishYazhiTextColorNormal = @"1";
         }
     }
     
@@ -1264,5 +1290,15 @@
         scoreModel.finishYazhiImage = [UIImage imageNamed:@"-"];
     }
     
+}
+
+#pragma mark - 赛事预测方向
+-(BOOL)updatePredictDirectionValue{
+    NSString *directionPre = [[NSUserDefaults standardUserDefaults] valueForKey:@"preDirection"];
+    if (directionPre) {
+        return [directionPre integerValue];
+    }else{
+        return 1;
+    }
 }
 @end
