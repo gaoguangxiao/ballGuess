@@ -195,6 +195,19 @@
     };
 }
 
+#pragma mark - 滑动至开赛
+- (IBAction)scrollOpenGame:(UIButton *)sender {
+    
+    [_resultViewModel scrollMatchOpenComplete:^(NSIndexPath * _Nonnull indexPath) {
+        
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+    }];
+    
+//    [self.tableView setContentOffset:CGPointMake(0, 90)];
+    
+}
+
+#pragma mark - tablewDelegate
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         

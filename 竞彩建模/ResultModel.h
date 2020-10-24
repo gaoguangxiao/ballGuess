@@ -96,6 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) UIImage *finishYazhiImage;
 
 @property (nonatomic , strong) NSString *benjinMoney;//本金剩余
+@property (nonatomic , strong) NSString *benjinDXQMoney;//大小球本金剩余
 //某条赛事编辑状态
 @property (nonatomic , assign) BOOL isEditDelete;
 @end

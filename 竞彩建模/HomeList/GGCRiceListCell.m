@@ -164,7 +164,7 @@
         //否则为绿色
         self.remainMoney.textColor = RRC0F9958Color;
     }
-    self.remainMoney.text = [NSString stringWithFormat:@"剩余本金：%@",resultModel.benjinMoney];
+    self.remainMoney.text = [NSString stringWithFormat:@"%@",resultModel.benjinMoney];
     
     //进球数由双方份数比例计算而得
     self.BdBallScore.text = [NSString stringWithFormat:@"赛果：%@ : %@", resultModel.homeScore,resultModel.awayScore];

@@ -3,7 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -346,6 +346,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="135" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eAD-sc-wMJ">
+                                <rect key="frame" x="0.0" y="144" width="375" height="474"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="eIx-tT-VeN" id="RKq-AE-Frb"/>
+                                    <outlet property="delegate" destination="eIx-tT-VeN" id="kwZ-EV-OMg"/>
+                                </connections>
+                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZpE-vp-dXT">
                                 <rect key="frame" x="0.0" y="44" width="375" height="100"/>
                                 <subviews>
@@ -454,14 +462,24 @@
                                     <constraint firstItem="bIF-BH-DXS" firstAttribute="top" secondItem="y7H-Ey-K5F" secondAttribute="bottom" constant="0.5" id="y8z-n2-BTP"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="135" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eAD-sc-wMJ">
-                                <rect key="frame" x="0.0" y="144" width="375" height="474"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAA-Bg-nmm">
+                                <rect key="frame" x="307" y="513" width="60" height="60"/>
+                                <color key="backgroundColor" red="0.50243456195251612" green="0.92478987358951548" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="oHo-6v-dag"/>
+                                    <constraint firstAttribute="width" constant="60" id="okn-e4-6Pz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="开赛">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="30"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <outlet property="dataSource" destination="eIx-tT-VeN" id="RKq-AE-Frb"/>
-                                    <outlet property="delegate" destination="eIx-tT-VeN" id="kwZ-EV-OMg"/>
+                                    <action selector="scrollOpenGame:" destination="eIx-tT-VeN" eventType="touchUpInside" id="nnr-8H-BD1"/>
                                 </connections>
-                            </tableView>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9Ko-JX-gM3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -472,7 +490,9 @@
                             <constraint firstItem="9Ko-JX-gM3" firstAttribute="trailing" secondItem="eAD-sc-wMJ" secondAttribute="trailing" id="V31-xH-tBB"/>
                             <constraint firstItem="ZpE-vp-dXT" firstAttribute="top" secondItem="9Ko-JX-gM3" secondAttribute="top" id="XoN-a2-RoH"/>
                             <constraint firstItem="9Ko-JX-gM3" firstAttribute="bottom" secondItem="eAD-sc-wMJ" secondAttribute="bottom" id="d8B-Gf-3W9"/>
+                            <constraint firstItem="9Ko-JX-gM3" firstAttribute="trailing" secondItem="hAA-Bg-nmm" secondAttribute="trailing" constant="8" id="eBx-ov-h1A"/>
                             <constraint firstItem="ZpE-vp-dXT" firstAttribute="trailing" secondItem="9Ko-JX-gM3" secondAttribute="trailing" id="eiD-Fg-vzu"/>
+                            <constraint firstItem="9Ko-JX-gM3" firstAttribute="bottom" secondItem="hAA-Bg-nmm" secondAttribute="bottom" constant="45" id="zhF-f0-VeP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="胜率" id="SK8-Zc-xLT">
@@ -519,7 +539,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xGa-4d-eID" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-650" y="-1227"/>
+            <point key="canvasLocation" x="-650.39999999999998" y="-1227.4362818590705"/>
         </scene>
         <!--League Condition View Controller-->
         <scene sceneID="uM9-bT-Bzu">

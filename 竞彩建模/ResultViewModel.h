@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^ResultDataIndexPathBlock)(NSIndexPath *indexPath);
+
 @interface ResultViewModel : RRCViewModel
 
 //亚指胜率
@@ -62,6 +64,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param parameters <#parameters description#>
 /// @param blockList <#blockList description#>
 -(void)sortMatchLeagueWithParameters:(NSArray *)parameters Complete:(nonnull LoadDataArrayBlock)blockList;
+
+
+-(void)scrollMatchOpenComplete:(nonnull ResultDataIndexPathBlock)blockList;
 
 //测试脚本
 -(void)testModelComplete:(nonnull LoadDataArrayIntegerBlock)blockList;

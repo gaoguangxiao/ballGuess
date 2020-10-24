@@ -480,6 +480,8 @@
     float yzRemainPoint  = 0;
     
     float benjinMoney = 2000;//2000
+    float benjinDxqMoney = 200;//2000
+    
     
     for (NSInteger i = 0; i < parameters.count; i++) {
         
@@ -646,7 +648,8 @@
             lastResultModel = m;//保存下次
             
             float remainM = benjinMoney + dxqRemainPoint + yzRemainPoint;
-            m.benjinMoney = [NSString stringWithFormat:@"%.2f",remainM];
+            m.benjinMoney = [NSString stringWithFormat:@"剩余本金：%.2f\n大小球：%.2f",remainM,benjinDxqMoney + dxqRemainPoint];
+            m.benjinDXQMoney = [NSString stringWithFormat:@"%.2f",benjinDxqMoney + dxqRemainPoint];
         }
         else{
             //建议倍投额
@@ -738,6 +741,30 @@
         blockList(result.status.boolValue);
         
     }];
+    
+}
+
+#pragma mark - 滑动至开赛的方法
+-(void)scrollMatchOpenComplete:(nonnull ResultDataIndexPathBlock)blockList{
+    
+    NSInteger openGameIndex = 0;
+    
+    for (NSInteger i = 0; i < self.listArray.count; i++) {
+        
+//        ResultModel *m = self.listArray[self.listArray.count - i - 1];
+        ResultModel *m = self.listArray[i];
+        if ([m.status integerValue] == 1) {
+            
+            NSLog(@"最后一场比赛：%@ %@ %ld",m.hhmm,m.home,i);
+            
+            openGameIndex = i;
+            
+            break;
+        }
+        
+    }
+    
+    blockList([NSIndexPath indexPathForRow:openGameIndex inSection:0]);
     
 }
 
