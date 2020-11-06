@@ -49,6 +49,12 @@ typedef void(^ResultDataIndexPathBlock)(NSIndexPath *indexPath);
 /// @param blockList <#blockList description#>
 -(void)deleteMatchListWithParameters:(NSDictionary *)parameters Complete:(nonnull loadDataBOOLBlock)blockList;
 
+
+/// 删除许多条赛事
+/// @param parameters <#parameters description#>
+/// @param blockList <#blockList description#>
+-(void)deleteMatchArrListWithParameters:(NSDictionary *)parameters Complete:(nonnull loadDataBOOLBlock)blockList;
+
 /// 获取联赛列表
 /// @param parameters <#parameters description#>
 /// @param blockList <#blockList description#>

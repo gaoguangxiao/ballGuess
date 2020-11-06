@@ -37,6 +37,10 @@
     [[NSUserDefaults standardUserDefaults]setValue:[NSString stringWithFormat:@"%d",sender.on] forKey:@"preDirection"];
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
+- (IBAction)deleteLeague:(id)sender {
+    
+//    [self performSegueWithIdentifier:@"GGCLeagueDeleteListVC" sender:self];
+}
 
 /*
 #pragma mark - Navigation

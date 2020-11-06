@@ -212,15 +212,15 @@
         
         RRCAlertView *alertView = [RRCAlertView popoverView];
         alertView.showShade = YES; // 显示阴影背景
-        NSString *contentString = @"置顶";
+        NSString *contentString = [NSString stringWithFormat:@"联赛“%@”胜率",self->_t_scoreModel.league];//@"指定";
         UIColor *titleColor = RRCThemeTextColor;
         if (_t_scoreModel.topStatus) {
-            contentString = @"取消置顶";
+            contentString = @"取消";
             titleColor = RRCGrayTextColor;
         }
         RRCAlertAction *itemAction = [RRCAlertAction actionWithTitle:contentString titleColor:titleColor handler:^(RRCAlertAction *action) {
             if (self.delegate && [self.delegate respondsToSelector:@selector(UpdateTopStatusWithisTop:andMatchID:andCompleteStatus:)]) {
-                [self.delegate UpdateTopStatusWithisTop:self.indexPath andMatchID:self->_t_scoreModel.ID andCompleteStatus:^(BOOL isResult) {
+                [self.delegate UpdateTopStatusWithisTop:self.indexPath andMatchID:self->_t_scoreModel.league andCompleteStatus:^(BOOL isResult) {
                     //                    self->_topStatusImageView.hidden = self.t_scoreModel.topStatus == 1 ? NO : YES;
                 }];
             }

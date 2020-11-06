@@ -6,7 +6,7 @@
 //  Copyright © 2020 renrencai. All rights reserved.
 //
 
-#import "GGCRiceListViewController.h"
+#import "GGCLeagueListViewController.h"
 #import "GGCRiceListCell.h"
 #import "ResultViewModel.h"
 #import "ResultModel.h"
@@ -17,7 +17,7 @@
 
 #import "RRCLeagueConditionViewController.h"
 #import "RRCLeaguesModel.h"
-@interface GGCRiceListViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface GGCLeagueListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) ResultViewModel *resultViewModel;
 
 @property (nonatomic, assign) NSInteger current_page;
@@ -37,7 +37,7 @@
 
 @end
 
-@implementation GGCRiceListViewController
+@implementation GGCLeagueListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -191,45 +191,6 @@
     
     self.jsRate.text = [NSString stringWithFormat:@"%@/%@",_resultViewModel.jcRateText,_resultViewModel.bdRateText];
     
-}
-
-
-#pragma mark - 日期筛选
-- (IBAction)editMactchList:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"GGCDateRateViewController" sender:self];
-    
-}
-
-#pragma mark - 联赛筛选
-
-- (IBAction)leagueSort:(UIButton *)sender {
-    
-    [self performSegueWithIdentifier:@"RRCLeagueConditionViewController" sender:self];
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    RRCLeagueConditionViewController *Vc = segue.destinationViewController;
-    
-    kWeakSelf;
-    Vc.submitChoseCondition = ^(NSArray * _Nonnull arr, NSString * _Nonnull title) {
-        
-        self.title = [NSString stringWithFormat:@"%@联赛【%lu场】",title,(unsigned long)arr.count];
-        
-        [weakSelf.resultViewModel sortMatchLeagueWithParameters:arr Complete:^(NSArray * _Nonnull loadArr) {
-            
-            [weakSelf updateRateText];
-            
-            [weakSelf.resultViewModel.listArray removeAllObjects];
-            
-            [weakSelf.resultViewModel.listArray addObjectsFromArray:arr];
-            
-            [weakSelf.tableView reloadData];
-            
-        }];
-        
-        
-    };
 }
 
 #pragma mark - 滑动至开赛

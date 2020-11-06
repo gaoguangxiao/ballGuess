@@ -10,13 +10,13 @@
 @class ResultModel;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GGCRiceListViewController : RRCRootViewController
+@interface GGCLeagueDeleteListVC : RRCRootViewController
 
 @property (nonatomic , strong) NSString *leagueName;
 
-@property (nonatomic , strong) NSString *homeName;
+//@property (nonatomic , strong) NSString *homeName;
 
-@property (nonatomic , strong) ResultModel *lastResultModel;
+//@property (nonatomic , strong) ResultModel *lastResultModel;
 @end
 
 NS_ASSUME_NONNULL_END

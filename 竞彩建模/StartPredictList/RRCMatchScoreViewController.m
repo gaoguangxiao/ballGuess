@@ -26,6 +26,8 @@
 #import "ResultViewModel.h"
 #import "ResultModel.h"
 #import "RRCAlertManager.h"
+
+#import "GGCLeagueListViewController.h"
 static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
 @interface RRCMatchScoreViewController ()<UITableViewDelegate,UITableViewDataSource,RRCMatchScoreCellDelegate,RRRCScoreViewModelDelegate>
 {
@@ -39,6 +41,8 @@ static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, assign) NSInteger matchType;//请求类型 0
+
+@property (nonatomic, strong) NSString *pushleagueName;
 //@property (nonatomic, strong) NSTimer *enterBallUpdateTimer;//进球变化倒计时
 //@property (nonatomic, strong) RRCMatchEnterBallView *enterBallView;
 //@property (nonatomic , strong)RRCTeamVSEventView *teamVSEventView;
@@ -243,6 +247,15 @@ static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
     matchScore.indexPath = indexPath;
     [matchScore setupScoreModel:_scoreViewModel.listArray[indexPath.row]];
     //    NSLog(@"位置：%ld",indexPath.row);
+    
+}
+
+-(void)UpdateTopStatusWithisTop:(NSIndexPath *)indexPath andMatchID:(NSString *)matchID andCompleteStatus:(nonnull void (^)(BOOL))isResult{
+
+    //跳转某条联赛
+    GGCLeagueListViewController *Vc = [self.storyboard instantiateViewControllerWithIdentifier:@"GGCLeagueListViewController"];
+    Vc.leagueName = matchID;
+    [self.navigationController pushViewController:Vc animated:YES];
     
 }
 

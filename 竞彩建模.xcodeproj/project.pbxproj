@@ -24,6 +24,9 @@
 		FF7A2DE424CBD79A00F6DE16 /* RRCLeaguesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7A2DE324CBD79A00F6DE16 /* RRCLeaguesModel.m */; };
 		FF7BD145249468F700262FC8 /* RRCScoreViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7BD141249468F700262FC8 /* RRCScoreViewModel.m */; };
 		FF7BD146249468F700262FC8 /* RRCMatchScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7BD144249468F700262FC8 /* RRCMatchScoreViewController.m */; };
+		FF84D1B825552F8B001D6506 /* GGCLeagueDeleteListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FF84D1B625552F8B001D6506 /* GGCLeagueDeleteListVC.m */; };
+		FF84D1BF25552FFB001D6506 /* RRCLeafueDelcell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF84D1BD25552FFB001D6506 /* RRCLeafueDelcell.m */; };
+		FF84D1C025552FFB001D6506 /* RRCLeafueDelcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF84D1BE25552FFB001D6506 /* RRCLeafueDelcell.xib */; };
 		FF85E8F8248F34CF00D67F99 /* GGXMatchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FF85E8F7248F34CF00D67F99 /* GGXMatchInfo.m */; };
 		FF85E8FA248F5EBE00D67F99 /* matchInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = FF85E8F9248F5EBE00D67F99 /* matchInfo.json */; };
 		FF85E904248F645600D67F99 /* ResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF85E900248F645600D67F99 /* ResultTableViewCell.xib */; };
@@ -37,6 +40,7 @@
 		FF85E923248FBBC300D67F99 /* GGCRiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF85E91F248FBBC300D67F99 /* GGCRiceListViewController.m */; };
 		FF85E92B2490DABB00D67F99 /* getMatch.json in Resources */ = {isa = PBXBuildFile; fileRef = FF85E92A2490DABA00D67F99 /* getMatch.json */; };
 		FF86DBE6253E8DA500B82BF9 /* RRCMatchSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF86DBE5253E8DA500B82BF9 /* RRCMatchSetViewController.m */; };
+		FFC5E112254D2BA0008FB2E7 /* GGCLeagueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC5E110254D2BA0008FB2E7 /* GGCLeagueListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +96,11 @@
 		FF7BD142249468F700262FC8 /* RRCScoreViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRCScoreViewModel.h; sourceTree = "<group>"; };
 		FF7BD143249468F700262FC8 /* RRCMatchScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRCMatchScoreViewController.h; sourceTree = "<group>"; };
 		FF7BD144249468F700262FC8 /* RRCMatchScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRCMatchScoreViewController.m; sourceTree = "<group>"; };
+		FF84D1B625552F8B001D6506 /* GGCLeagueDeleteListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCLeagueDeleteListVC.m; sourceTree = "<group>"; };
+		FF84D1B725552F8B001D6506 /* GGCLeagueDeleteListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCLeagueDeleteListVC.h; sourceTree = "<group>"; };
+		FF84D1BC25552FFB001D6506 /* RRCLeafueDelcell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RRCLeafueDelcell.h; sourceTree = "<group>"; };
+		FF84D1BD25552FFB001D6506 /* RRCLeafueDelcell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RRCLeafueDelcell.m; sourceTree = "<group>"; };
+		FF84D1BE25552FFB001D6506 /* RRCLeafueDelcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RRCLeafueDelcell.xib; sourceTree = "<group>"; };
 		FF85E8F6248F34CF00D67F99 /* GGXMatchInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGXMatchInfo.h; sourceTree = "<group>"; };
 		FF85E8F7248F34CF00D67F99 /* GGXMatchInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGXMatchInfo.m; sourceTree = "<group>"; };
 		FF85E8F9248F5EBE00D67F99 /* matchInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = matchInfo.json; sourceTree = "<group>"; };
@@ -113,6 +122,8 @@
 		FF85E92A2490DABA00D67F99 /* getMatch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getMatch.json; sourceTree = "<group>"; };
 		FF86DBE4253E8DA500B82BF9 /* RRCMatchSetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RRCMatchSetViewController.h; sourceTree = "<group>"; };
 		FF86DBE5253E8DA500B82BF9 /* RRCMatchSetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RRCMatchSetViewController.m; sourceTree = "<group>"; };
+		FFC5E110254D2BA0008FB2E7 /* GGCLeagueListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCLeagueListViewController.m; sourceTree = "<group>"; };
+		FFC5E111254D2BA0008FB2E7 /* GGCLeagueListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCLeagueListViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +297,8 @@
 				FF85E912248F67AE00D67F99 /* GGCRiceListCell.xib */,
 				FF85E91E248FBBC300D67F99 /* GGCRiceListViewController.h */,
 				FF85E91F248FBBC300D67F99 /* GGCRiceListViewController.m */,
+				FFC5E111254D2BA0008FB2E7 /* GGCLeagueListViewController.h */,
+				FFC5E110254D2BA0008FB2E7 /* GGCLeagueListViewController.m */,
 			);
 			path = HomeList;
 			sourceTree = "<group>";
@@ -293,6 +306,11 @@
 		FF86DBE3253E8D8C00B82BF9 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				FF84D1B725552F8B001D6506 /* GGCLeagueDeleteListVC.h */,
+				FF84D1B625552F8B001D6506 /* GGCLeagueDeleteListVC.m */,
+				FF84D1BC25552FFB001D6506 /* RRCLeafueDelcell.h */,
+				FF84D1BD25552FFB001D6506 /* RRCLeafueDelcell.m */,
+				FF84D1BE25552FFB001D6506 /* RRCLeafueDelcell.xib */,
 				FF86DBE4253E8DA500B82BF9 /* RRCMatchSetViewController.h */,
 				FF86DBE5253E8DA500B82BF9 /* RRCMatchSetViewController.m */,
 			);
@@ -405,6 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF85E914248F67AE00D67F99 /* GGCRiceListCell.xib in Resources */,
+				FF84D1C025552FFB001D6506 /* RRCLeafueDelcell.xib in Resources */,
 				FF745936248DCB3200FDF646 /* LaunchScreen.storyboard in Resources */,
 				FF85E92B2490DABB00D67F99 /* getMatch.json in Resources */,
 				FF745933248DCB3200FDF646 /* Assets.xcassets in Resources */,
@@ -493,8 +512,11 @@
 				FF745939248DCB3200FDF646 /* main.m in Sources */,
 				FF7BD146249468F700262FC8 /* RRCMatchScoreViewController.m in Sources */,
 				FF85E90E248F64FC00D67F99 /* GGXWarResultCell.m in Sources */,
+				FFC5E112254D2BA0008FB2E7 /* GGCLeagueListViewController.m in Sources */,
 				FF74592B248DCB2F00FDF646 /* SceneDelegate.m in Sources */,
+				FF84D1BF25552FFB001D6506 /* RRCLeafueDelcell.m in Sources */,
 				FF85E906248F645600D67F99 /* ResultTableViewCell.m in Sources */,
+				FF84D1B825552F8B001D6506 /* GGCLeagueDeleteListVC.m in Sources */,
 				FF745965248DDC5100FDF646 /* ResultViewModel.m in Sources */,
 				FF7BD145249468F700262FC8 /* RRCScoreViewModel.m in Sources */,
 			);

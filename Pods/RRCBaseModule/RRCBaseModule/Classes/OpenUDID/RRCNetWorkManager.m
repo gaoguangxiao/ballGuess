@@ -69,7 +69,7 @@
     NSMutableDictionary *parametersdic = [[NSMutableDictionary alloc]init];
     NSString *deviceId = [OpenUDID value];
 //    deviceId = @"jingcai_8a4636842d9f2736e3fcb57b0977e08851ecf8e0";
-    deviceId = @"8a4636842d9f2736e3fcb57b0977e08851ecf8e0";
+//    deviceId = @"8a4636842d9f2736e3fcb57b0977e08851ecf8e0";
 //    jingcai_8a4636842d9f2736e3fcb57b0977e08851ecf8e0
     
     if (isfull) {

@@ -234,8 +234,8 @@
             leModel.bdRate  = [NSString stringWithFormat:@"%.2f%%",scoreSortRedCount/sortAllCount* 100];
             leModel.jcRate  = [NSString stringWithFormat:@"%.2f%%",jcSortRedCount/sortAllCount * 100];
             // 联赛超过五次，其中某项胜率大于70%
-            //【4次以上】 1、某项80%以上 2、双70% 3、单项65% 4、双60%
-            if (sortAllCount >= 4) {
+            //【5次以上】 1、某项80%以上 2、双70% 3、单项65% 4、双60%
+            if (sortAllCount >= 5) {
                 leModel.isRecommend = 1;
                 
                 //很低了
@@ -248,7 +248,7 @@
                     leModel.recommendViewColor = @"#FDD7DF";
                 }
                 
-                if (tempDxqRate >= 65 || tempYzRate > 65) {
+                if (tempDxqRate >= 65 || tempYzRate >= 65) {
                     leModel.recommendWeight = 3;
                     leModel.recommendViewColor = @"#FD98AF";
                 }
@@ -258,7 +258,7 @@
                     leModel.recommendViewColor = @"#FD4C74";
                 }
                 
-                if (tempDxqRate >= 80 || tempYzRate >= 80 || tempJcRate >= 80) {
+                if (tempDxqRate >= 80 || tempYzRate >= 80) {
                     leModel.recommendWeight = 5;
                     leModel.recommendViewColor = @"#FD053D";
                 }
@@ -744,6 +744,16 @@
     
 }
 
+-(void)deleteMatchArrListWithParameters:(NSDictionary *)parameters Complete:(nonnull loadDataBOOLBlock)blockList{
+    
+    [[RRCNetWorkManager sharedTool]loadRequestWithURLString:@"delManyMatch" parameters:parameters success:^(CGDataResult * _Nonnull result) {
+        
+        blockList(result.status.boolValue);
+        
+    }];
+    
+}
+
 #pragma mark - 滑动至开赛的方法
 -(void)scrollMatchOpenComplete:(nonnull ResultDataIndexPathBlock)blockList{
     
@@ -755,7 +765,7 @@
         ResultModel *m = self.listArray[i];
         if ([m.status integerValue] == 1) {
             
-            NSLog(@"最后一场比赛：%@ %@ %ld",m.hhmm,m.home,i);
+//            NSLog(@"最后一场比赛：%@ %@ %ld",m.hhmm,m.home,i);
             
             openGameIndex = i;
             
