@@ -23,7 +23,13 @@
     
     _leResultModel = leResultModel;
     
-    leagueName.attributedText = [[NSString stringWithFormat:@"%@ %@ %@\n%@ VS%@",leResultModel.league,leResultModel.mmdd,leResultModel.hhmm,leResultModel.home,leResultModel.away] changeLineSpace:5 * Device_Ccale];// resultModel.home;
+    if (leResultModel.status.integerValue) {
+        leagueName.attributedText = [[NSString stringWithFormat:@"%@ %@ %@\n%@ \n%@:%@\n %@",leResultModel.league,leResultModel.mmdd,leResultModel.hhmm,leResultModel.home , leResultModel.homeScore,leResultModel.awayScore,leResultModel.away] changeLineSpace:3 * Device_Ccale];// resultModel.home;
+    }else{
+        leagueName.attributedText = [[NSString stringWithFormat:@"%@ %@ %@\n%@  \nVS\n %@",leResultModel.league,leResultModel.mmdd,leResultModel.hhmm,leResultModel.home,leResultModel.away] changeLineSpace:3 * Device_Ccale];
+    }
+    leagueName.textAlignment = NSTextAlignmentCenter;
+   
     
     if (leResultModel.isEditDelete) {
         [DeleteBtn setImage:[UIImage imageNamed:@"赛事选中条件边框"] forState:UIControlStateNormal];

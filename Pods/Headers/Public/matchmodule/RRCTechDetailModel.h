@@ -1,0 +1,1 @@
+../../../matchmodule/matchmodule/Classes/RRCMatchList/Model/RRCTechDetailModel.h

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
+
 #import "BaseTableView.h"
 #import "RRCNoDataModel.h"
 typedef void(^btnBlock)(UIButton *btn);

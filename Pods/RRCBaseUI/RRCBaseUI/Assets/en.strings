@@ -1,0 +1,21 @@
+/* 
+  en.strings
+  RRCInternationalization
+
+  Created by 彩人人 on 2020/8/18.
+  Copyright © 2020 彩人人. All rights reserved.
+*/
+"语言" = "英文";
+"reserved" = "English";
+"登录" = "Login";
+"验证码登录" = "Verification code login";
+"作者登录" = "作者登录";
+"请输入手机号" = "Phone Number";
+"请输入验证码" = "Verification code";
+"请输入作者登录名" = "请输入作者登录名";
+"请输入密码" = "请输入密码";
+"获取验证码" = "Get Code";
+"第三方快速登录" = "Quick Login";
+"使用即为同意《足球财富注册协议》" = "To use is to agree to 《Registration agreement》";
+"《足球财富注册协议》" = "《Registration agreement》";
+"《隐私政策》" = "《Privacy agreement》";

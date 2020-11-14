@@ -1,1 +1,1 @@
-../../../matchmodule/matchmodule/Classes/RRCMatchStadiumView.h
+../../../matchmodule/matchmodule/Classes/RRCMatchList/RRCMatchStadiumView.h

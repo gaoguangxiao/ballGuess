@@ -119,7 +119,23 @@
 }
 /*! @brief 点击外部隐藏弹窗 */
 - (void)hide {
+    
     [UIView animateWithDuration:0.25f animations:^{
+        
+        //消失动画
+        if (self.alertType == RRCMaskViewStyleBottom) {
+            
+            self.frame = CGRectMake(0, self.windowHeight, self.windowWidth, self.frame.size.height);
+          
+        }else{
+
+//            [UIView animateWithDuration:0.25f animations:^{
+//                self.frame = CGRectMake(0, -self -> _windowHeight, self->_windowWidth, self.frame.size.height);
+//                self->_shadeView.alpha = 0.f;
+//            } completion:^(BOOL finished) {
+//            }];
+        }
+        
         self.alpha = 0.f;
         self->_shadeView.alpha = 0.f;
     } completion:^(BOOL finished) {

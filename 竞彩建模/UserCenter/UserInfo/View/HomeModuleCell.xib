@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="604" id="G0F-Ef-dj3" customClass="HomeModuleCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G0F-Ef-dj3" id="3oj-S2-uDL">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pl2-k7-s62">
+                        <rect key="frame" x="8" y="11" width="98" height="61.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" title="账户充值  ">
+                            <color key="titleColor" systemColor="darkTextColor"/>
+                        </state>
+                        <connections>
+                            <action selector="TapModuleIndex:" destination="G0F-Ef-dj3" eventType="touchUpInside" id="okL-P3-K0z"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjd-wz-8A2">
+                        <rect key="frame" x="111" y="11" width="98" height="61.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" title="交易记录">
+                            <color key="titleColor" systemColor="darkTextColor"/>
+                        </state>
+                        <connections>
+                            <action selector="TapModuleIndex:" destination="G0F-Ef-dj3" eventType="touchUpInside" id="Zn5-TS-3DS"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDH-9L-XHy">
+                        <rect key="frame" x="214" y="11" width="98" height="61.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" title="修改密码">
+                            <color key="titleColor" systemColor="darkTextColor"/>
+                        </state>
+                        <connections>
+                            <action selector="TapModuleIndex:" destination="G0F-Ef-dj3" eventType="touchUpInside" id="NGd-Kb-RQb"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfz-0p-yfQ">
+                        <rect key="frame" x="8" y="77.5" width="98" height="61.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" title="意见反馈">
+                            <color key="titleColor" systemColor="darkTextColor"/>
+                        </state>
+                        <connections>
+                            <action selector="TapModuleIndex:" destination="G0F-Ef-dj3" eventType="touchUpInside" id="tD5-EO-e9d"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7j-cd-39m">
+                        <rect key="frame" x="214" y="77.5" width="98" height="61.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" title="清除缓存">
+                            <color key="titleColor" systemColor="darkTextColor"/>
+                        </state>
+                        <connections>
+                            <action selector="TapModuleIndex:" destination="G0F-Ef-dj3" eventType="touchUpInside" id="Gtr-UD-p6V"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38v-V1-opE">
+                        <rect key="frame" x="111" y="77.5" width="98" height="61.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" title="消息">
+                            <color key="titleColor" systemColor="darkTextColor"/>
+                        </state>
+                        <connections>
+                            <action selector="TapModuleIndex:" destination="G0F-Ef-dj3" eventType="touchUpInside" id="lI3-dv-HzO"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                <constraints>
+                    <constraint firstItem="j7j-cd-39m" firstAttribute="leading" secondItem="38v-V1-opE" secondAttribute="trailing" constant="5" id="0ZE-Df-AOk"/>
+                    <constraint firstItem="j7j-cd-39m" firstAttribute="width" secondItem="Pl2-k7-s62" secondAttribute="width" id="23u-3w-2FP"/>
+                    <constraint firstItem="fjd-wz-8A2" firstAttribute="width" secondItem="Pl2-k7-s62" secondAttribute="width" id="7jW-Pw-W0d"/>
+                    <constraint firstItem="IDH-9L-XHy" firstAttribute="leading" secondItem="fjd-wz-8A2" secondAttribute="trailing" constant="5" id="7rw-wX-QXw"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="IDH-9L-XHy" secondAttribute="trailing" constant="-8" id="8cd-Ol-O0t"/>
+                    <constraint firstItem="nfz-0p-yfQ" firstAttribute="height" secondItem="Pl2-k7-s62" secondAttribute="height" id="9Wc-Qr-5Di"/>
+                    <constraint firstItem="nfz-0p-yfQ" firstAttribute="leading" secondItem="Pl2-k7-s62" secondAttribute="leading" id="CRA-JH-DyC"/>
+                    <constraint firstItem="nfz-0p-yfQ" firstAttribute="width" secondItem="Pl2-k7-s62" secondAttribute="width" id="Evy-78-qVo"/>
+                    <constraint firstItem="Pl2-k7-s62" firstAttribute="leading" secondItem="3oj-S2-uDL" secondAttribute="leadingMargin" constant="-8" id="IE3-NH-gkq"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="nfz-0p-yfQ" secondAttribute="bottom" id="IlA-XQ-4C9"/>
+                    <constraint firstItem="38v-V1-opE" firstAttribute="width" secondItem="Pl2-k7-s62" secondAttribute="width" id="Kxb-Jq-4zf"/>
+                    <constraint firstItem="38v-V1-opE" firstAttribute="leading" secondItem="nfz-0p-yfQ" secondAttribute="trailing" constant="5" id="LnI-ht-jVi"/>
+                    <constraint firstItem="38v-V1-opE" firstAttribute="height" secondItem="Pl2-k7-s62" secondAttribute="height" id="Nu0-x4-Qgq"/>
+                    <constraint firstItem="Pl2-k7-s62" firstAttribute="top" secondItem="3oj-S2-uDL" secondAttribute="topMargin" id="ONI-7u-LeH"/>
+                    <constraint firstItem="IDH-9L-XHy" firstAttribute="width" secondItem="Pl2-k7-s62" secondAttribute="width" id="OOv-RZ-God"/>
+                    <constraint firstItem="IDH-9L-XHy" firstAttribute="height" secondItem="Pl2-k7-s62" secondAttribute="height" id="OjC-ab-skz"/>
+                    <constraint firstItem="fjd-wz-8A2" firstAttribute="top" secondItem="Pl2-k7-s62" secondAttribute="top" id="Tom-Yg-Uab"/>
+                    <constraint firstItem="fjd-wz-8A2" firstAttribute="height" secondItem="Pl2-k7-s62" secondAttribute="height" id="VRJ-Xa-Hlm"/>
+                    <constraint firstItem="38v-V1-opE" firstAttribute="top" secondItem="nfz-0p-yfQ" secondAttribute="top" id="WEo-zq-Sc1"/>
+                    <constraint firstItem="j7j-cd-39m" firstAttribute="top" secondItem="nfz-0p-yfQ" secondAttribute="top" id="gTl-tE-BB2"/>
+                    <constraint firstItem="IDH-9L-XHy" firstAttribute="top" secondItem="Pl2-k7-s62" secondAttribute="top" id="r0r-zO-0s8"/>
+                    <constraint firstItem="fjd-wz-8A2" firstAttribute="leading" secondItem="Pl2-k7-s62" secondAttribute="trailing" constant="5" id="t0c-qT-vjy"/>
+                    <constraint firstItem="nfz-0p-yfQ" firstAttribute="top" secondItem="Pl2-k7-s62" secondAttribute="bottom" constant="5" id="x5h-5O-gDL"/>
+                    <constraint firstItem="j7j-cd-39m" firstAttribute="height" secondItem="Pl2-k7-s62" secondAttribute="height" id="yS7-EJ-udb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+            <point key="canvasLocation" x="113.5" y="270"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

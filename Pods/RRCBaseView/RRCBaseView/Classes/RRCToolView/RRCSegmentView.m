@@ -14,7 +14,7 @@
 #define BaseBtnTag 500
 #define BaseLineTag 600
 @interface RRCSegmentView ()
-@property (nonatomic,strong) UIColor *backNormalColor;//背景颜色
+
 @property (nonatomic,strong) UIColor *backSealectColor;//背景颜色
 @property (nonatomic,strong) UIColor *normalColor;
 @property (nonatomic,strong) UIColor *selectColor;
@@ -26,6 +26,10 @@
 
 -(instancetype)initWithFrame:(CGRect)frame Titles:(NSArray *)titleArr{
     if (self = [super initWithFrame:frame]) {
+        _normalColor = RRCHighLightTitleColor;
+        _selectColor = RRCUnitViewColor;
+        _backNormalColor = RRCUnitViewColor;
+        _backSealectColor = RRCHighLightTitleColor;
         [self initSegment:titleArr];
     }
     return self;
@@ -52,7 +56,7 @@
         [self addSubview:btn];
         
         if (i < titlesArr.count - 1 && titlesArr.count > 2) {
-            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(btn.frame.size.width - .5*Device_Ccale, 0, .5*Device_Ccale, self.frame.size.height)];
+            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(btn.frame.size.width - .5*Device_Ccale, 0, .5, self.frame.size.height)];
             lineView.backgroundColor = RRCThemeViewColor;
             lineView.tag = BaseLineTag + i;
             [btn addSubview:lineView];
@@ -63,10 +67,7 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    self.normalColor = RRCHighLightTitleColor;
-    self.selectColor = RRCUnitViewColor;
-    self.backNormalColor = RRCUnitViewColor;
-    self.backSealectColor = RRCHighLightTitleColor;
+    
     for (int i = 0; i< self.titleArr.count; i++) {
         UIButton *btn = [self viewWithTag:BaseBtnTag + i];
         if (_lastBtn == btn) {

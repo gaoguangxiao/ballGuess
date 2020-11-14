@@ -18,11 +18,14 @@
 
 @property (nonatomic,strong) UIColor *bordeColor;//边框颜色
 
+@property (nonatomic,strong) UIColor *backNormalColor;//背景颜色
+
 @property (nonatomic,assign) float titleFont;
 @property (nonatomic,strong) NSArray *titleArr;
 @property (nonatomic,assign) NSInteger selectIndex;
 @property (nonatomic,weak) id <RRCSegmentDelegate> segmentDelegate;
 -(instancetype)initWithFrame:(CGRect)frame Titles:(NSArray *)titleArr;
 @end
+
 
 

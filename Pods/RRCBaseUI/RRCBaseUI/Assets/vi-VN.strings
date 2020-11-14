@@ -1,0 +1,116 @@
+/* 
+  a.strings
+  RRCInternationalization
+
+  Created by 彩人人 on 2020/8/18.
+  Copyright © 2020 彩人人. All rights reserved.
+*/
+"语言" = "越南语";
+"reserved" = "Việt nam";
+"登录" = "Đăng nhập";
+"验证码登录" = "Mã xác minh đăng nhập";
+"作者登录" = "Tác giả đăng nhập";
+"请输入手机号" = "Vui lòng nhập số điện thoại";
+"请输入验证码" = "Hãy nhập captcha";
+"请输入作者登录名" = "Hãy nhập tên đăng nhập tác giả";
+"请输入密码" = "Nhập mật khẩu đi.";
+"获取验证码" = "Nhận bắt";
+"第三方快速登录" = "Đăng nhập nhanh";
+"使用即为同意《足球财富注册协议》" = "Sử dụng là sự đồng ý của 《Hợp đồng đăng ký》.";
+"《足球财富注册协议》" = "《Hợp đồng đăng ký》";
+"《隐私政策》" = "《Thỏa thuận riêng tư》";
+
+//配置类
+"赛事" = "trùng";
+"资料库" = "dữ liệu";
+"我的" = "của";
+"取消" = "hủy";
+
+//资料库
+"请输入国家或赛事名称搜索" = "Hãy nhập tên của quốc gia hay sự kiện cần tìm kiếm";
+"国际" = "quốc tế";
+"欧洲" = "Châu Âu";
+"美洲" = "Mỹ";
+"亚洲" = "Vùng";
+"大洋洲" = "Name";
+"非洲" = "Châu Phi";
+"分组赛" = "Trận đấu nhóm";
+"积分榜" = "Bàn giải";
+"赛程" = "Lịch";
+"球员榜" = "Danh sách người chơi";
+"球队榜" = "Danh sách nhóm";
+"总积分" = "Tổng điểm";
+"主场积分" = "Điểm nhà";
+"客场积分" = "NAME OF TRANSLATORS";
+"半场总积分" = "Tổng điểm nửa thời gian";
+"半场主场积分" = "Nửa sân chỉ nhà";
+"半场客场积分" = "Khoảng nửa thời gian";
+"类别" = "hạng";
+"球员" = "GenericName";
+"球队" = "nhóm";
+"总数" = "Tổng";
+"总计" = "Tổng";
+"基本信息" = "Thông tin quan trọng";
+"近年成绩" = "Thành tựu trong những năm gần đây";
+"阵容" = "Xếp";
+"转会记录" = "Giao dịch";
+"基本资料" = "Thông tin cơ bản";
+"排名" = "thứ";
+"积分" = "Name";
+"场次" = "Comment";
+"胜" = "thắng";
+"平" = "phẳng";
+"负" = "tiêu";
+"进/失" = "Thêm ngoặc";
+
+//我的
+"立即登录" = "Đăng nhập ngay.";
+
+"我的内容" = "Nội dung của tôi";
+"我的帖子" = "Bài của tôi";
+"我的评论" = "Câu trả lời";
+"我的文章" = "Bài báo của tôi";
+"我的收藏" = "Bộ sưu tập";
+
+"管理反馈" = "Phản hồi quản lý";
+"推送设置" = "Thiết lập đẩy";
+"意见反馈" = "Name";
+"邀请朋友" = "Bạn mời";
+
+
+//设置
+"设置" = "thiết lập";
+
+"账号信息" = "Thông tin tài khoản";
+"消息推送" = "Đẩy thông điệp";
+//"意见反馈" = "意见反馈";
+"清理缓存" = "Dọn dẹp bộ nhớ tạm";
+"关于我们" = "Về chúng ta";
+"注册协议" = "Hợp đồng ký";
+"隐私政策" = "Chính sách cá nhân";
+
+//赛事
+"全部" = "nguyên";
+"一级" = "Lớp A";
+"竞足" = "Bàn chân thi đấu";
+"北单" = "Bắc PhiName";
+"足彩" = "Đội bóng đá";
+
+//赛事设置
+"选择公司" = "Chọn công ty";
+"Crown" = "Vương";
+"澳门" = "Macau";
+"bet365" = "color";
+
+"进球提示" = "Hướng vào mục tiêu.";
+"提示范围" = "Nhắc khoảng cách";
+"全部比赛" = "Mọi cuộc thi";
+"关注比赛" = "Tập trung vào trò chơi";
+"声音" = "Giọng";
+"震动" = "Sốc";
+
+"足球比赛（关注的比赛）" = "Trận bóng";
+"系统消息推送" = "Đẩy thông điệp hệ thống";
+
+"开始（赛前5分钟）" = "Bắt đầu (5 phút trước cuộc thi)";
+"进球" = "mục";

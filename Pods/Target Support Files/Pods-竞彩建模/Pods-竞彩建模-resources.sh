@@ -98,6 +98,7 @@ EOM
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/RRCBaseUI/RRCBaseUI.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/RRCBaseView/RRCBaseView.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/matchmodule/matchmodule.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/matchscoremodule/matchscoremodule.bundle"
@@ -105,6 +106,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/RRCBaseUI/RRCBaseUI.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/RRCBaseView/RRCBaseView.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/matchmodule/matchmodule.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/matchscoremodule/matchscoremodule.bundle"

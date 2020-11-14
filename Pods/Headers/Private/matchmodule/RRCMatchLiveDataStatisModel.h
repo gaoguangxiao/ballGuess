@@ -1,1 +1,1 @@
-../../../matchmodule/matchmodule/Classes/RRCMatchLiveDataStatisModel.h
+../../../matchmodule/matchmodule/Classes/RRCMatchList/RRCMatchLiveDataStatisModel.h

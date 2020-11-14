@@ -74,6 +74,9 @@ alpha:1.0]
 #define RRCLineWhiteViewColor COLORRGB(0xffffff)//view下划线颜色
 #define RRCGrayViewColor   RRCTEXTCOLOR(@"#909599")//灰色背景颜色
 
+//情报背景
+#define RRCECF1FFViewColor  RRCViewCOLOR(@"#ECF1FF")//浅蓝
+
 //特殊背景颜色
 #define RRCBackViewColor  RRCViewCOLOR(@"#F1F3F5")//view背景 浅灰色 用于tableView颜色设置
 #define RRCLineContentViewColor   RRCViewCOLOR(@"#DCE1E6")//深色背景颜色，其显示内容 主要和 F1f3f5为背景时分开
@@ -86,6 +89,7 @@ alpha:1.0]
 #define RRC313133Color   RRCViewCOLOR(@"#313133")//黑色 - 粉红
 #define RRC4B75FFColor   RRCViewCOLOR(@"#4B75FF")//背景浅蓝
 #define RRCFFEBEEColor   RRCViewCOLOR(@"#FFEBEE")//背景浅红
+#define RRCFD4600Color   RRCViewCOLOR(@"#FD4600")//背景橙色
 #define RRCFF650AColor   RRCViewCOLOR(@"#FF650A")//橘黄色
 #define RRCFFF0DAColor   RRCViewCOLOR(@"#FFF0DA")//浅黄
 #define RRC04BD2CColor   RRCViewCOLOR(@"#04BD2C")//走水
@@ -100,6 +104,8 @@ alpha:1.0]
 #define RRCFFFFFF60FFFFFFColor RRCViewCOLOR(@"#FFFFFF60FFFFFF")//白色 - 透明度60
 #define RRCFFFFFF313133Color   RRCViewCOLOR(@"#FFFFFF313133")  //白色 - 黑色
 #define RRCF21646313133Color   RRCViewCOLOR(@"#F21646313133")  //
+
+#define RRC9095997D7D7FColor   RRCViewCOLOR(@"#9095997D7D7F")  //灰色-浅灰色
 
 #define RRCFAD277Color    COLORRGB(0xFAD277)//淡黄色
 #define RRCB8C2CCColor    COLORRGB(0xB8C2CC)//下拉刷新字体颜色

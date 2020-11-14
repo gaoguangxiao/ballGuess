@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-竞彩建模/Pods-竞彩建模-resources.sh
 ${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/RRCBaseUI/RRCBaseUI.bundle
 ${PODS_CONFIGURATION_BUILD_DIR}/RRCBaseView/RRCBaseView.bundle
 ${PODS_CONFIGURATION_BUILD_DIR}/matchmodule/matchmodule.bundle
 ${PODS_CONFIGURATION_BUILD_DIR}/matchscoremodule/matchscoremodule.bundle

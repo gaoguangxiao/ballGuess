@@ -1,1 +1,1 @@
-../../../matchmodule/matchmodule/Classes/RRCMatchEventModel.h
+../../../matchmodule/matchmodule/Classes/RRCMatchList/RRCMatchEventModel.h

@@ -11,7 +11,8 @@
 #import "UIDevice+Size.h"
 
 #define K_WEBSOCKETKEY @"SOCKETURL"
-#define K_APPCheckStatus @"checkStatus"
+#define K_APPCheckStatus @"checkStatus" //总开关
+#define K_APPCheckJiaoqiu @"kg_jiaoqiu" //角球
 
 //获取屏幕自适应宽高
 #define kScreenWidthFit    [UIScreen mainScreen].bounds.size.width
@@ -28,6 +29,7 @@
 
 #define KUserDefault(key) [[NSUserDefaults standardUserDefaults] objectForKey:key]
 #define K_UDIDValue ([KUserDefault(@"checkStatus") integerValue] == 1 ?YES:NO)
+#define K_KGJiaoQiuValue ([KUserDefault(K_APPCheckJiaoqiu) integerValue] == 1 ?YES:NO)
 
 //适配iphonex
 #define IS_IPHONE_X ((kScreenHeight == 812.0f || kScreenHeight == 896.0f) ? YES : NO)

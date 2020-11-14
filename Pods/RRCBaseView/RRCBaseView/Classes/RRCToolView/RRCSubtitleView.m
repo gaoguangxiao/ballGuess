@@ -28,7 +28,7 @@
     
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
-//        make.left.mas_equalTo(self.titleLab.mas_right).offset(12 * Device_Ccale);
+        make.left.mas_equalTo(self.titleLab.mas_right).offset(16 * Device_Ccale);
         make.right.mas_equalTo(self.nextImageView.mas_left).offset(-6 * Device_Ccale);
     }];
     

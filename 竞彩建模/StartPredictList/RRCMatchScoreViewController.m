@@ -25,7 +25,6 @@
 #import "MBProgressHUD.h"
 #import "ResultViewModel.h"
 #import "ResultModel.h"
-#import "RRCAlertManager.h"
 
 #import "GGCLeagueListViewController.h"
 static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
@@ -60,7 +59,9 @@ static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
     self.tableView.mj_header = header;
     
     self.matchType = 1;
+    
     [self loadDefaultData];
+    
     
 }
 
@@ -132,11 +133,12 @@ static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
     
     [self.tableView.mj_header beginRefreshing];
 }
+
+//丢弃一键全选
 - (IBAction)allChoseMatch:(id)sender {
     
-    [self choseAll];
-    
-    [self.tableView reloadData];
+    //    [self choseAll];
+    //    [self.tableView reloadData];
     
 }
 
@@ -148,60 +150,60 @@ static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
     //将选中的筛选出来
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    ResultViewModel *resultViewModel = [ResultViewModel new];
-    
-    NSMutableArray *waterModelArr = [NSMutableArray new];
-    NSMutableArray *nameModelArr = [NSMutableArray new];
-    
-    for (NSInteger i = 0;i < _scoreViewModel.matchListCar.count;i++) {
-        
-        RRCTScoreModel *re =  _scoreViewModel.matchListCar[i];
-        
-        [nameModelArr addObject:re.home];
-        
-        ResultModel *m = [ResultModel new];
-        m.dxq_dpk = re.DXQ_HJSPL;
-        m.dxq_xpk = re.DXQ_WJSPL;
-        
-        m.yp_spk = re.HJSPL;
-        m.yp_xpk = re.WJSPL;
-        [waterModelArr addObject:m];
-    }
-//        return;
-    [resultViewModel requestMultipleDataWithParameters:@{@"name":nameModelArr} andLocalArr:waterModelArr andComplete:^(NSArray * _Nonnull loadArr) {
-                
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        if (loadArr.count) {
+    //判断是否可以预测
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    dict[@"userForecastCount"] = [NSString stringWithFormat:@"%lu",_scoreViewModel.matchListCar.count];//传入预测数量
+    [Service loadBmobObjectByParameters:dict andByStoreName:@"OrderForecastStore" constructingBodyWithBlock:^(CGDataResult *obj, BOOL b) {
+        //扣款成功
+        if (b) {
             
-            [[RRCAlertManager sharedRRCAlertManager]showPostingWithtitle:@"预测成功"];
-            
-            [self->_scoreViewModel reloadScoreListTopStatus:loadArr andLoadDeleteResult:^(BOOL isEnd) {
+            ResultViewModel *resultViewModel = [ResultViewModel new];
+            NSMutableArray *waterModelArr = [NSMutableArray new];
+            NSMutableArray *nameModelArr = [NSMutableArray new];
+            for (NSInteger i = 0;i < self->_scoreViewModel.matchListCar.count;i++) {
+                RRCTScoreModel *re =  self->_scoreViewModel.matchListCar[i];
+                [nameModelArr addObject:re.home];
+                ResultModel *m = [ResultModel new];
+                m.dxq_dpk = re.DXQ_HJSPL;
+                m.dxq_xpk = re.DXQ_WJSPL;
                 
-                [self clearList];
+                m.yp_spk = re.HJSPL;
+                m.yp_xpk = re.WJSPL;
+                [waterModelArr addObject:m];
+            }
+            [resultViewModel requestMultipleDataWithParameters:@{@"name":nameModelArr} andLocalArr:waterModelArr andComplete:^(NSArray * _Nonnull loadArr) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                if (loadArr.count) {
+                    [[RRCAlertManager sharedRRCAlertManager]showPostingWithtitle:@"预测成功"];
+                    
+                    [self->_scoreViewModel reloadScoreListTopStatus:loadArr andLoadDeleteResult:^(BOOL isEnd) {
+                        
+                        [self clearList];
+                        
+                        [self.tableView reloadData];
+                        
+                    }];
+                }else{
+                    
+                    [[RRCAlertManager sharedRRCAlertManager]showPostingWithtitle:@"预测失败"];
+                }
                 
-                [self.tableView reloadData];
-            
             }];
             
         }else{
-            
-            [[RRCAlertManager sharedRRCAlertManager]showPostingWithtitle:@"预测失败"];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [[RRCAlertManager sharedRRCAlertManager]showPostingWithtitle:obj.errorMsg];
         }
-        
     }];
-    
 }
-
-
 
 #pragma mark - RRRCScoreViewModelDelegate
 -(void)dataFinishload:(NSInteger)matchCondition andlistArray:(NSArray *)array{
     //存储全部数据
     if (matchCondition == 0) {
-//        RRCMatchSetModel *appSet = [[RRCConfigManager sharedRRCConfigManager]loadPushLocalSet];
-//        appSet.matchScoreListArr = array;
-//        [[RRCConfigManager sharedRRCConfigManager]updatePushLocalSetBySetModel:appSet];
+        //        RRCMatchSetModel *appSet = [[RRCConfigManager sharedRRCConfigManager]loadPushLocalSet];
+        //        appSet.matchScoreListArr = array;
+        //        [[RRCConfigManager sharedRRCConfigManager]updatePushLocalSetBySetModel:appSet];
     }
     //更新关注数据
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -233,13 +235,22 @@ static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [_scoreViewModel updateScoreListTopStatus:indexPath andLoadDeleteResult:^(BOOL isEnd) {
-        
-        self->_matchID.text = [NSString stringWithFormat:@"数量：%ld个",self->_scoreViewModel.matchListCar.count];
-        
-        [self.tableView reloadData];
-        
-    }];
+    //1、判断是否能够继续添加，每日限制五场
+//    NSInteger foceCount = [CustomUtil getUserInfo].userForecast.integerValue;
+    
+//    if (foceCount > 0 && self->_scoreViewModel.matchListCar.count < foceCount) {
+        [_scoreViewModel updateScoreListTopStatus:indexPath andLoadDeleteResult:^(BOOL isEnd) {
+
+            self->_matchID.text = [NSString stringWithFormat:@"数量：%ld个",self->_scoreViewModel.matchListCar.count];
+
+            [self.tableView reloadData];
+            
+        }];
+//    }else{
+//        [[RRCAlertManager sharedRRCAlertManager]showPostingWithtitle:@"预测数量已最大"];
+//    }
+    
+    
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -251,7 +262,7 @@ static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
 }
 
 -(void)UpdateTopStatusWithisTop:(NSIndexPath *)indexPath andMatchID:(NSString *)matchID andCompleteStatus:(nonnull void (^)(BOOL))isResult{
-
+    
     //跳转某条联赛
     GGCLeagueListViewController *Vc = [self.storyboard instantiateViewControllerWithIdentifier:@"GGCLeagueListViewController"];
     Vc.leagueName = matchID;

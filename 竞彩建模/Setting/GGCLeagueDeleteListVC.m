@@ -13,7 +13,7 @@
 #import "ResultModel.h"
 #import "RRCProgressHUD.h"
 #import "MXSRefreshHeader.h"
-#import "MBProgressHUD.h"
+
 #import <MJRefresh.h>
 //
 //#import "RRCLeagueConditionViewController.h"

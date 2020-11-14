@@ -1,0 +1,1 @@
+../../../matchmodule/matchmodule/Classes/RRCMatchChart/Model/RRCMatchChartConfig.h

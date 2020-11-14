@@ -1,1 +1,1 @@
-../../../matchmodule/matchmodule/Classes/Model/RRCTScoreModel.h
+../../../matchmodule/matchmodule/Classes/RRCMatchList/Model/RRCTScoreModel.h

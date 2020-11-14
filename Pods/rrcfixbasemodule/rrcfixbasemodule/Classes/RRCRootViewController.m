@@ -43,6 +43,31 @@
     
 }
 
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        [self Init];
+    }
+    return self;
+}
+
+-(void)Init{
+    if (self.edgesForExtendedLayout) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+}
+
+-(BOOL)hidesBottomBarWhenPushed{
+    if ([self isKindOfClass:NSClassFromString(@"GGCRiceListViewController")]
+        ||[self isKindOfClass:NSClassFromString(@"RRCMatchScoreViewController")]
+        ||[self isKindOfClass:NSClassFromString(@"MyFriendsViewController")]
+        ||[self isKindOfClass:NSClassFromString(@"UserCenterViewController")]) {
+        return NO;
+    }else{
+        return YES;
+    }
+    
+}
+
 -(void)setUpVC{
     
 }

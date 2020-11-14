@@ -8,4 +8,6 @@ target ‘竞彩建模' do
 pod 'rrcfixbasemodule'  #基础工程
 pod 'matchscoremodule'  #赛事列表模块
 pod 'matchmodule'
+
+pod 'BmobSDK’,’~>2.2.0’
 end

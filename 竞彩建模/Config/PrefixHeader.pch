@@ -1,0 +1,19 @@
+//
+//  PrefixHeader.pch
+//  中石化便利店
+//
+//  Created by ggx on 2017/3/7.
+//  Copyright © 2017年 高广校. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "Config.h"
+#import "Macro.h"
+
+
+#endif /* PrefixHeader_pch */
