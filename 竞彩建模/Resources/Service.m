@@ -503,6 +503,15 @@ static AFHTTPSessionManager *manager;
             [flowScore setObject:[CustomUtil getToken] forKey:@"userName"];
             [flowScore setObject:[BmobUser currentUser] forKey:@"author"];
             
+            NSDate *currentDate = [NSDate date];//获取当前时间，日期
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];// 创建一个时间格式化对象
+            [dateFormatter setDateFormat:@"YYYYMMDDHHMM"];//设定时间格式,这里可以设置成自己需要的格式
+            NSString *dateString = [dateFormatter stringFromDate:currentDate];
+            
+            NSInteger userForecastNum = [[parameters valueForKey:@"userForecastCount"] integerValue];
+            NSString *oID = [NSString stringWithFormat:@"%@%ldB5",dateString,(long)userForecastNum];
+            [flowScore setObject:oID forKey:@"orderId"];
+            
             [flowScore saveAllWithDictionary:parameters];
             
             [flowScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {

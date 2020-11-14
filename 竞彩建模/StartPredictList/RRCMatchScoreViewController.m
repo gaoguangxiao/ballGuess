@@ -118,11 +118,7 @@ static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
 
 #pragma mark - Event Response
 - (IBAction)resePredicttChange:(UIButton *)sender {
-    
-    //    [self clearList];
-    //
-    //    [self.tableView reloadData];
-    
+
     self.matchType ++;
     
     if (self.matchType == 5) {
@@ -150,27 +146,29 @@ static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
     //将选中的筛选出来
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    //判断是否可以预测
+    ResultViewModel *resultViewModel = [ResultViewModel new];
+    NSMutableArray *waterModelArr = [NSMutableArray new];
+    NSMutableArray *nameModelArr = [NSMutableArray new];
+    for (NSInteger i = 0;i < self->_scoreViewModel.matchListCar.count;i++) {
+        RRCTScoreModel *re =  self->_scoreViewModel.matchListCar[i];
+        [nameModelArr addObject:re.home];
+        ResultModel *m = [ResultModel new];
+        m.dxq_dpk = re.DXQ_HJSPL;
+        m.dxq_xpk = re.DXQ_WJSPL;
+        
+        m.yp_spk = re.HJSPL;
+        m.yp_xpk = re.WJSPL;
+        [waterModelArr addObject:m];
+    }
+    
+    //判断是否可以预测 订单ID
     NSMutableDictionary *dict = [NSMutableDictionary new];
     dict[@"userForecastCount"] = [NSString stringWithFormat:@"%lu",_scoreViewModel.matchListCar.count];//传入预测数量
     [Service loadBmobObjectByParameters:dict andByStoreName:@"OrderForecastStore" constructingBodyWithBlock:^(CGDataResult *obj, BOOL b) {
         //扣款成功
         if (b) {
             
-            ResultViewModel *resultViewModel = [ResultViewModel new];
-            NSMutableArray *waterModelArr = [NSMutableArray new];
-            NSMutableArray *nameModelArr = [NSMutableArray new];
-            for (NSInteger i = 0;i < self->_scoreViewModel.matchListCar.count;i++) {
-                RRCTScoreModel *re =  self->_scoreViewModel.matchListCar[i];
-                [nameModelArr addObject:re.home];
-                ResultModel *m = [ResultModel new];
-                m.dxq_dpk = re.DXQ_HJSPL;
-                m.dxq_xpk = re.DXQ_WJSPL;
-                
-                m.yp_spk = re.HJSPL;
-                m.yp_xpk = re.WJSPL;
-                [waterModelArr addObject:m];
-            }
+            
             [resultViewModel requestMultipleDataWithParameters:@{@"name":nameModelArr} andLocalArr:waterModelArr andComplete:^(NSArray * _Nonnull loadArr) {
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 if (loadArr.count) {

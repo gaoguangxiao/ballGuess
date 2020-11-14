@@ -214,7 +214,7 @@ static HUDHelper *_instance = nil;
             _syncHUD.label.text = nil;
             _syncHUD.mode = MBProgressHUDModeIndeterminate;
         }
-        
+        [_syncHUD showAnimated:YES];
         return;
     }
     _syncHUD = [self loading:msg inView:view];

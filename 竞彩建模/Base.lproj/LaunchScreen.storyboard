@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
@@ -14,20 +14,20 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchStart" translatesAutoresizingMaskIntoConstraints="NO" id="mFj-BU-gTP">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="mFj-BU-gTP" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Fz5-4X-Lhy"/>
-                            <constraint firstItem="mFj-BU-gTP" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="OSI-E5-Ue5"/>
                             <constraint firstItem="mFj-BU-gTP" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Yq1-Ia-2hW"/>
                             <constraint firstAttribute="trailing" secondItem="mFj-BU-gTP" secondAttribute="trailing" id="qOf-ZA-hNy"/>
+                            <constraint firstAttribute="bottom" secondItem="mFj-BU-gTP" secondAttribute="bottom" id="zPU-RN-01b"/>
                         </constraints>
                     </view>
                 </viewController>
