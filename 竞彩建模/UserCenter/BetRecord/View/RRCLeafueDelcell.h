@@ -8,13 +8,16 @@
 
 #import "RRCTableViewCell.h"
 
-#import "ResultModel.h"
+#import "RRCBetRecordModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RRCLeafueDelcell : RRCTableViewCell
 
-@property (nonatomic , strong) ResultModel *leResultModel;
+
+@property (nonatomic , strong) void(^didActionUpdateScore)(RRCBetRecordModel *betM);
+
+@property (nonatomic , strong) RRCBetRecordModel *leResultModel;
 
 @end
 
