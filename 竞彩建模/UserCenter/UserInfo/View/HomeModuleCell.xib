@@ -29,7 +29,7 @@
                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjd-wz-8A2">
                         <rect key="frame" x="111" y="11" width="98" height="61.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <state key="normal" title="交易记录">
+                        <state key="normal" title="预测记录">
                             <color key="titleColor" systemColor="darkTextColor"/>
                         </state>
                         <connections>
@@ -39,7 +39,7 @@
                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDH-9L-XHy">
                         <rect key="frame" x="214" y="11" width="98" height="61.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <state key="normal" title="修改密码">
+                        <state key="normal" title="下注记录">
                             <color key="titleColor" systemColor="darkTextColor"/>
                         </state>
                         <connections>
@@ -69,7 +69,7 @@
                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38v-V1-opE">
                         <rect key="frame" x="111" y="77.5" width="98" height="61.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <state key="normal" title="消息">
+                        <state key="normal" title="交易记录">
                             <color key="titleColor" systemColor="darkTextColor"/>
                         </state>
                         <connections>

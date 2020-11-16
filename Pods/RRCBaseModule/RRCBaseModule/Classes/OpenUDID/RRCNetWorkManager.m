@@ -9,6 +9,7 @@
 #import "RRCNetWorkManager.h"
 #import "OpenUDID.h"
 #import "MJExtension.h"
+#import "RRCPortSecretTool.h"
 @interface RRCNetWorkManager()
 @property(nonatomic ,assign) NSUInteger taskIdentifier;
 
@@ -67,11 +68,8 @@
     NSString *requestMethod = @"POST";
     NSString *webserviceUrl = self.webUrl;
     NSMutableDictionary *parametersdic = [[NSMutableDictionary alloc]init];
-    NSString *deviceId = [OpenUDID value];
-//    deviceId = @"jingcai_8a4636842d9f2736e3fcb57b0977e08851ecf8e0";
-//    deviceId = @"8a4636842d9f2736e3fcb57b0977e08851ecf8e0";
-//    jingcai_8a4636842d9f2736e3fcb57b0977e08851ecf8e0
-    
+//    NSString *deviceId = [OpenUDID value];//改为用户标注
+
     if (isfull) {
         webserviceUrl = URLString;
         NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
@@ -84,7 +82,8 @@
         [dictTemp setValue:@"1" forKey:@"v"];
         [dictTemp setValue:@"ios" forKey:@"platform"];
         [dictTemp setValue:@"1" forKey:@"device_type"];
-        [dictTemp setValue:deviceId forKey:@"device_id"];
+        NSString *portSecretStr = [[RRCPortSecretTool defaultManager] portSectetWithParameter:dictTemp];
+        [dictTemp setValue:portSecretStr forKey:@"sign"];
         
         [parametersdic setValue:dictTemp forKey:@"params"];
         
@@ -96,11 +95,11 @@
         webserviceUrl = [webserviceUrl stringByAppendingPathComponent:URLString];
         
         [parametersdic addEntriesFromDictionary:parameters];
-        if (deviceId) {
-            [parametersdic setValue:deviceId forKey:@"device_id"];
-        }
+//        if (deviceId) {
+//            [parametersdic setValue:deviceId forKey:@"device_id"];
+//        }
     }
-    NSLog(@"deviceId:%@",deviceId);
+//    NSLog(@"deviceId:%@",deviceId);
     // 请求参数字典
     if (self.baseParameters) {
         [parametersdic addEntriesFromDictionary:self.baseParameters];

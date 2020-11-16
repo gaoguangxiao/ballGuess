@@ -142,7 +142,13 @@ static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
 - (IBAction)scorePredictBall:(id)sender {
     
     //    NSLog(@"开始预测：");
-    
+    if (![CustomUtil isUserLogin]) {
+        
+        [self.navigationController presentViewController:CreateViewControllerWithNav(@"LoginViewController") animated:YES completion:nil];
+        
+        return;
+    }
+
     //将选中的筛选出来
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -164,11 +170,14 @@ static NSString * const scoreCellIdentifier = @"RRCMatchScoreCell";
     //判断是否可以预测 订单ID
     NSMutableDictionary *dict = [NSMutableDictionary new];
     dict[@"userForecastCount"] = [NSString stringWithFormat:@"%lu",_scoreViewModel.matchListCar.count];//传入预测数量
+    RRCTScoreModel *re = _scoreViewModel.matchListCar.firstObject;
+    dict[@"home"] = re.home;
+    dict[@"away"] = re.away;
+    dict[@"hmd"] = re.hmd;
+    dict[@"league"] = re.league;
     [Service loadBmobObjectByParameters:dict andByStoreName:@"OrderForecastStore" constructingBodyWithBlock:^(CGDataResult *obj, BOOL b) {
         //扣款成功
         if (b) {
-            
-            
             [resultViewModel requestMultipleDataWithParameters:@{@"name":nameModelArr} andLocalArr:waterModelArr andComplete:^(NSArray * _Nonnull loadArr) {
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 if (loadArr.count) {

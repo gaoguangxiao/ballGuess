@@ -56,7 +56,7 @@
     self.awayEnterBallScore.attributedText = [[NSString stringWithFormat:@"虚：%.2f\n实：%@", resultModel.awayCompositeScore,resultModel.awayScore] changeLineSpace:5];
     
     //大小球盘口
-    self.resultCompany.text = [NSString stringWithFormat:@"%.2f",resultModel.companyBigSmallNumber.floatValue];
+    self.resultCompany.text = [NSString stringWithFormat:@"%.2f",resultModel.dxq_pk.floatValue];
     //进球数
     self.resultForecastAllScore.text = [NSString stringWithFormat:@"%.2f",resultModel.allCompositeScore];
     

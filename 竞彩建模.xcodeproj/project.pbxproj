@@ -33,7 +33,7 @@
 		FF7A2DE424CBD79A00F6DE16 /* RRCLeaguesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7A2DE324CBD79A00F6DE16 /* RRCLeaguesModel.m */; };
 		FF7BD145249468F700262FC8 /* RRCScoreViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7BD141249468F700262FC8 /* RRCScoreViewModel.m */; };
 		FF7BD146249468F700262FC8 /* RRCMatchScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7BD144249468F700262FC8 /* RRCMatchScoreViewController.m */; };
-		FF84D1B825552F8B001D6506 /* GGCLeagueDeleteListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FF84D1B625552F8B001D6506 /* GGCLeagueDeleteListVC.m */; };
+		FF84D1B825552F8B001D6506 /* GGCBetRecordListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FF84D1B625552F8B001D6506 /* GGCBetRecordListVC.m */; };
 		FF84D1BF25552FFB001D6506 /* RRCLeafueDelcell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF84D1BD25552FFB001D6506 /* RRCLeafueDelcell.m */; };
 		FF84D1C025552FFB001D6506 /* RRCLeafueDelcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF84D1BE25552FFB001D6506 /* RRCLeafueDelcell.xib */; };
 		FF85E8F8248F34CF00D67F99 /* GGXMatchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FF85E8F7248F34CF00D67F99 /* GGXMatchInfo.m */; };
@@ -46,9 +46,13 @@
 		FF85E90F248F64FC00D67F99 /* GGXWarResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF85E90C248F64FB00D67F99 /* GGXWarResultCell.xib */; };
 		FF85E913248F67AE00D67F99 /* GGCRiceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF85E911248F67AE00D67F99 /* GGCRiceListCell.m */; };
 		FF85E914248F67AE00D67F99 /* GGCRiceListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF85E912248F67AE00D67F99 /* GGCRiceListCell.xib */; };
-		FF85E923248FBBC300D67F99 /* GGCRiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF85E91F248FBBC300D67F99 /* GGCRiceListViewController.m */; };
+		FF85E923248FBBC300D67F99 /* ForecastRecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF85E91F248FBBC300D67F99 /* ForecastRecordListViewController.m */; };
 		FF85E92B2490DABB00D67F99 /* getMatch.json in Resources */ = {isa = PBXBuildFile; fileRef = FF85E92A2490DABA00D67F99 /* getMatch.json */; };
 		FF86DBE6253E8DA500B82BF9 /* RRCMatchSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF86DBE5253E8DA500B82BF9 /* RRCMatchSetViewController.m */; };
+		FF99A1B325621C5B007166D4 /* ForecastRecordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF99A1B225621C5A007166D4 /* ForecastRecordListViewController.xib */; };
+		FF99A1DA25622A79007166D4 /* GGCBetRecordListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF99A1D925622A79007166D4 /* GGCBetRecordListVC.xib */; };
+		FF99A1E925623D97007166D4 /* ShareHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = FF99A1E725623D97007166D4 /* ShareHandle.m */; };
+		FF99A1EF2562474F007166D4 /* RRCBetRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF99A1EE2562474E007166D4 /* RRCBetRecordModel.m */; };
 		FFA24D6F255F8606008252A0 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFA24D6D255F8606008252A0 /* LoginViewController.xib */; };
 		FFA24D70255F8606008252A0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFA24D6E255F8606008252A0 /* LoginViewController.m */; };
 		FFA24D77255F86B6008252A0 /* UserReg1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFA24D74255F86B6008252A0 /* UserReg1ViewController.m */; };
@@ -153,8 +157,8 @@
 		FF7BD142249468F700262FC8 /* RRCScoreViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRCScoreViewModel.h; sourceTree = "<group>"; };
 		FF7BD143249468F700262FC8 /* RRCMatchScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRCMatchScoreViewController.h; sourceTree = "<group>"; };
 		FF7BD144249468F700262FC8 /* RRCMatchScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRCMatchScoreViewController.m; sourceTree = "<group>"; };
-		FF84D1B625552F8B001D6506 /* GGCLeagueDeleteListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCLeagueDeleteListVC.m; sourceTree = "<group>"; };
-		FF84D1B725552F8B001D6506 /* GGCLeagueDeleteListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCLeagueDeleteListVC.h; sourceTree = "<group>"; };
+		FF84D1B625552F8B001D6506 /* GGCBetRecordListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCBetRecordListVC.m; sourceTree = "<group>"; };
+		FF84D1B725552F8B001D6506 /* GGCBetRecordListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCBetRecordListVC.h; sourceTree = "<group>"; };
 		FF84D1BC25552FFB001D6506 /* RRCLeafueDelcell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RRCLeafueDelcell.h; sourceTree = "<group>"; };
 		FF84D1BD25552FFB001D6506 /* RRCLeafueDelcell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RRCLeafueDelcell.m; sourceTree = "<group>"; };
 		FF84D1BE25552FFB001D6506 /* RRCLeafueDelcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RRCLeafueDelcell.xib; sourceTree = "<group>"; };
@@ -174,11 +178,17 @@
 		FF85E910248F67AE00D67F99 /* GGCRiceListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGCRiceListCell.h; sourceTree = "<group>"; };
 		FF85E911248F67AE00D67F99 /* GGCRiceListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGCRiceListCell.m; sourceTree = "<group>"; };
 		FF85E912248F67AE00D67F99 /* GGCRiceListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GGCRiceListCell.xib; sourceTree = "<group>"; };
-		FF85E91E248FBBC300D67F99 /* GGCRiceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCRiceListViewController.h; sourceTree = "<group>"; };
-		FF85E91F248FBBC300D67F99 /* GGCRiceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCRiceListViewController.m; sourceTree = "<group>"; };
+		FF85E91E248FBBC300D67F99 /* ForecastRecordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastRecordListViewController.h; sourceTree = "<group>"; };
+		FF85E91F248FBBC300D67F99 /* ForecastRecordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastRecordListViewController.m; sourceTree = "<group>"; };
 		FF85E92A2490DABA00D67F99 /* getMatch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getMatch.json; sourceTree = "<group>"; };
 		FF86DBE4253E8DA500B82BF9 /* RRCMatchSetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RRCMatchSetViewController.h; sourceTree = "<group>"; };
 		FF86DBE5253E8DA500B82BF9 /* RRCMatchSetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RRCMatchSetViewController.m; sourceTree = "<group>"; };
+		FF99A1B225621C5A007166D4 /* ForecastRecordListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastRecordListViewController.xib; sourceTree = "<group>"; };
+		FF99A1D925622A79007166D4 /* GGCBetRecordListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GGCBetRecordListVC.xib; sourceTree = "<group>"; };
+		FF99A1E725623D97007166D4 /* ShareHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareHandle.m; sourceTree = "<group>"; };
+		FF99A1E825623D97007166D4 /* ShareHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareHandle.h; sourceTree = "<group>"; };
+		FF99A1ED2562474E007166D4 /* RRCBetRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RRCBetRecordModel.h; sourceTree = "<group>"; };
+		FF99A1EE2562474E007166D4 /* RRCBetRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RRCBetRecordModel.m; sourceTree = "<group>"; };
 		FFA24D6C255F8606008252A0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		FFA24D6D255F8606008252A0 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		FFA24D6E255F8606008252A0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -275,44 +285,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FF1CDB18255F7C930023F23F /* View */ = {
-			isa = PBXGroup;
-			children = (
-				FF85E910248F67AE00D67F99 /* GGCRiceListCell.h */,
-				FF85E911248F67AE00D67F99 /* GGCRiceListCell.m */,
-				FF85E912248F67AE00D67F99 /* GGCRiceListCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		FF1CDB19255F7C980023F23F /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		FF1CDB1A255F7CA80023F23F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				FF7A2DE224CBD79A00F6DE16 /* RRCLeaguesModel.h */,
-				FF7A2DE324CBD79A00F6DE16 /* RRCLeaguesModel.m */,
-				FF2D38672522E65D008896D7 /* RRCMatchRateModel.h */,
-				FF2D38682522E65D008896D7 /* RRCMatchRateModel.m */,
-				FF745963248DDC5100FDF646 /* ResultViewModel.h */,
-				FF745964248DDC5100FDF646 /* ResultViewModel.m */,
-				FF85E8F6248F34CF00D67F99 /* GGXMatchInfo.h */,
-				FF85E8F7248F34CF00D67F99 /* GGXMatchInfo.m */,
-				FF745960248DD9A800FDF646 /* ResultModel.h */,
-				FF745961248DD9A800FDF646 /* ResultModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		FF1CDB1C255F7D2F0023F23F /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
-				FFA24E60255FDE5F008252A0 /* Historry */,
+				FF99A1DF25622F42007166D4 /* TradingRecord */,
+				FF99A1D1256228B8007166D4 /* BetRecord */,
+				FFA24E60255FDE5F008252A0 /* ForecastRecord */,
 				FFA24E0C255FB850008252A0 /* AddMoney */,
 				FFA24E0B255FB830008252A0 /* UserInfo */,
 			);
@@ -344,6 +322,8 @@
 				FF1CDB47255F7FFE0023F23F /* CustomUtil.m */,
 				FF1CDB4E255F80EE0023F23F /* Macro.h */,
 				FF1CDB4C255F80D40023F23F /* PrefixHeader.pch */,
+				FF99A1E825623D97007166D4 /* ShareHandle.h */,
+				FF99A1E725623D97007166D4 /* ShareHandle.m */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -373,23 +353,23 @@
 		FF745925248DCB2F00FDF646 /* 竞彩建模 */ = {
 			isa = PBXGroup;
 			children = (
-				FFA24E30255FB9AE008252A0 /* Resources */,
-				FF1CDB45255F7FF10023F23F /* Config */,
-				FF1CDB44255F7F660023F23F /* Login */,
-				FF1CDB1C255F7D2F0023F23F /* UserCenter */,
 				FF745926248DCB2F00FDF646 /* AppDelegate.h */,
 				FF745927248DCB2F00FDF646 /* AppDelegate.m */,
-				FF86DBE3253E8D8C00B82BF9 /* Setting */,
 				FF745932248DCB3200FDF646 /* Assets.xcassets */,
+				FF1CDB45255F7FF10023F23F /* Config */,
 				FF85E91D248FA9AA00D67F99 /* HomeList */,
 				FF745937248DCB3200FDF646 /* Info.plist */,
 				FF745934248DCB3200FDF646 /* LaunchScreen.storyboard */,
+				FF1CDB44255F7F660023F23F /* Login */,
 				FF745938248DCB3200FDF646 /* main.m */,
 				FF74592F248DCB2F00FDF646 /* Main.storyboard */,
 				FF85E8F9248F5EBE00D67F99 /* matchInfo.json */,
+				FFA24E30255FB9AE008252A0 /* Resources */,
 				FF745929248DCB2F00FDF646 /* SceneDelegate.h */,
 				FF74592A248DCB2F00FDF646 /* SceneDelegate.m */,
+				FF86DBE3253E8D8C00B82BF9 /* Setting */,
 				FF7BD13D2494627F00262FC8 /* StartPredictList */,
+				FF1CDB1C255F7D2F0023F23F /* UserCenter */,
 				FF85E907248F64B600D67F99 /* WarResult */,
 			);
 			path = "竞彩建模";
@@ -444,11 +424,6 @@
 		FF85E91D248FA9AA00D67F99 /* HomeList */ = {
 			isa = PBXGroup;
 			children = (
-				FF1CDB1A255F7CA80023F23F /* Model */,
-				FF1CDB19255F7C980023F23F /* ViewModel */,
-				FF1CDB18255F7C930023F23F /* View */,
-				FF85E91E248FBBC300D67F99 /* GGCRiceListViewController.h */,
-				FF85E91F248FBBC300D67F99 /* GGCRiceListViewController.m */,
 				FFC5E111254D2BA0008FB2E7 /* GGCLeagueListViewController.h */,
 				FFC5E110254D2BA0008FB2E7 /* GGCLeagueListViewController.m */,
 				FF2D38912522EF8B008896D7 /* GGCDateRateViewController.h */,
@@ -462,16 +437,67 @@
 		FF86DBE3253E8D8C00B82BF9 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				FF84D1B725552F8B001D6506 /* GGCLeagueDeleteListVC.h */,
-				FF84D1B625552F8B001D6506 /* GGCLeagueDeleteListVC.m */,
-				FF84D1BC25552FFB001D6506 /* RRCLeafueDelcell.h */,
-				FF84D1BD25552FFB001D6506 /* RRCLeafueDelcell.m */,
-				FF84D1BE25552FFB001D6506 /* RRCLeafueDelcell.xib */,
 				FF86DBE4253E8DA500B82BF9 /* RRCMatchSetViewController.h */,
 				FF86DBE5253E8DA500B82BF9 /* RRCMatchSetViewController.m */,
 				FF1CDB5B255F83960023F23F /* RRCMatchSetViewController.xib */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		FF99A1D1256228B8007166D4 /* BetRecord */ = {
+			isa = PBXGroup;
+			children = (
+				FF99A1DE25622F2E007166D4 /* Model */,
+				FF84D1B725552F8B001D6506 /* GGCBetRecordListVC.h */,
+				FF84D1B625552F8B001D6506 /* GGCBetRecordListVC.m */,
+				FF99A1D925622A79007166D4 /* GGCBetRecordListVC.xib */,
+				FF99A1D2256228CB007166D4 /* View */,
+			);
+			path = BetRecord;
+			sourceTree = "<group>";
+		};
+		FF99A1D2256228CB007166D4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF84D1BC25552FFB001D6506 /* RRCLeafueDelcell.h */,
+				FF84D1BD25552FFB001D6506 /* RRCLeafueDelcell.m */,
+				FF84D1BE25552FFB001D6506 /* RRCLeafueDelcell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FF99A1DE25622F2E007166D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FF99A1ED2562474E007166D4 /* RRCBetRecordModel.h */,
+				FF99A1EE2562474E007166D4 /* RRCBetRecordModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FF99A1DF25622F42007166D4 /* TradingRecord */ = {
+			isa = PBXGroup;
+			children = (
+				FF99A1E325623BBF007166D4 /* View */,
+				FFA24E65255FDE5F008252A0 /* HistorryOrderDetailViewController.h */,
+				FFA24E62255FDE5F008252A0 /* HistorryOrderDetailViewController.m */,
+				FFA24E66255FDE5F008252A0 /* HistorryOrderDetailViewController.xib */,
+				FFA24E61255FDE5F008252A0 /* HistorryOrderViewController.h */,
+				FFA24E64255FDE5F008252A0 /* HistorryOrderViewController.m */,
+				FFA24E63255FDE5F008252A0 /* HistorryOrderViewController.xib */,
+			);
+			path = TradingRecord;
+			sourceTree = "<group>";
+		};
+		FF99A1E325623BBF007166D4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FFA24E7C255FDF16008252A0 /* RecordOrderCell.h */,
+				FFA24E7D255FDF16008252A0 /* RecordOrderCell.m */,
+				FFA24E88255FDFBF008252A0 /* BSButtonView.h */,
+				FFA24E89255FDFC0008252A0 /* BSButtonView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FFA24D7C255F872B008252A0 /* Model */ = {
@@ -589,24 +615,31 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		FFA24E60255FDE5F008252A0 /* Historry */ = {
+		FFA24E60255FDE5F008252A0 /* ForecastRecord */ = {
 			isa = PBXGroup;
 			children = (
 				FFA24E7B255FDF0D008252A0 /* View */,
 				FFA24E74255FDEBE008252A0 /* Model */,
-				FFA24E65255FDE5F008252A0 /* HistorryOrderDetailViewController.h */,
-				FFA24E62255FDE5F008252A0 /* HistorryOrderDetailViewController.m */,
-				FFA24E66255FDE5F008252A0 /* HistorryOrderDetailViewController.xib */,
-				FFA24E61255FDE5F008252A0 /* HistorryOrderViewController.h */,
-				FFA24E64255FDE5F008252A0 /* HistorryOrderViewController.m */,
-				FFA24E63255FDE5F008252A0 /* HistorryOrderViewController.xib */,
+				FF85E91E248FBBC300D67F99 /* ForecastRecordListViewController.h */,
+				FF85E91F248FBBC300D67F99 /* ForecastRecordListViewController.m */,
+				FF99A1B225621C5A007166D4 /* ForecastRecordListViewController.xib */,
 			);
-			path = Historry;
+			path = ForecastRecord;
 			sourceTree = "<group>";
 		};
 		FFA24E74255FDEBE008252A0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FF7A2DE224CBD79A00F6DE16 /* RRCLeaguesModel.h */,
+				FF7A2DE324CBD79A00F6DE16 /* RRCLeaguesModel.m */,
+				FF2D38672522E65D008896D7 /* RRCMatchRateModel.h */,
+				FF2D38682522E65D008896D7 /* RRCMatchRateModel.m */,
+				FF745963248DDC5100FDF646 /* ResultViewModel.h */,
+				FF745964248DDC5100FDF646 /* ResultViewModel.m */,
+				FF85E8F6248F34CF00D67F99 /* GGXMatchInfo.h */,
+				FF85E8F7248F34CF00D67F99 /* GGXMatchInfo.m */,
+				FF745960248DD9A800FDF646 /* ResultModel.h */,
+				FF745961248DD9A800FDF646 /* ResultModel.m */,
 				FFA24E75255FDEC6008252A0 /* HomeOrderEntity.h */,
 				FFA24E76255FDEC6008252A0 /* HomeOrderEntity.m */,
 			);
@@ -616,12 +649,11 @@
 		FFA24E7B255FDF0D008252A0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FFA24E88255FDFBF008252A0 /* BSButtonView.h */,
-				FFA24E89255FDFC0008252A0 /* BSButtonView.m */,
+				FF85E910248F67AE00D67F99 /* GGCRiceListCell.h */,
+				FF85E911248F67AE00D67F99 /* GGCRiceListCell.m */,
+				FF85E912248F67AE00D67F99 /* GGCRiceListCell.xib */,
 				FFA24E82255FDF5D008252A0 /* UserCenterCell.h */,
 				FFA24E83255FDF5E008252A0 /* UserCenterCell.m */,
-				FFA24E7C255FDF16008252A0 /* RecordOrderCell.h */,
-				FFA24E7D255FDF16008252A0 /* RecordOrderCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -745,12 +777,14 @@
 				FF745933248DCB3200FDF646 /* Assets.xcassets in Resources */,
 				FFA24D78255F86B6008252A0 /* UserReg1ViewController.xib in Resources */,
 				FF85E904248F645600D67F99 /* ResultTableViewCell.xib in Resources */,
+				FF99A1B325621C5B007166D4 /* ForecastRecordListViewController.xib in Resources */,
 				FFA24E6A255FDE60008252A0 /* HistorryOrderDetailViewController.xib in Resources */,
 				FFA24D6F255F8606008252A0 /* LoginViewController.xib in Resources */,
 				FFA24E96255FDFFE008252A0 /* color_black@2x.png in Resources */,
 				FF745931248DCB2F00FDF646 /* Main.storyboard in Resources */,
 				FFA24E97255FDFFE008252A0 /* color_red@2x.png in Resources */,
 				FFA24E2C255FB9A3008252A0 /* EntityPay.json in Resources */,
+				FF99A1DA25622A79007166D4 /* GGCBetRecordListVC.xib in Resources */,
 				FF85E90F248F64FC00D67F99 /* GGXWarResultCell.xib in Resources */,
 				FFA24E93255FDFFE008252A0 /* color_gray@2x.png in Resources */,
 				FF85E8FA248F5EBE00D67F99 /* matchInfo.json in Resources */,
@@ -822,6 +856,7 @@
 			files = (
 				FFA24D77255F86B6008252A0 /* UserReg1ViewController.m in Sources */,
 				FFA24D70255F8606008252A0 /* LoginViewController.m in Sources */,
+				FF99A1EF2562474F007166D4 /* RRCBetRecordModel.m in Sources */,
 				FFA24E5C255FC3C0008252A0 /* YQPayMethodModel.m in Sources */,
 				FF2D38932522EF8B008896D7 /* GGCDateRateViewController.m in Sources */,
 				FF86DBE6253E8DA500B82BF9 /* RRCMatchSetViewController.m in Sources */,
@@ -835,7 +870,7 @@
 				FF2D38692522E65D008896D7 /* RRCMatchRateModel.m in Sources */,
 				FFA24DFD255FAD27008252A0 /* NSString+Common.m in Sources */,
 				FF85E8F8248F34CF00D67F99 /* GGXMatchInfo.m in Sources */,
-				FF85E923248FBBC300D67F99 /* GGCRiceListViewController.m in Sources */,
+				FF85E923248FBBC300D67F99 /* ForecastRecordListViewController.m in Sources */,
 				FFA24D7F255F8733008252A0 /* EntityUser.m in Sources */,
 				FFA24E69255FDE60008252A0 /* HistorryOrderViewController.m in Sources */,
 				FF745962248DD9A800FDF646 /* ResultModel.m in Sources */,
@@ -859,10 +894,11 @@
 				FFA24E84255FDF5E008252A0 /* UserCenterCell.m in Sources */,
 				FF84D1BF25552FFB001D6506 /* RRCLeafueDelcell.m in Sources */,
 				FFA24E21255FB927008252A0 /* EntityGoods.m in Sources */,
+				FF99A1E925623D97007166D4 /* ShareHandle.m in Sources */,
 				FFA24E67255FDE60008252A0 /* HistorryOrderDetailViewController.m in Sources */,
 				FF85E906248F645600D67F99 /* ResultTableViewCell.m in Sources */,
 				FF1CDB2F255F7D9F0023F23F /* UserHeadCell.m in Sources */,
-				FF84D1B825552F8B001D6506 /* GGCLeagueDeleteListVC.m in Sources */,
+				FF84D1B825552F8B001D6506 /* GGCBetRecordListVC.m in Sources */,
 				FF1CDB48255F7FFE0023F23F /* CustomUtil.m in Sources */,
 				FF745965248DDC5100FDF646 /* ResultViewModel.m in Sources */,
 				FF7BD145249468F700262FC8 /* RRCScoreViewModel.m in Sources */,

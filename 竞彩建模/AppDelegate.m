@@ -20,8 +20,9 @@
     // Override point for customization after application launch.
 //
     [RRCNetWorkManager sharedTool].webUrl = @"http://120.27.24.112:9118";
-
-    UINavigationBar *i;
+    if ([CustomUtil isUserLogin]) {
+        [[RRCNetWorkManager sharedTool].baseParameters setValue:[CustomUtil getToken] forKey:@"device_id"];
+    }
     return YES;
 }
 

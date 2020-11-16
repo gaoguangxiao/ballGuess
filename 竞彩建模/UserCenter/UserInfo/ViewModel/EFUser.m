@@ -9,6 +9,7 @@
 #import "EFUser.h"
 #import "NSString+Common.h"
 #import "OpenUDID.h"
+#import "RRCNetWorkManager.h"
 @implementation EFUser
 +(void)registerUserUserName:(NSString *)userName andPassWord:(NSString *)psw andTelepnone:(NSString *)tele andBackResult:(void(^)(EntityUser *user,BOOL isSuccessful, NSError *error))block{
     BmobUser *user = [[BmobUser alloc]init];
@@ -29,7 +30,7 @@
         
         EntityUser *userEntity = [EntityUser new];
         if (isSuccessful) {
-            userEntity = [self updateLocalUser:user];
+            userEntity = [self updateLocalUser:user andLoginUserPsw:psw];
         }else{
             
         }
@@ -42,7 +43,7 @@
     [self loginInbackgroundWithAccount:userName andPassword:psw block:^(BmobUser *user, NSError *error) {
         if (user) {
             
-            EntityUser *userEntity = [self updateLocalUser:user];
+            EntityUser *userEntity = [self updateLocalUser:user andLoginUserPsw:psw];
             
             block(userEntity,YES,error);
 
@@ -54,6 +55,49 @@
         }
     }];
 }
+
++(void)updateUserMoneyAmount:(float )changeAmount andStateAdd:(BOOL)isAdd andBackResult:(void(^)(BOOL isSuccessful, NSError *error))block{
+
+    EntityUser *login_M = [CustomUtil getUserInfo];
+    
+    //取得当前用户金额
+    float cureentAmount = [login_M.amount floatValue];
+    
+    NSString *updateAmount  = [NSString stringWithFormat:@"%.1f",isAdd? changeAmount + cureentAmount : cureentAmount - changeAmount];
+    
+    //3、账户余额不足
+    if ([updateAmount floatValue] < 0) {
+        NSError *error = [NSError errorWithDomain:@"账户余额不足" code:NSFileWriteInapplicableStringEncodingError userInfo: @{@"NSLocalizedDescriptionKey":@"账户余额不足"}];
+        block(NO,error);
+    }else{
+
+        BmobUser *loginUser = [BmobUser currentUser];
+//        更新余额
+        [loginUser setObject:updateAmount forKey:@"amount"];
+      
+        //是否更新账户的余额、由用户状态决定
+        //更新等级0~50/50~200/200~500、500~1000
+        if ([updateAmount intValue]<50) {
+            [loginUser setObject:@"1" forKey:@"userLevel"];
+        }else if ([updateAmount intValue]<200){
+            [loginUser setObject:@"2" forKey:@"userLevel"];
+        }else if ([updateAmount intValue]<500){
+            [loginUser setObject:@"3" forKey:@"userLevel"];
+        }else if ([updateAmount intValue]<1000){
+            [loginUser setObject:@"4" forKey:@"userLevel"];
+        }else{
+            [loginUser setObject:@"5" forKey:@"userLevel"];
+        }
+        
+        //异步更新数据
+        [loginUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            block(isSuccessful,error);
+            [[NSNotificationCenter defaultCenter]postNotificationName:K_APNNOTIFICATIONLOGIN object:@(YES)];
+            
+        }];
+    }
+}
+
 +(void)updateUserAmount:(NSDictionary *)changeDict andStateAdd:(BOOL)isAdd andBackResult:(void(^)(BOOL isSuccessful, NSError *error))block{
 //
 
@@ -78,10 +122,9 @@
         block(NO,error);
     }
     
-    //预测一次的单价为5聚合币
-    float changeAmount = userForecastNum * 5;//
+    float changeAmount = userForecastNum;//
    
-    NSString *updateAmount  = [NSString stringWithFormat:@"%.1f",isAdd? changeAmount + cureentAmount : cureentAmount -changeAmount];
+    NSString *updateAmount  = [NSString stringWithFormat:@"%.1f",isAdd? changeAmount + cureentAmount : cureentAmount - changeAmount];
     
     //3、账户余额不足
     if ([updateAmount floatValue] < 0) {
@@ -185,7 +228,7 @@
     BmobUser *user1 = [BmobUser currentUser];
     [self loginInbackgroundWithAccount:user1.username andPassword:[CustomUtil getUserInfo].password block:^(BmobUser *user, NSError *error) {
     
-        EntityUser *userEntity = [self updateLocalUser:user];
+        EntityUser *userEntity = [self updateLocalUser:user andLoginUserPsw:[CustomUtil getUserInfo].password];
         
         [CustomUtil saveUserInfo:userEntity];
 
@@ -194,16 +237,25 @@
     }];
 }
 
-+(EntityUser *)updateLocalUser:(BmobUser *)user{
++(EntityUser *)updateLocalUser:(BmobUser *)user andLoginUserPsw:(NSString *)psw{
  
     EntityUser *userEntity = [EntityUser new];
-    userEntity.password = [CustomUtil getUserInfo].password;
+    if (psw) {
+        userEntity.password = psw;
+    }else{
+        userEntity.password = [CustomUtil getUserInfo].password;
+    }
+    
     userEntity.username = user.username;
     userEntity.phone    = [user objectForKey:@"phone"];
     userEntity.amount   = [user objectForKey:@"amount"];
     userEntity.userLevel = [user objectForKey:@"userLevel"];
     userEntity.portraitUri = [user objectForKey:@"portraitUri"];
     userEntity.token       = [user objectForKey:@"token"];
+    
+    //设置全局通用参数
+    [[RRCNetWorkManager sharedTool].baseParameters setValue:userEntity.token forKey:@"device_id"];
+    
     userEntity.userForecast = [user objectForKey:@"userForecast"];
     userEntity.isExchange  = [[user objectForKey:@"isExchange"] boolValue];
     return userEntity;

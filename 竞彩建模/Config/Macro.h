@@ -10,7 +10,7 @@
 #define Macro_h
 
 //#import "HJNavgationViewController.h"
-//#import "ShareHandle.h"
+#import "ShareHandle.h"
 #import "CustomUtil.h"//
 #import "RRCAlertManager.h"
 #import <BmobSDK/Bmob.h> //引入云端数据库

@@ -28,6 +28,9 @@
 /// @param block <#block description#>
 +(void)loginYQUserName:(NSString *)userName andPassWord:(NSString *)psw andBackResult:(void(^)(EntityUser *user,BOOL isSuccessful, NSError *error))block;
 
+
++(void)updateUserMoneyAmount:(float )changeAmount andStateAdd:(BOOL)isAdd andBackResult:(void(^)(BOOL isSuccessful, NSError *error))block;
+
 /**
  更新用户余额信息
 

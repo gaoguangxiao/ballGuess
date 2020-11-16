@@ -57,10 +57,15 @@
      }];
    
 }
+
 -(void)updateUserInfo{
     [EFUser getUserInfo:^(BmobUser *user, NSError *error) {
         [self->_tableView reloadData];
     }];
+}
+
+-(void)updateUserInfoView{
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource && Delegate
@@ -78,7 +83,9 @@
             cell = CreateCell(@"UserHeadCell");
             cell.lineView.hidden = YES;
         }
-        [cell setUserData:[CustomUtil getUserInfo]];// = [BmobUser currentUser];
+        if ([CustomUtil isUserLogin]) {
+            [cell setUserData:[CustomUtil getUserInfo]];// = [BmobUser currentUser];
+        }
         cell.PushPartAndCharge = ^(NSInteger index) {
             if (self.didSelectRowAtPushViewIndexPath) {
                 self.didSelectRowAtPushViewIndexPath(101);//
@@ -104,6 +111,11 @@
                 cell.lineView.hidden = YES;
             }
             cell.delegate  = self;
+            if ([CustomUtil isUserLogin]) {
+                [cell.exitBtn setTitle:@"退出登陆" forState:UIControlStateNormal];
+            }else{
+                [cell.exitBtn setTitle:@"登陆" forState:UIControlStateNormal];
+            }
             return cell;
         }
         

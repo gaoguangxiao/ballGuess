@@ -56,7 +56,7 @@
     self.awayEnterBallScore.attributedText = [[NSString stringWithFormat:@"虚：%.2f\n实：%@", resultModel.awayCompositeScore,resultModel.awayScore] changeLineSpace:5];
     
     //亚指盘口
-    self.resultCompany.text = [NSString stringWithFormat:@"%.2f",resultModel.companyYazhiNumber];
+    self.resultCompany.text = [NSString stringWithFormat:@"%@",resultModel.yp_pk];
     //胜负数
     self.resultForecastAllScore.text = [NSString stringWithFormat:@"%.2f",resultModel.homeCompositeScore - resultModel.awayCompositeScore];
     

@@ -13,6 +13,10 @@
 #import "HUDHelper.h"
 #import "EFUser.h"
 
+#import "RRCBetRecordModel.h"
+#import "RRCNetWorkManager.h"
+
+#import "RRCTScoreModel.h"
 static AFHTTPSessionManager *manager;
 
 @implementation Service
@@ -247,7 +251,130 @@ static AFHTTPSessionManager *manager;
         }];
     }
     
+    //下注
+    if ([storeName isEqualToString:@"BetOrderStore"]) {
+        [self userBetOrderFlow:parameters andComplete:^(BOOL isSuccessful, NSError *error) {
+            if (isSuccessful) {
+                result.status   = @(YES);
+                result.data = @[];
+                result.errorMsg = @"执行成功";
+            }else{
+                result.status   = @(NO);
+                result.errorMsg = error.userInfo[@"NSLocalizedDescriptionKey"];
+            }
+            block(result,result.status.boolValue);
+        }];
+    }
+    //    查询下注列表
+    if ([storeName isEqualToString:@"BetListOrderStore"]) {
+        [self userBetOrderListLoad:parameters andComplete:^(NSArray *array, NSError *error) {
+            if (!error) {
+                //数组遍历 RRCBetRecordModel
+                NSMutableArray *re = [NSMutableArray new];
+                for (NSInteger i = 0; i < array.count; i++) {
+                    
+                    BmobObject * o = array[i];
+                    
+                    RRCBetRecordModel *r = [RRCBetRecordModel mj_objectWithKeyValues:[o valueForKey:@"dataDic"]];
+                    if ([r.homeScore isEqualToString:@"-"] && [r.awayScore isEqualToString:@"-"]) {
+                        r.status = @"0";
+                    }else{
+                        r.status = @"1";
+                    }
+                    [self handleDxqSmallText:r];
+                    [self handleyzpK:r];
+                    
+                    [re addObject:r];
+                }
+                result.status   = @(YES);
+                result.data = re;
+                result.errorMsg = @"执行成功";
+            }else{
+                result.status   = @(NO);
+                result.errorMsg = error.userInfo[@"NSLocalizedDescriptionKey"];
+            }
+            block(result,result.status.boolValue);
+        }];
+    }
     
+    //更新某条数据,只有此接口才能增加
+    if ([storeName isEqualToString:@"updateBetOrder"]) {
+        [self updateBetOrderListLoad:parameters andComplete:^(BmobObject *object, NSError *error) {
+            if (!error) {
+                //返回处理完成的数据模型
+                NSDictionary *nDict = [object valueForKey:@"dataDic"];
+                RRCBetRecordModel *r = [RRCBetRecordModel mj_objectWithKeyValues:nDict];
+                if ([r.homeScore isEqualToString:@"-"] && [r.awayScore isEqualToString:@"-"]) {
+                    r.status = @"0";
+                }else{
+                    r.status = @"1";
+                }
+                [self handleDxqSmallText:r];
+                [self handleyzpK:r];
+                //根据订单
+                if (r.status.integerValue == 1 && r.orderState.integerValue == 0) {
+                    //修改用户金额
+                    float allMoney = r.dxq_winMoney.floatValue + r.yz_winMoney.floatValue;
+                    [EFUser updateUserMoneyAmount:allMoney andStateAdd:YES andBackResult:^(BOOL isSuccessful, NSError *error) {
+                        if (isSuccessful) {
+                            r.orderState = @"2";
+                            BmobQuery  *bquery = [BmobQuery queryWithClassName:@"BetOrderStore"];
+                            [bquery getObjectInBackgroundWithId:parameters[@"objectId"] block:^(BmobObject *object, NSError *error) {
+                                //更新
+                                [object setObject:r.orderState forKey:@"orderState"];
+                                [object updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                                    if (isSuccessful) {
+                                        result.status   = @(YES);
+                                        result.data = r;
+                                        result.errorMsg = @"执行成功";
+                                    }
+                                    block(result,result.status.boolValue);
+                                }];
+                            }];
+                            
+                            //增加金额记录
+                            //可以查询
+                            BmobObject *flowScore = [BmobObject objectWithClassName:@"orderMoneyStore"];
+                            //订单列表应该插入用户的信息
+                            [flowScore setObject:[CustomUtil getUserInfo].username forKey:@"userName"];
+                            [flowScore setObject:[BmobUser currentUser] forKey:@"author"];
+                            [flowScore setObject:[NSString stringWithFormat:@"%.2f",allMoney] forKey:@"money"];
+                            NSDate *currentDate = [NSDate date];//获取当前时间，日期
+                            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];// 创建一个时间格式化对象
+                            [dateFormatter setDateFormat:@"YYYYMMDDHHMM"];//设定时间格式,这里可以设置成自己需要的格式
+                            NSString *dateString = [dateFormatter stringFromDate:currentDate];
+                            
+                            NSInteger userForecastNum = [[parameters valueForKey:@"userForecastCount"] integerValue];
+                            NSString *oID = [NSString stringWithFormat:@"%@%ldB5",dateString,(long)userForecastNum];
+                            [flowScore setObject:oID forKey:@"orderId"];
+                            [flowScore setObject:r.home forKey:@"home"];
+                            [flowScore setObject:r.away forKey:@"away"];
+                            
+                            [flowScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                                
+                            }];
+                        }else{
+                            
+                        }
+                    }];
+                    
+                }else{
+                    result.status   = @(YES);
+                    result.data = r;
+                    result.errorMsg = @"执行成功";
+                    block(result,result.status.boolValue);
+                }
+                
+            }else{
+                result.status   = @(NO);
+                result.errorMsg = error.userInfo[@"NSLocalizedDescriptionKey"];
+                block(result,result.status.boolValue);
+            }
+            
+        }];
+    }
+    
+    //
     if ([storeName isEqualToString:@"GameStatus"]) {
         [self queryGameSatus:parameters andComplete:^(BmobObject *object, NSError *error) {
             if (object) {
@@ -500,7 +627,7 @@ static AFHTTPSessionManager *manager;
             BmobObject *flowScore = [BmobObject objectWithClassName:@"OrderForecastStore"];
             //订单列表应该插入用户的信息
             [flowScore setObject:[CustomUtil getToken] forKey:@"token"];
-            [flowScore setObject:[CustomUtil getToken] forKey:@"userName"];
+            [flowScore setObject:[CustomUtil getUserInfo].username forKey:@"userName"];
             [flowScore setObject:[BmobUser currentUser] forKey:@"author"];
             
             NSDate *currentDate = [NSDate date];//获取当前时间，日期
@@ -519,6 +646,80 @@ static AFHTTPSessionManager *manager;
             }];
         }
     }];
+}
+#pragma mark -用户下注
++(void)userBetOrderFlow:(NSDictionary *)parameters andComplete:(BmobBooleanResultBlock)block{
+    BmobObject *flowScore = [BmobObject objectWithClassName:@"BetOrderStore"];
+    //订单列表应该插入用户的信息
+    [flowScore setObject:[CustomUtil getUserInfo].username forKey:@"userName"];
+    [flowScore setObject:[BmobUser currentUser] forKey:@"author"];
+    [flowScore saveAllWithDictionary:parameters];
+    
+    [flowScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        block(isSuccessful,error);
+    }];
+}
+
+//更新某项下注，只能针对未出赛果
+#pragma mark -更新赛果
++(void)updateBetOrderListLoad:(NSDictionary *)parameters andComplete:(BmobObjectResultBlock)block{
+    
+    [[RRCNetWorkManager sharedTool] loadRequestWithURLString:[NSString stringWithFormat:@"https://appbalance2.zqcf718.com/v11/real/time/getOneGameInfo"] isfull:YES parameters:parameters success:^(CGDataResult * _Nonnull result) {
+        
+        if (result.status.boolValue) {
+            
+            BmobQuery  *bquery = [BmobQuery queryWithClassName:@"BetOrderStore"];
+            
+            //查找
+            [bquery getObjectInBackgroundWithId:parameters[@"objectId"] block:^(BmobObject *object, NSError *error) {
+                
+                RRCTScoreModel *scModel = [RRCTScoreModel mj_objectWithKeyValues:result.data];
+                
+                if ([scModel.state isEqualToString:@"0"]) {
+                    NSError *error = [NSError errorWithDomain:@"比赛尚未开始" code:NSFileWriteInapplicableStringEncodingError userInfo: @{@"NSLocalizedDescriptionKey":@"比赛尚未开始"}];
+                    block(object,error);
+                }else if([scModel.state isEqualToString:@"-1"]){
+                    //更新两个
+                    [object setObject:scModel.homeScore forKey:@"homeScore"];
+                    [object setObject:scModel.awayScore forKey:@"awayScore"];
+                    [object updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                        
+                        if (isSuccessful) {
+                            block(object,error);
+                        }else{
+                            block(object,error);
+                        }
+                    }];
+                }else{
+                    NSError *error = [NSError errorWithDomain:@"比赛异常" code:NSFileWriteInapplicableStringEncodingError userInfo: @{@"NSLocalizedDescriptionKey":@"比赛异常"}];
+                    block(object,error);
+                }
+                
+            }];
+        }else{
+            
+        }
+        
+        
+    }];
+    
+}
+
+#pragma mark -用户下注订单查询
++(void)userBetOrderListLoad:(NSDictionary *)parameters andComplete:(BmobObjectArrayResultBlock)block{
+    
+    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"BetOrderStore"];
+    [bquery orderByDescending:@"hmd"];//将序排列
+    //构造约束条件
+    BmobQuery *inQuery = [BmobQuery queryForUser];
+    [inQuery whereKey:@"objectId" equalTo:[BmobUser currentUser].objectId];//构造查询条件
+    //匹配查询
+    [bquery whereKey:@"author" matchesQuery:inQuery];
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        block(array,error);
+        
+    }];
+    
 }
 
 #pragma mark -用户充值
@@ -670,4 +871,79 @@ static AFHTTPSessionManager *manager;
     str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return str;
 }
+
+#pragma mark - 其他方法
+//大小球计算方式
++(void)handleDxqSmallText:(RRCBetRecordModel *)scoreModel{
+    //大小球结果计算 companyBigSmallNumber - allCompositeScore
+    float allScoreDif = scoreModel.dxq_dxdif.floatValue;
+    //命中大小球计算
+    if ([scoreModel.status integerValue]) {
+        float realresults = scoreModel.homeScore.floatValue + scoreModel.awayScore.floatValue - scoreModel.dxq_pk.floatValue;
+        //最终结果相等走水
+        if (realresults == 0) {
+            scoreModel.dxq_win = @"2";
+        }else{
+            if ((realresults > 0 && allScoreDif > 0)||( realresults < 0 && allScoreDif <= 0)) {
+                scoreModel.dxq_win = @"1";
+                if (fabsf(realresults) == 0.25) {
+                    if (allScoreDif > 0) {
+                        scoreModel.dxq_pk_water  = [NSString stringWithFormat:@"%.2f",scoreModel.dxq_pk_water.floatValue * 0.5];
+                    }else{
+                        scoreModel.dxq_pk_water  = [NSString stringWithFormat:@"%.2f",scoreModel.dxq_pk_water.floatValue * 0.5];
+                    }
+                }
+            }else{
+                scoreModel.dxq_win = @"0";
+            }
+        }
+    }else{
+        scoreModel.dxq_win = @"-1";
+    }
+    
+    //更新最终盈利
+    if (scoreModel.dxq_win.integerValue == 1) {
+        scoreModel.dxq_winMoney = [NSString stringWithFormat:@"%.2f",scoreModel.dxq_pk_water.floatValue * scoreModel.dxq_money.floatValue];
+    }else if (scoreModel.dxq_win.integerValue == 1){
+        scoreModel.dxq_winMoney = [NSString stringWithFormat:@"-%.2f",scoreModel.dxq_money.floatValue];
+    }else{
+        scoreModel.dxq_winMoney = [NSString stringWithFormat:@"%.2d",0];
+    }
+}
+
++(void)handleyzpK:(RRCBetRecordModel *)scoreModel{
+    //计算亚指结果
+    float allScoreYazhiDif = scoreModel.yz_dxdif.floatValue;//主队-客队得分，大于0，-盘口还大0主队，
+    //计算亚指猜测结果
+    if ([scoreModel.status integerValue]) {
+        float realYaResults = scoreModel.homeScore.floatValue - scoreModel.awayScore.floatValue + scoreModel.yz_pk.floatValue;
+        if (realYaResults == 0) {
+            scoreModel.yz_win = @"2";
+        }else{
+            if ((realYaResults > 0 && allScoreYazhiDif > 0)||( realYaResults < 0 && allScoreYazhiDif < 0)) {
+                scoreModel.yz_win = @"1";
+                if (fabsf(realYaResults) == 0.25) {
+                    if (allScoreYazhiDif > 0) {//主队水位
+                        scoreModel.yz_pk_water  = [NSString stringWithFormat:@"%.2f",scoreModel.yz_pk_water.floatValue * 0.5];
+                    }else{
+                        scoreModel.yz_pk_water  = [NSString stringWithFormat:@"%.2f",scoreModel.yz_pk_water.floatValue * 0.5];
+                    }
+                }
+            }else{
+                scoreModel.yz_win = @"0";
+            }
+        }
+    }else{
+        scoreModel.yz_win = @"-1";
+    }
+    
+    if (scoreModel.yz_win.integerValue == 1) {
+        scoreModel.yz_winMoney = [NSString stringWithFormat:@"%.2f",scoreModel.yz_pk_water.floatValue * scoreModel.yz_money.floatValue];
+    }else if (scoreModel.yz_win.integerValue == 2){
+        scoreModel.yz_winMoney = [NSString stringWithFormat:@"-%.2f",scoreModel.yz_money.floatValue];
+    }else{
+        scoreModel.yz_winMoney = [NSString stringWithFormat:@"%.2d",0];
+    }
+}
+
 @end

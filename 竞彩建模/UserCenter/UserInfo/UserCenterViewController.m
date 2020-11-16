@@ -20,6 +20,20 @@
 
 @implementation UserCenterViewController
 
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    //判断用户信息
+    if (![CustomUtil isUserLogin]) {
+        [self.navigationController presentViewController:CreateViewControllerWithNav(@"LoginViewController") animated:YES completion:^{
+           
+            [self.blogTableViewHelper updateUserInfoView];
+        
+        }];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -27,21 +41,31 @@
     
     __weak typeof(self) weakSelf = self;
     
-    if (![CustomUtil isUserLogin]) {
-         [self.navigationController presentViewController:CreateViewControllerWithNav(@"LoginViewController") animated:YES completion:nil];
-    }
-    
     //所有的店员加载 View
     self.blogTableViewHelper = [BlogTableViewHelper helperWithTableView:_tableView userId:1];
     self.blogTableViewHelper.didSelectRowAtPushViewIndexPath = ^(NSInteger tag){
         if (tag == 100) {
-            [BmobUser logout];
-            [weakSelf.navigationController presentViewController:CreateViewControllerWithNav(@"LoginViewController") animated:YES completion:nil];
+            
+            [weakSelf.navigationController presentViewController:CreateViewControllerWithNav(@"LoginViewController") animated:YES completion:^{
+                
+                [BmobUser logout];
+                
+                [CustomUtil delAcessToken];
+                
+                [CustomUtil deleUserInfo];
+                
+                [weakSelf.blogTableViewHelper updateUserInfoView];
+            }];
         }else if (tag == 101){
             //选择照片
             [weakSelf showActionSheet];
         }else{
-            [weakSelf pushCenterViewController:tag];
+            if ([CustomUtil isUserLogin]) {
+                [weakSelf pushCenterViewController:tag];
+            }else{
+                [weakSelf.navigationController presentViewController:CreateViewControllerWithNav(@"LoginViewController") animated:YES completion:nil];
+            }
+            
         }
     };
 
@@ -126,26 +150,26 @@
             PushViewControllerName(@"AddMoneyViewController");
             break;
         case 4:
-            PushViewControllerName(@"HistorryOrderViewController");
+            PushViewControllerName(@"ForecastRecordListViewController");//预测订单形成的预测列表
             break;
         case 5:
-            PushViewControllerName(@"ChangePwdViewController");
+            PushViewControllerName(@"GGCBetRecordListVC");//下注记录
             break;
         case 6:
             PushViewControllerName(@"FeedBackViewController");
             break;
         case 7:
-            PushViewControllerName(@"MessagerViewController");
+            PushViewControllerName(@"HistorryOrderViewController");//交易记录 预测订单
             break;
         default:
             //清除缓存
-//            [[HUDHelper sharedInstance]syncLoading:@"清除缓存"];
+            [[HUDHelper sharedInstance]syncLoading:@"清除缓存"];
             
-//            [[HUDHelper sharedInstance]syncStopLoading];
-//            [[HUDHelper sharedInstance]syncStopLoadingMessage:@"清除缓存" delay:1.0 completion:^{
+            [[HUDHelper sharedInstance]syncStopLoading];
+            [[HUDHelper sharedInstance]syncStopLoadingMessage:@"清除缓存" delay:1.0 completion:^{
 
-//            }];
-//            [HUDHelper alert:@"清除缓存" cancel:@"OK"];
+            }];
+            [HUDHelper alert:@"清除缓存" cancel:@"OK"];
             
             break;
     }

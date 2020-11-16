@@ -18,4 +18,6 @@
 @property(nonatomic,strong)void(^didSelectRowAtPushViewIndexPath)(NSInteger indexTag);
 //- (void)fetchDataWithCompletionHandler:(void(^)(BOOL b,CGDataResult *r))completionHander;
 //- (void)setVCGenerator:(ViewControllerGenerator)VCGenerator;
+
+-(void)updateUserInfoView;
 @end

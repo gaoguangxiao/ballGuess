@@ -48,13 +48,13 @@
     /**
      *  用户手机号
      */
-    _numLabel.text = [NSString stringWithFormat:@"手机号     %@",user.phone];
+    _numLabel.text = [NSString stringWithFormat:@"手机号：%@",kSafeString(user.phone)];
     /**
      *  用户昵称
      */
-    _nameLabel.text = [NSString stringWithFormat:@"昵称      %@",user.username];
+    _nameLabel.text = [NSString stringWithFormat:@"昵称：%@",kSafeString(user.username)];
     
-       _amount.text = [NSString stringWithFormat:@"账户余额   %@",user.amount];
+    _amount.text = [NSString stringWithFormat:@"账户余额：%@",kSafeString(user.amount)];
     /**
      *  级别标示
      */
