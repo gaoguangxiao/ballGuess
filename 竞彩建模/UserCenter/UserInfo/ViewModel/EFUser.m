@@ -16,12 +16,11 @@
     user.username  = userName;
     user.password  = psw;
     user.mobilePhoneNumber = tele;
-    
     [user setObject:tele forKey:@"phone"];
-    [user setObject:@"10" forKey:@"amount"];//注册用户赠送10聚合币
+    [user setObject:@"1000" forKey:@"amount"];//注册用户赠送1000聚合币
     [user setObject:@"1" forKey:@"userLevel"];
     [user setObject:@"true" forKey:@"isExchange"];
-    [user setObject:@"10" forKey:@"userForecast"];//注册用户默认5次预测
+    [user setObject:@"100" forKey:@"userForecast"];//注册用户默认5次预测
     //设置唯一token,id+用户名+设备
     NSString *tokenString = [NSString md5String:[NSString stringWithFormat:@"%@%@%@",API_OPENID,userName,[OpenUDID value]]];
     [user setObject:tokenString forKey:@"token"];
@@ -69,6 +68,7 @@
     if ([updateAmount floatValue] < 0) {
         NSError *error = [NSError errorWithDomain:@"账户余额不足" code:NSFileWriteInapplicableStringEncodingError userInfo: @{@"NSLocalizedDescriptionKey":@"账户余额不足"}];
         block(NO,error);
+        return;
     }else{
 
         BmobUser *loginUser = [BmobUser currentUser];
@@ -76,14 +76,20 @@
         [loginUser setObject:updateAmount forKey:@"amount"];
       
         //是否更新账户的余额、由用户状态决定
-        //更新等级0~50/50~200/200~500、500~1000
-        if ([updateAmount intValue]<50) {
+        //更新等级0~500/500~2000/2000~5000、5000~10000
+        //十个等级
+//        @[@"100",@"200",
+//        @"600",@"1800",
+//        @"5400",@"16200",
+//        @"48600",@"145800",
+//        @"437400",@"437400"];
+        if ([updateAmount intValue]<300) {//
             [loginUser setObject:@"1" forKey:@"userLevel"];
-        }else if ([updateAmount intValue]<200){
+        }else if ([updateAmount intValue]<2400){
             [loginUser setObject:@"2" forKey:@"userLevel"];
-        }else if ([updateAmount intValue]<500){
+        }else if ([updateAmount intValue]<21600){
             [loginUser setObject:@"3" forKey:@"userLevel"];
-        }else if ([updateAmount intValue]<1000){
+        }else if ([updateAmount intValue]<194400){
             [loginUser setObject:@"4" forKey:@"userLevel"];
         }else{
             [loginUser setObject:@"5" forKey:@"userLevel"];
@@ -92,7 +98,7 @@
         //异步更新数据
         [loginUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
             block(isSuccessful,error);
-            [[NSNotificationCenter defaultCenter]postNotificationName:K_APNNOTIFICATIONLOGIN object:@(YES)];
+            [[NSNotificationCenter defaultCenter]postNotificationName:K_APNNOTIFICATIONAmountUpdate object:@(YES)];
             
         }];
     }
@@ -106,10 +112,8 @@
     if (!login_M.isExchange) {
         NSError *error = [NSError errorWithDomain:@"账户没有预测权限" code:NSFileWriteInapplicableStringEncodingError userInfo: @{@"NSLocalizedDescriptionKey":@"账户没有预测权限"}];
         block(NO,error);
+        return;
     }
-    
-    //取得当前用户金额
-    float cureentAmount = [login_M.amount floatValue];
     
     //取得当前用户预测次数
     NSInteger cureentForeNum = [login_M.userForecast integerValue];
@@ -118,47 +122,17 @@
     
     //2、账户预测次数为0
     if (userForecastNum > cureentForeNum) {
-        NSError *error = [NSError errorWithDomain:@"账户次数已达最高" code:NSFileWriteInapplicableStringEncodingError userInfo: @{@"NSLocalizedDescriptionKey":@"账户次数已达最高"}];
+        NSString *erM = [NSString stringWithFormat:@"单次预测数量限制%@场",login_M.userForecast];
+        NSError *error = [NSError errorWithDomain:erM code:NSFileWriteInapplicableStringEncodingError userInfo: @{@"NSLocalizedDescriptionKey":erM}];
         block(NO,error);
+        return;
     }
     
-    float changeAmount = userForecastNum;//
-   
-    NSString *updateAmount  = [NSString stringWithFormat:@"%.1f",isAdd? changeAmount + cureentAmount : cureentAmount - changeAmount];
-    
-    //3、账户余额不足
-    if ([updateAmount floatValue] < 0) {
-        NSError *error = [NSError errorWithDomain:@"账户余额不足" code:NSFileWriteInapplicableStringEncodingError userInfo: @{@"NSLocalizedDescriptionKey":@"账户余额不足"}];
-        block(NO,error);
-    }else{
-
-        BmobUser *loginUser = [BmobUser currentUser];
-//        更新余额
-        [loginUser setObject:updateAmount forKey:@"amount"];
-        //更新预测次数
-        [loginUser setObject:[NSString stringWithFormat:@"%ld",cureentForeNum - userForecastNum] forKey:@"userForecast"];
-        
-        //是否更新账户的余额、由用户状态决定
-        //更新等级0~50/50~200/200~500、500~1000
-        if ([updateAmount intValue]<50) {
-            [loginUser setObject:@"1" forKey:@"userLevel"];
-        }else if ([updateAmount intValue]<200){
-            [loginUser setObject:@"2" forKey:@"userLevel"];
-        }else if ([updateAmount intValue]<500){
-            [loginUser setObject:@"3" forKey:@"userLevel"];
-        }else if ([updateAmount intValue]<1000){
-            [loginUser setObject:@"4" forKey:@"userLevel"];
-        }else{
-            [loginUser setObject:@"5" forKey:@"userLevel"];
-        }
-        
-        //异步更新数据
-        [loginUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-            block(isSuccessful,error);
-            [[NSNotificationCenter defaultCenter]postNotificationName:K_APNNOTIFICATIONLOGIN object:@(YES)];
-            
-        }];
-    }
+    float changeAmount = userForecastNum * 5;//
+    [self updateUserMoneyAmount:changeAmount andStateAdd:isAdd andBackResult:^(BOOL isSuccessful, NSError *error) {
+        block(isSuccessful,error);
+    }];
+     
 }
 +(void)updatePostUserRationState:(NSString *)state andPostId:(BmobObject *)post andBackResult:(void (^)(BOOL, NSError *))block{
     //获取要添加关联关系的post

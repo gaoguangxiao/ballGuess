@@ -26,6 +26,8 @@
     __weak IBOutlet UILabel *_orderState;
     __weak IBOutlet UIButton *_updateBtn;
     
+    
+    __weak IBOutlet UILabel *_money;
 }
 
 @end
@@ -51,11 +53,16 @@
     [_dxqMoney setTitle:[NSString stringWithFormat:@"%@",leResultModel.dxq_money] forState:UIControlStateNormal];
     
     
-    NSString *yzText = [NSString stringWithFormat:@"%@%@",(leResultModel.yz_dxdif.floatValue > 0 ? @"主":@"客"),(leResultModel.yz_pk_water.floatValue > 0 ? @"让":@"受让")];
+    NSString *yzText = [NSString stringWithFormat:@"%@%@",(leResultModel.yz_dxdif.floatValue > 0 ? @"主":@"客"),(leResultModel.yz_pk_water.floatValue > 0 ? @"受让":@"让")];
     
-    _yzMethod.text = [NSString stringWithFormat:@"%@%@\n@%@",yzText,leResultModel.yz_pk,leResultModel.yz_pk_water];
+    float yzF = fabsf(leResultModel.yz_pk.floatValue);
+    _yzMethod.text = [NSString stringWithFormat:@"%@%.2f\n@%@",yzText,yzF,leResultModel.yz_pk_water];
     
     [_yzMoney setTitle:[NSString stringWithFormat:@"%@",leResultModel.yz_money] forState:UIControlStateNormal];
+
+    //默认显示
+    float allMoney = _leResultModel.yz_money.floatValue + leResultModel.dxq_money.floatValue;
+    _money.text = [NSString stringWithFormat:@"余额%@ 【投%.2f】",kSafeString(leResultModel.money),allMoney];
 
     _dxqWin.text = [NSString stringWithFormat:@"%@",leResultModel.dxq_winMoney];
     _yzWin.text = [NSString stringWithFormat:@"%@",leResultModel.yz_winMoney];
@@ -64,12 +71,22 @@
     [_updateBtn setBackgroundColor:RRCThemeViewColor];
     if (leResultModel.orderState.integerValue == 0) {
         _orderState.text = @"未完成";
+
     }else if (leResultModel.orderState.integerValue == 1){
         _orderState.text = @"进行中";
+        
     }else if (leResultModel.orderState.integerValue == 2){
         _orderState.text = @"已结束";
         _updateBtn.userInteractionEnabled = NO;
-        [_updateBtn setBackgroundColor:RRCSplitViewColor];
+        [_updateBtn setBackgroundColor:RRCGrayViewColor];
+        
+        float allWinMoney = _leResultModel.yz_winMoney.floatValue + leResultModel.dxq_winMoney.floatValue;
+        if (allWinMoney > 0) {
+            _money.text = [NSString stringWithFormat:@"余额%@ 【赢%.2f】",kSafeString(leResultModel.money),fabsf(allWinMoney)];
+        }else{
+            _money.text = [NSString stringWithFormat:@"余额%@ 【输%.2f】",kSafeString(leResultModel.money),fabsf(allWinMoney)];
+        }
+        
     }else{
         _orderState.text = @"赛事异常";
         _updateBtn.userInteractionEnabled = NO;

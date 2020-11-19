@@ -9,7 +9,6 @@
 #import "RRCDeviceConfigure.h"
 #import "YBColorConfigure.h"
 #import "MBProgressHUD.h"
-
 @interface RRCAlertManager ()
 
 @property (nonatomic, strong) UIView *drawView;
@@ -55,9 +54,14 @@ ImplementSingleton(RRCAlertManager);
     [self.drawView addSubview:bgView];
     bgView.frame = CGRectMake((kScreenWidth - 250 * Device_Ccale)/2, (kScreenHeight - 66 * Device_Ccale)/2, 250*Device_Ccale, 0*Device_Ccale);
 
-    UILabel *  titleLabel = [[UILabel alloc]init];
+    UILabel *  titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(12 * Device_Ccale, 17 * Device_Ccale, bgView.frame.size.width - 12 * Device_Ccale, 0)];
     titleLabel.backgroundColor = RRCUnitViewColor;
-    titleLabel.text = title;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:kSafeString(title)];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:5 * Device_Ccale];
+    paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [kSafeString(title) length])];
+    titleLabel.attributedText = attributedString;
     titleLabel.numberOfLines = 6;
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = [UIFont systemFontOfSize:16.0*Device_Ccale];
@@ -66,13 +70,16 @@ ImplementSingleton(RRCAlertManager);
     
     [titleLabel sizeToFit];
     
-    titleLabel.frame = CGRectMake(5 * Device_Ccale, 17 * Device_Ccale, bgView.frame.size.width - 5 * Device_Ccale, titleLabel.frame.size.height);
-
-//    [bgView mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.mas_equalTo(titleLabel.mas_bottom).with.mas_offset(66*Device_Ccale);
-//    }];
+    CGSize sizeLabel = titleLabel.bounds.size;
+    CGRect updateRect   = titleLabel.frame;
+    //
+    updateRect.size.height = sizeLabel.height;
+    updateRect.size.width  = bgView.frame.size.width - 24 * Device_Ccale;
+    
+    titleLabel.frame = updateRect;
 
     CGFloat titleOffy = titleLabel.frame.origin.y + titleLabel.frame.size.height + 17 * Device_Ccale;
+    
     bgView.frame = CGRectMake((kScreenWidth - 250 * Device_Ccale)/2, (kScreenHeight - 66 * Device_Ccale)/2, 250*Device_Ccale,titleOffy +  48 * Device_Ccale);
     
     for (int i = 0; i < array.count; i ++) {

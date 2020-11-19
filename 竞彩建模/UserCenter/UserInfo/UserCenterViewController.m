@@ -10,7 +10,8 @@
 
 #import "BlogTableViewHelper.h"
 #import "EFUser.h"
-
+#import "RRCConfigManager.h"
+#import "PicSelectTool.h"
 @interface UserCenterViewController ()<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
     __weak IBOutlet UITableView *_tableView;
@@ -54,6 +55,13 @@
                 
                 [CustomUtil deleUserInfo];
                 
+                [[NSNotificationCenter defaultCenter]postNotificationName:K_APNNOTIFICATIONLOGIN object:@(YES)];
+                
+                [[RRCNetWorkManager sharedTool].baseParameters setValue:@"" forKey:@"device_id"];
+                RRCMatchSetModel *appSet = [[RRCConfigManager sharedRRCConfigManager]loadPushLocalSet];
+                appSet.matchScoreListArr = @[];
+                [[RRCConfigManager sharedRRCConfigManager]updatePushLocalSetBySetModel:appSet];
+                
                 [weakSelf.blogTableViewHelper updateUserInfoView];
             }];
         }else if (tag == 101){
@@ -71,9 +79,26 @@
 
 }
 - (void)showActionSheet{
-    UIActionSheet * sheet = [[UIActionSheet alloc]initWithTitle:@"选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"打开照相机",@"本地相册", nil];
-    [sheet setActionSheetStyle:UIActionSheetStyleBlackOpaque];
-    [sheet showInView:[self.view window]];
+    
+    [PicSelectTool sheetVc:self.view index:0 num:1 Block:^(NSArray * _Nonnull imageArr) {
+//        [weakSelf pickerImage:imageArr];
+        
+        [[HUDHelper sharedInstance]syncLoading];
+        [EFUser updateUserUserLoad:imageArr.firstObject andBackResult:^(BOOL isSu, NSError *error) {
+            if (isSu) {
+                NSLog(@"上传成功");
+                [[HUDHelper sharedInstance]syncStopLoadingMessage:@"上传成功" delay:1.0 completion:^{
+                    [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                }];
+            }else{
+                [[HUDHelper sharedInstance]syncStopLoadingMessage:@"失败"];
+            }
+            
+        }];
+    }];
+//    UIActionSheet * sheet = [[UIActionSheet alloc]initWithTitle:@"选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"打开照相机",@"本地相册", nil];
+//    [sheet setActionSheetStyle:UIActionSheetStyleBlackOpaque];
+//    [sheet showInView:[self.view window]];
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -164,12 +189,10 @@
         default:
             //清除缓存
             [[HUDHelper sharedInstance]syncLoading:@"清除缓存"];
-            
-            [[HUDHelper sharedInstance]syncStopLoading];
-            [[HUDHelper sharedInstance]syncStopLoadingMessage:@"清除缓存" delay:1.0 completion:^{
+
+            [[HUDHelper sharedInstance]syncStopLoadingMessage:@"清除成功" delay:1.0 completion:^{
 
             }];
-            [HUDHelper alert:@"清除缓存" cancel:@"OK"];
             
             break;
     }

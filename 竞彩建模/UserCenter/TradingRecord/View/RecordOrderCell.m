@@ -8,7 +8,7 @@
 
 #import "RecordOrderCell.h"
 
-
+#import "NSString+DYLineWordSpace.h"
 @implementation RecordOrderCell
 
 /*
@@ -54,28 +54,22 @@
 }
 
 #pragma mark -界面绘制
--(void)setObjectBmob:(BmobObject *)objectBmob{
+-(void)setObjectBmob:(RRCRecordOrderModel *)objectBmob{
     _objectBmob = objectBmob;
     
-    self.orderId.text   = [NSString stringWithFormat:@"订单号：%@",[objectBmob objectForKey:@"orderId"]];
+    self.orderId.attributedText = [[NSString stringWithFormat:@"订单号：%@\n订单时间：%@",objectBmob.order_no,objectBmob.create_time] changeLineSpace:5];
     
-    NSString *oldTimeString = [objectBmob objectForKey:@"createdAt"];
-    NSDate *date = [U_SERVER_FORMATTER dateFromString:oldTimeString];//将字符串转nsdate
-    NSDateFormatter *todayFommater = [NSDateFormatter dateFormatterWithFormat:@"MM/dd HH:mm"];
-    NSString *timeString = [todayFommater stringFromDate:date];
-    self.orderTime.text = [NSString stringWithFormat:@"订单时间：%@",timeString];
+//    NSString *oldTimeString = objectBmob.create_time;
+//    NSDate *date = [U_SERVER_FORMATTER dateFromString:oldTimeString];//将字符串转nsdate
+//    NSDateFormatter *todayFommater = [NSDateFormatter dateFormatterWithFormat:@"MM/dd HH:mm"];
+//    NSString *timeString = [todayFommater stringFromDate:date];
+//    self.orderTime.text = [NSString stringWithFormat:@"订单时间：%@",objectBmob.create_time];
     
-    NSString *oD = [NSString stringWithFormat:@"%@",[objectBmob objectForKey:@"hmd"]];
-    self.orderDetail.text = [NSString stringWithFormat:@"%@ %@ %@VS%@",[objectBmob objectForKey:@"league"],oD,[objectBmob objectForKey:@"home"],[objectBmob objectForKey:@"away"]];
+    NSString *oD = [NSString stringWithFormat:@"%@",objectBmob.hmd];
+    self.orderDetail.text = [NSString stringWithFormat:@"%@ %@ %@VS%@",objectBmob.league,oD,objectBmob.home,objectBmob.away];
 
 }
 //首页订单
--(void)setHomeOrderEntity:(HomeOrderEntity *)homeOrderEntity{
-    _homeOrderEntity = homeOrderEntity;
-    
-    self.orderId.text   = [NSString stringWithFormat:@"订单号：%@",homeOrderEntity.uorderid];
-    self.orderTime.text = [NSString stringWithFormat:@"%@",homeOrderEntity.addtime];
-}
 
 #pragma mark - 懒加载
 -(UIView *)backView{
@@ -90,6 +84,7 @@
         _orderId = [[UILabel alloc]init];
         _orderId.textColor = [UIColor darkGrayColor];
         _orderId.font = K_SystemFont;
+        _orderId.numberOfLines = 0;
     }
     return _orderId;
 }

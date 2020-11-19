@@ -42,6 +42,8 @@
         self.tableView.mj_header = header;
         //用户登陆中
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateUserInfo) name:K_APNNOTIFICATIONLOGIN object:nil];
+        //用户金额变化刷新
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateUserInfo) name:K_APNNOTIFICATIONAmountUpdate object:nil];
         
     }
     return self;

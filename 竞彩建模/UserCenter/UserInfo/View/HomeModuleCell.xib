@@ -26,10 +26,10 @@
                             <action selector="TapModuleIndex:" destination="G0F-Ef-dj3" eventType="touchUpInside" id="okL-P3-K0z"/>
                         </connections>
                     </button>
-                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjd-wz-8A2">
+                    <button opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjd-wz-8A2">
                         <rect key="frame" x="111" y="11" width="98" height="61.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <state key="normal" title="预测记录">
+                        <state key="normal" title="~">
                             <color key="titleColor" systemColor="darkTextColor"/>
                         </state>
                         <connections>

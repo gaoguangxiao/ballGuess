@@ -107,7 +107,8 @@ static float const kPopoverViewCellHeight = 58.f; ///< cell指定高度
     // 刷新数据以获取具体的ContentSize
     [_tableView reloadData];
     [_tableView layoutIfNeeded];
-    CGFloat currentH = _actions.count * kPopoverViewCellHeight + 10;//高度需要计算，自动获取不可以了
+    NSArray *firstArr = (NSArray *)_actions.firstObject;
+    CGFloat currentH = firstArr.count * kPopoverViewCellHeight + kPopoverViewCellHeight + 10 + iPhoneXBottomUnSafeAreaHeight;//高度需要计算，自动获取不可以了
     // 限制最高高度, 免得选项太多时超出屏幕
     if (currentH > _windowHeight) { // 如果弹窗高度大于最大高度的话则限制弹窗高度等于最大高度并允许tableView滑动.
         currentH = _windowHeight;

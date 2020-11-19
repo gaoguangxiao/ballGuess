@@ -36,13 +36,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSString *yz_money;//亚指投注额
 @property (nonatomic , assign) NSString *yz_pk;//公司所开亚指盘口
 
-@property (nonatomic , strong) NSString *dxq_win;//-1未出赛果 0失败 1 成功 2走水
+@property (nonatomic , strong) NSString *dxq_win;//-1未出赛果 0失败 1成功 2走水
 @property (nonatomic , strong) NSString *dxq_winMoney;
 
 @property (nonatomic , strong) NSString *yz_win;
 @property (nonatomic , strong) NSString *yz_winMoney;//亚指最终盈利
 
 @property (nonatomic , strong) NSString *orderState;//订单状态 0未开始 1进行中 2已完成 3货物异常
+@property (nonatomic , strong) NSString *money;//此订单交易时用户钱
 @end
 
 NS_ASSUME_NONNULL_END

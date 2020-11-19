@@ -28,34 +28,6 @@ static HUDHelper *_instance = nil;
     }
 }
 
-+ (void)alert:(NSString *)msg
-{
-    [HUDHelper alert:msg cancel:@"确定"];
-}
-//+ (void)alert:(NSString *)msg action:(CommonVoidBlock)action
-//{
-//    [HUDHelper alert:msg cancel:@"确定" action:action];
-//}
-+ (void)alert:(NSString *)msg cancel:(NSString *)cancel
-{
-    [HUDHelper alertTitle:@"提示" message:msg cancel:cancel];
-}
-//+ (void)alert:(NSString *)msg cancel:(NSString *)cancel action:(CommonVoidBlock)action
-//{
-//    [HUDHelper alertTitle:@"提示" message:msg cancel:cancel action:action];
-//}
-+ (void)alertTitle:(NSString *)title message:(NSString *)msg cancel:(NSString *)cancel
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:cancel otherButtonTitles:nil, nil];
-    [alert show];
-}
-
-//+ (void)alertTitle:(NSString *)title message:(NSString *)msg cancel:(NSString *)cancel action:(CommonVoidBlock)action
-//{
-//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:title message:msg delegate:self cancelButtonTitle:@"" otherButtonTitles:@"", nil];
-//    [alert show];
-//}
-
 - (MBProgressHUD *)loading
 {
     return [self loading:nil];
@@ -76,6 +48,7 @@ static HUDHelper *_instance = nil;
         }
         [inView addSubview:hud];
         [hud showAnimated:YES];
+        hud.removeFromSuperViewOnHide = YES;
         [hud hideAnimated:YES afterDelay:10.0];//十秒之后隐藏
     });
     return hud;

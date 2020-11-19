@@ -62,6 +62,7 @@
             
             });
         }else{
+            NSLog(@"%@",error);
             [[HUDHelper sharedInstance]syncStopLoadingMessage:[error description]];
         }
        

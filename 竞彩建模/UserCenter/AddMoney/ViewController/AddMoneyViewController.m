@@ -164,34 +164,39 @@ typedef enum : NSUInteger{
 //                           describe:@"流量充值描述"
 //                             result:^(BOOL isSuccessful, NSError *error) {
 //                                 if (isSuccessful) {
-//                                     
-//                                     [self.view makeToast:@"充值成功"
-//                                                 duration:1.0f position:@"center"];
-//                                     
-//                                     //充值成功 保存用户信息
-//                                     //                                     [self updataUserInfo];
-//                                     
+//
+//                                     [[RRCAlertManager sharedRRCAlertManager]showPostingWithtitle:@"充值成功"];
+//
+//
 //                                     [self recordTransaction:zfbOederId];
 //                                 }
 //                                 else{
-//                                     [self.view makeToast:[error description]
-//                                                 duration:1.0f position:@"center"];
+//
+//                                     [[RRCAlertManager sharedRRCAlertManager]showPostingWithtitle:[error description]];
+//
 //                                 }
 //                             }];
-//            
+//
 //            //订单状态回调
 //            [BmobPay orderInfoCallback:^(NSDictionary *orderInfo) {
 //                //增加账户充值、处理订单信息
 //                zfbOederId  = orderInfo[@"orderNumber"];
-//                
+//
 //            }];
         } else{
+            
+            NSDate *currentDate = [NSDate date];//获取当前时间，日期
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];// 创建一个时间格式化对象
+            [dateFormatter setDateFormat:@"YYYYMMDDHHMM"];//设定时间格式,这里可以设置成自己需要的格式
+            NSString *dateString = [dateFormatter stringFromDate:currentDate];
+            
+            [self recordTransaction:dateString];
             //采用内购、
-            [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-            if ([SKPaymentQueue canMakePayments]) {
-                [self RequestProductData];
-                NSLog(@"允许程序内付费购买");
-            }
+//            [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+//            if ([SKPaymentQueue canMakePayments]) {
+//                [self RequestProductData];
+//                NSLog(@"允许程序内付费购买");
+//            }
         }
     }
     else{
@@ -375,6 +380,7 @@ typedef enum : NSUInteger{
 
 //记录交易
 -(void)recordTransaction:(NSString *)product{
+    
     [Service loadBmobanimation:YES andTitle:@"充值中"
          andObjectByParameters:@{@"money":_selectGoods.p,//增加的聚合币
                                  @"totalMoney":_textFieldMoney.text,//充值的人民币钱
@@ -385,6 +391,7 @@ typedef enum : NSUInteger{
                                                                            }
                 andByStoreName:@"AmountAddMoney" constructingBodyWithBlock:^(CGDataResult *obj, BOOL b) {
                                                                                if (b) {
+//                                                                                   [[HUDHelper sharedInstance]syncStopLoadingMessage:@""];
                                                                                    [[RRCAlertManager sharedRRCAlertManager]showPostingWithtitle:@"充值成功"];
                                                                         
                                                                                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

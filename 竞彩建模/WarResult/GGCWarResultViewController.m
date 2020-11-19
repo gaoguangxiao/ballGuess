@@ -25,7 +25,7 @@
     [self.baseTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_offset(0);
         make.bottom.mas_equalTo(0);
-        make.top.mas_offset(kHeightNavigation);
+        make.top.mas_offset(0);
     }];
     self.baseTable.rowHeight = 110;
     

@@ -8,7 +8,7 @@
 
 #import "RRCTableViewCell.h"
 
-#import "HomeOrderEntity.h"
+#import "RRCRecordOrderModel.h"
 
 @interface RecordOrderCell : RRCTableViewCell
 @property(nonatomic,strong)UIView *backView;
@@ -17,7 +17,7 @@
 
 @property (nonatomic , strong) UILabel *orderDetail;//订单详情 开赛时间 + 联赛
 
-@property(nonatomic,strong)HomeOrderEntity *homeOrderEntity;
+//@property(nonatomic,strong)HomeOrderEntity *homeOrderEntity;
 
-@property(nonatomic,strong)BmobObject *objectBmob;
+@property(nonatomic,strong)RRCRecordOrderModel *objectBmob;
 @end

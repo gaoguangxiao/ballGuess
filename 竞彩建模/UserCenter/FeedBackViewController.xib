@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedBackViewController">
+            <connections>
+                <outlet property="_textField" destination="vnu-Cj-KCq" id="rq7-Bo-Xdl"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="TouchView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="在这里输入您对我们的意见建议，感谢您的配合" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vnu-Cj-KCq">
+                    <rect key="frame" x="0.0" y="2" width="320" height="200"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="tFH-jq-gyN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HbJ-dI-VMJ">
+                    <rect key="frame" x="20" y="381" width="280" height="40"/>
+                    <color key="backgroundColor" red="0.1249699071" green="0.54520905019999999" blue="0.88351392750000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="F2k-Or-8VK"/>
+                    </constraints>
+                    <state key="normal" title="提交">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="FeedAction:" destination="-1" eventType="touchUpInside" id="xdE-km-93O"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.9112371802" green="0.94152277709999999" blue="0.95306903119999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="HbJ-dI-VMJ" secondAttribute="bottom" constant="59" id="9Ax-UC-CaZ"/>
+                <constraint firstItem="vnu-Cj-KCq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MEJ-f7-NxN"/>
+                <constraint firstItem="vnu-Cj-KCq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="2" id="Wuk-iX-ZTC"/>
+                <constraint firstItem="HbJ-dI-VMJ" firstAttribute="trailing" secondItem="vnu-Cj-KCq" secondAttribute="trailing" constant="-20" id="bnC-Vg-Eqz"/>
+                <constraint firstAttribute="trailing" secondItem="vnu-Cj-KCq" secondAttribute="trailing" id="hbt-N8-N1M"/>
+                <constraint firstItem="HbJ-dI-VMJ" firstAttribute="leading" secondItem="vnu-Cj-KCq" secondAttribute="leading" constant="20" id="qBx-h5-4xc"/>
+            </constraints>
+            <point key="canvasLocation" x="32.5" y="121.5"/>
+        </view>
+    </objects>
+</document>

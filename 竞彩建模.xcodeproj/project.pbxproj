@@ -84,6 +84,10 @@
 		FFA24E96255FDFFE008252A0 /* color_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFA24E91255FDFFD008252A0 /* color_black@2x.png */; };
 		FFA24E97255FDFFE008252A0 /* color_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFA24E92255FDFFE008252A0 /* color_red@2x.png */; };
 		FFC5E112254D2BA0008FB2E7 /* GGCLeagueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC5E110254D2BA0008FB2E7 /* GGCLeagueListViewController.m */; };
+		FFDE3EF125636DAE00A2382D /* RRCRiceRecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDE3EEF25636DAE00A2382D /* RRCRiceRecordListViewController.m */; };
+		FFDE3F8F2563C3C300A2382D /* RRCRecordOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDE3F8E2563C3C300A2382D /* RRCRecordOrderModel.m */; };
+		FFE145E52564C3E9006E6043 /* FeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE145E22564C3E8006E6043 /* FeedBackViewController.xib */; };
+		FFE145E62564C3E9006E6043 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFE145E42564C3E9006E6043 /* FeedBackViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,6 +244,13 @@
 		FFA24E92255FDFFE008252A0 /* color_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_red@2x.png"; sourceTree = "<group>"; };
 		FFC5E110254D2BA0008FB2E7 /* GGCLeagueListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCLeagueListViewController.m; sourceTree = "<group>"; };
 		FFC5E111254D2BA0008FB2E7 /* GGCLeagueListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCLeagueListViewController.h; sourceTree = "<group>"; };
+		FFDE3EEF25636DAE00A2382D /* RRCRiceRecordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RRCRiceRecordListViewController.m; path = ForecastRecord/RRCRiceRecordListViewController.m; sourceTree = "<group>"; };
+		FFDE3EF025636DAE00A2382D /* RRCRiceRecordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RRCRiceRecordListViewController.h; path = ForecastRecord/RRCRiceRecordListViewController.h; sourceTree = "<group>"; };
+		FFDE3F8D2563C3C300A2382D /* RRCRecordOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RRCRecordOrderModel.h; sourceTree = "<group>"; };
+		FFDE3F8E2563C3C300A2382D /* RRCRecordOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RRCRecordOrderModel.m; sourceTree = "<group>"; };
+		FFE145E22564C3E8006E6043 /* FeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedBackViewController.xib; sourceTree = "<group>"; };
+		FFE145E32564C3E8006E6043 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
+		FFE145E42564C3E9006E6043 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,9 +299,11 @@
 		FF1CDB1C255F7D2F0023F23F /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
+				FFE145E32564C3E8006E6043 /* FeedBackViewController.h */,
+				FFE145E42564C3E9006E6043 /* FeedBackViewController.m */,
+				FFE145E22564C3E8006E6043 /* FeedBackViewController.xib */,
 				FF99A1DF25622F42007166D4 /* TradingRecord */,
 				FF99A1D1256228B8007166D4 /* BetRecord */,
-				FFA24E60255FDE5F008252A0 /* ForecastRecord */,
 				FFA24E0C255FB850008252A0 /* AddMoney */,
 				FFA24E0B255FB830008252A0 /* UserInfo */,
 			);
@@ -324,6 +337,10 @@
 				FF1CDB4C255F80D40023F23F /* PrefixHeader.pch */,
 				FF99A1E825623D97007166D4 /* ShareHandle.h */,
 				FF99A1E725623D97007166D4 /* ShareHandle.m */,
+				FFA24E55255FBD74008252A0 /* Service.h */,
+				FFA24E54255FBD73008252A0 /* Service.m */,
+				FFA24E38255FBA0B008252A0 /* TESTDATA.h */,
+				FFA24E37255FBA0B008252A0 /* TESTDATA.m */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -353,22 +370,16 @@
 		FF745925248DCB2F00FDF646 /* 竞彩建模 */ = {
 			isa = PBXGroup;
 			children = (
+				FFDE3F26256393CD00A2382D /* Library */,
 				FF745926248DCB2F00FDF646 /* AppDelegate.h */,
 				FF745927248DCB2F00FDF646 /* AppDelegate.m */,
-				FF745932248DCB3200FDF646 /* Assets.xcassets */,
 				FF1CDB45255F7FF10023F23F /* Config */,
-				FF85E91D248FA9AA00D67F99 /* HomeList */,
-				FF745937248DCB3200FDF646 /* Info.plist */,
-				FF745934248DCB3200FDF646 /* LaunchScreen.storyboard */,
+				FF85E91D248FA9AA00D67F99 /* Home */,
 				FF1CDB44255F7F660023F23F /* Login */,
-				FF745938248DCB3200FDF646 /* main.m */,
-				FF74592F248DCB2F00FDF646 /* Main.storyboard */,
-				FF85E8F9248F5EBE00D67F99 /* matchInfo.json */,
+				FF852E5C256364A0005EB520 /* Other */,
 				FFA24E30255FB9AE008252A0 /* Resources */,
-				FF745929248DCB2F00FDF646 /* SceneDelegate.h */,
-				FF74592A248DCB2F00FDF646 /* SceneDelegate.m */,
 				FF86DBE3253E8D8C00B82BF9 /* Setting */,
-				FF7BD13D2494627F00262FC8 /* StartPredictList */,
+				FF7BD13D2494627F00262FC8 /* Match */,
 				FF1CDB1C255F7D2F0023F23F /* UserCenter */,
 				FF85E907248F64B600D67F99 /* WarResult */,
 			);
@@ -393,7 +404,7 @@
 			path = "竞彩建模UITests";
 			sourceTree = "<group>";
 		};
-		FF7BD13D2494627F00262FC8 /* StartPredictList */ = {
+		FF7BD13D2494627F00262FC8 /* Match */ = {
 			isa = PBXGroup;
 			children = (
 				FF7BD143249468F700262FC8 /* RRCMatchScoreViewController.h */,
@@ -401,7 +412,30 @@
 				FF7BD142249468F700262FC8 /* RRCScoreViewModel.h */,
 				FF7BD141249468F700262FC8 /* RRCScoreViewModel.m */,
 			);
-			path = StartPredictList;
+			path = Match;
+			sourceTree = "<group>";
+		};
+		FF852E5C256364A0005EB520 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				FF745929248DCB2F00FDF646 /* SceneDelegate.h */,
+				FF74592A248DCB2F00FDF646 /* SceneDelegate.m */,
+				FF745938248DCB3200FDF646 /* main.m */,
+				FF745932248DCB3200FDF646 /* Assets.xcassets */,
+				FF745937248DCB3200FDF646 /* Info.plist */,
+				FF745934248DCB3200FDF646 /* LaunchScreen.storyboard */,
+				FF74592F248DCB2F00FDF646 /* Main.storyboard */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		FF852E6325636568005EB520 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF745963248DDC5100FDF646 /* ResultViewModel.h */,
+				FF745964248DDC5100FDF646 /* ResultViewModel.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		FF85E907248F64B600D67F99 /* WarResult */ = {
@@ -421,9 +455,12 @@
 			path = WarResult;
 			sourceTree = "<group>";
 		};
-		FF85E91D248FA9AA00D67F99 /* HomeList */ = {
+		FF85E91D248FA9AA00D67F99 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				FFDE3EF025636DAE00A2382D /* RRCRiceRecordListViewController.h */,
+				FFDE3EEF25636DAE00A2382D /* RRCRiceRecordListViewController.m */,
+				FFA24E60255FDE5F008252A0 /* ForecastRecord */,
 				FFC5E111254D2BA0008FB2E7 /* GGCLeagueListViewController.h */,
 				FFC5E110254D2BA0008FB2E7 /* GGCLeagueListViewController.m */,
 				FF2D38912522EF8B008896D7 /* GGCDateRateViewController.h */,
@@ -431,7 +468,7 @@
 				FF770BA524CA84B70008CDEB /* RRCLeagueConditionViewController.h */,
 				FF770BA424CA84B70008CDEB /* RRCLeagueConditionViewController.m */,
 			);
-			path = HomeList;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		FF86DBE3253E8D8C00B82BF9 /* Setting */ = {
@@ -478,6 +515,7 @@
 		FF99A1DF25622F42007166D4 /* TradingRecord */ = {
 			isa = PBXGroup;
 			children = (
+				FFDE3F8C2563C3B000A2382D /* Model */,
 				FF99A1E325623BBF007166D4 /* View */,
 				FFA24E65255FDE5F008252A0 /* HistorryOrderDetailViewController.h */,
 				FFA24E62255FDE5F008252A0 /* HistorryOrderDetailViewController.m */,
@@ -600,6 +638,7 @@
 		FFA24E30255FB9AE008252A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FF85E8F9248F5EBE00D67F99 /* matchInfo.json */,
 				FFA24E91255FDFFD008252A0 /* color_black@2x.png */,
 				FFA24E90255FDFFD008252A0 /* color_blue@2x.png */,
 				FFA24E8E255FDFFC008252A0 /* color_gray@2x.png */,
@@ -607,10 +646,6 @@
 				FFA24E92255FDFFE008252A0 /* color_red@2x.png */,
 				FF85E92A2490DABA00D67F99 /* getMatch.json */,
 				FFA24E2B255FB9A3008252A0 /* EntityPay.json */,
-				FFA24E55255FBD74008252A0 /* Service.h */,
-				FFA24E54255FBD73008252A0 /* Service.m */,
-				FFA24E38255FBA0B008252A0 /* TESTDATA.h */,
-				FFA24E37255FBA0B008252A0 /* TESTDATA.m */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -618,6 +653,7 @@
 		FFA24E60255FDE5F008252A0 /* ForecastRecord */ = {
 			isa = PBXGroup;
 			children = (
+				FF852E6325636568005EB520 /* ViewModel */,
 				FFA24E7B255FDF0D008252A0 /* View */,
 				FFA24E74255FDEBE008252A0 /* Model */,
 				FF85E91E248FBBC300D67F99 /* ForecastRecordListViewController.h */,
@@ -634,8 +670,6 @@
 				FF7A2DE324CBD79A00F6DE16 /* RRCLeaguesModel.m */,
 				FF2D38672522E65D008896D7 /* RRCMatchRateModel.h */,
 				FF2D38682522E65D008896D7 /* RRCMatchRateModel.m */,
-				FF745963248DDC5100FDF646 /* ResultViewModel.h */,
-				FF745964248DDC5100FDF646 /* ResultViewModel.m */,
 				FF85E8F6248F34CF00D67F99 /* GGXMatchInfo.h */,
 				FF85E8F7248F34CF00D67F99 /* GGXMatchInfo.m */,
 				FF745960248DD9A800FDF646 /* ResultModel.h */,
@@ -656,6 +690,22 @@
 				FFA24E83255FDF5E008252A0 /* UserCenterCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FFDE3F26256393CD00A2382D /* Library */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		FFDE3F8C2563C3B000A2382D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FFDE3F8D2563C3C300A2382D /* RRCRecordOrderModel.h */,
+				FFDE3F8E2563C3C300A2382D /* RRCRecordOrderModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -784,6 +834,7 @@
 				FF745931248DCB2F00FDF646 /* Main.storyboard in Resources */,
 				FFA24E97255FDFFE008252A0 /* color_red@2x.png in Resources */,
 				FFA24E2C255FB9A3008252A0 /* EntityPay.json in Resources */,
+				FFE145E52564C3E9006E6043 /* FeedBackViewController.xib in Resources */,
 				FF99A1DA25622A79007166D4 /* GGCBetRecordListVC.xib in Resources */,
 				FF85E90F248F64FC00D67F99 /* GGXWarResultCell.xib in Resources */,
 				FFA24E93255FDFFE008252A0 /* color_gray@2x.png in Resources */,
@@ -854,12 +905,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFDE3F8F2563C3C300A2382D /* RRCRecordOrderModel.m in Sources */,
 				FFA24D77255F86B6008252A0 /* UserReg1ViewController.m in Sources */,
 				FFA24D70255F8606008252A0 /* LoginViewController.m in Sources */,
 				FF99A1EF2562474F007166D4 /* RRCBetRecordModel.m in Sources */,
 				FFA24E5C255FC3C0008252A0 /* YQPayMethodModel.m in Sources */,
 				FF2D38932522EF8B008896D7 /* GGCDateRateViewController.m in Sources */,
 				FF86DBE6253E8DA500B82BF9 /* RRCMatchSetViewController.m in Sources */,
+				FFE145E62564C3E9006E6043 /* FeedBackViewController.m in Sources */,
 				FF1CDB3D255F7DF40023F23F /* UserCenterFootCell.m in Sources */,
 				FFA24E77255FDEC6008252A0 /* HomeOrderEntity.m in Sources */,
 				FFA24E56255FBD74008252A0 /* Service.m in Sources */,
@@ -900,6 +953,7 @@
 				FF1CDB2F255F7D9F0023F23F /* UserHeadCell.m in Sources */,
 				FF84D1B825552F8B001D6506 /* GGCBetRecordListVC.m in Sources */,
 				FF1CDB48255F7FFE0023F23F /* CustomUtil.m in Sources */,
+				FFDE3EF125636DAE00A2382D /* RRCRiceRecordListViewController.m in Sources */,
 				FF745965248DDC5100FDF646 /* ResultViewModel.m in Sources */,
 				FF7BD145249468F700262FC8 /* RRCScoreViewModel.m in Sources */,
 				FF1CDB27255F7D7D0023F23F /* BlogTableViewHelper.m in Sources */,
@@ -1074,15 +1128,23 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DJ8U64WJH;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/竞彩建模/Library/Bmob",
+				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = "竞彩建模/Config/PrefixHeader.pch";
-				INFOPLIST_FILE = "竞彩建模/Info.plist";
+				INFOPLIST_FILE = "竞彩建模/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.9;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/竞彩建模/Library/Bmob",
+				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ggx.app;
 				PRODUCT_NAME = "建模";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1096,15 +1158,23 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DJ8U64WJH;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/竞彩建模/Library/Bmob",
+				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = "竞彩建模/Config/PrefixHeader.pch";
-				INFOPLIST_FILE = "竞彩建模/Info.plist";
+				INFOPLIST_FILE = "竞彩建模/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.9;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/竞彩建模/Library/Bmob",
+				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ggx.app;
 				PRODUCT_NAME = "建模";
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -19,6 +19,7 @@
     BOOL isFlow;
 }
 @property(nonatomic ,strong) NSMutableArray *baseData;
+@property(nonatomic ,assign) NSInteger pageNum;
 @end
 
 @implementation HistorryOrderViewController
@@ -46,17 +47,27 @@
 -(void)afterRefreshView{
     NSString *storeName;
     if (isFlow) {
-        storeName = @"FlowStore";//预测记录
+        storeName = @"orderMoneyStore";//下注记录
     }else{
-        storeName = @"orderMoneyStore";//充值记录
+        storeName = @"OrderListStore";//预测交易记录
     }
     [[HUDHelper sharedInstance]syncLoading];
-    [Service loadBmobObjectByParameters:@{} andByStoreName:storeName constructingBodyWithBlock:^(CGDataResult *obj, BOOL b) {
-        if (b) {
-            [[HUDHelper sharedInstance]syncStopLoading];
+    
+    _pageNum = 1;
+    
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    dict[@"user_id"] = [CustomUtil getToken];
+    dict[@"page_num"] = @(_pageNum);
+    dict[@"page_size"] = @"20";
+    [[RRCNetWorkManager sharedTool]loadRequestWithURLString:@"order/list" parameters:dict success:^(CGDataResult * _Nonnull result) {
+            
+        [[HUDHelper sharedInstance]syncStopLoading];
+        if (result.status.boolValue) {
+            
             [self.baseData removeAllObjects];
             //主线程
-            [self.baseData addObjectsFromArray:obj.data];
+            NSArray *a = [RRCRecordOrderModel mj_objectArrayWithKeyValuesArray:result.data];
+            [self.baseData addObjectsFromArray:a];
             
             if (self.baseData.count == 0) {
                 [self listZeroViewText:@"暂无数据" andImageName:@"" andView:self->_tableView];
@@ -67,7 +78,7 @@
             [self->_tableView reloadData];
         }
     }];
-//    [_tableView reloadData];
+
 }
 #pragma mark -切换
 -(void)didActionBottomIndex:(NSInteger)index{

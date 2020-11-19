@@ -67,9 +67,9 @@
 
 - (void)PartAndCharge{
     //    UIButton *btn = (UIButton *)sender;
-//    if (self.PushPartAndCharge&&self.data) {
-//        self.PushPartAndCharge(101);
-//    }
+    if (self.PushPartAndCharge&&self.data) {
+        self.PushPartAndCharge(101);
+    }
 }
 
 @end

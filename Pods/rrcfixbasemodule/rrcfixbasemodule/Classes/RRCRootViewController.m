@@ -57,7 +57,7 @@
 }
 
 -(BOOL)hidesBottomBarWhenPushed{
-    if ([self isKindOfClass:NSClassFromString(@"GGCRiceListViewController")]
+    if ([self isKindOfClass:NSClassFromString(@"RRCRiceRecordListViewController")]
         ||[self isKindOfClass:NSClassFromString(@"RRCMatchScoreViewController")]
         ||[self isKindOfClass:NSClassFromString(@"MyFriendsViewController")]
         ||[self isKindOfClass:NSClassFromString(@"UserCenterViewController")]) {

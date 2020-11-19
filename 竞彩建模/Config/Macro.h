@@ -52,6 +52,8 @@
 
 #define K_APNNOTIFICATIONLOGIN @"APNNotificationLogin"//用户登录成功
 
+#define K_APNNOTIFICATIONAmountUpdate @"APNNotificationAmountUpdate"//用户金币变化通知
+
 //先做几个常用的xib，快速创建的
 #define PushViewController(XX) [self.navigationController pushViewController:XX animated:YES]
 #define PushViewControllerName(XX) [self.navigationController pushViewController:CreateViewController(XX) animated:YES]

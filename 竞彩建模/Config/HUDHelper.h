@@ -17,10 +17,6 @@
 
 + (HUDHelper *)sharedInstance;
 
-+ (void)alert:(NSString *)msg;
-+ (void)alert:(NSString *)msg cancel:(NSString *)cancel;
-+ (void)alertTitle:(NSString *)title message:(NSString *)msg cancel:(NSString *)cancel;
-
 // 网络请求
 - (MBProgressHUD *)loading;
 - (MBProgressHUD *)loading:(NSString *)msg;
