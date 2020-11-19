@@ -6,7 +6,7 @@
 //  Copyright © 2020 renrencai. All rights reserved.
 //
 
-#import "ForecastRecordListViewController.h"
+#import "RRCRiceRecordListViewController.h"
 #import "GGCRiceListCell.h"
 #import "ResultViewModel.h"
 #import "ResultModel.h"
@@ -17,7 +17,7 @@
 
 #import "RRCLeagueConditionViewController.h"
 #import "RRCLeaguesModel.h"
-@interface ForecastRecordListViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface RRCRiceRecordListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) ResultViewModel *resultViewModel;
 
 @property (nonatomic, assign) NSInteger current_page;
@@ -37,7 +37,7 @@
 
 @end
 
-@implementation ForecastRecordListViewController
+@implementation RRCRiceRecordListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,16 +51,37 @@
         [weakSelf refreshData];
     }];
     
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        if (!weakSelf.is_last_page) {
-            [weakSelf loadMore];
-        }else{
-            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
-        }
-    }];
+    //    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    //        if (!weakSelf.is_last_page) {
+    //            [weakSelf loadMore];
+    //        }else{
+    //            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+    //        }
+    //    }];
     
     [self loadData];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateRiceListInfo) name:K_APNNOTIFICATIONLOGIN object:nil];
+}
 
+-(void)updateRiceListInfo{
+    self.current_page = 1;
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    dict[@"page_num"] = @(self.current_page);
+    dict[@"page_size"] = @(10);
+    [_resultViewModel previewMatchListWithParameters:dict Complete:^(NSArray * _Nonnull loadArr, NSInteger count) {
+        
+        if (loadArr.count == 0) {
+            [self listZeroViewText:@"暂无数据" andImageName:@"" andView:self.tableView];
+        }else{
+            [self hiddenNoDataView];
+        }
+        
+        [self updateRateText];
+        
+        [self.tableView reloadData];
+    }];
+    
 }
 
 -(void)loadData{
@@ -114,26 +135,26 @@
     }];
 }
 
--(void)loadMore{
-    self.current_page ++;
-    
-    NSMutableDictionary *dict = [NSMutableDictionary new];
-    dict[@"page_num"] = @(self.current_page);
-    dict[@"page_size"] = @(10);
-    
-    [_resultViewModel previewLoadMoreMatchListWithParameters:dict Complete:^(NSArray * _Nonnull loadArr, NSInteger count) {
-        
-        self.is_last_page = count;
-        
-        [self.tableView.mj_footer endRefreshing];
-        
-        [self hiddenNoDataView];
-        
-        [self updateRateText];
-        
-        [self.tableView reloadData];
-    }];
-}
+//-(void)loadMore{
+//    self.current_page ++;
+//
+//    NSMutableDictionary *dict = [NSMutableDictionary new];
+//    dict[@"page_num"] = @(self.current_page);
+//    dict[@"page_size"] = @(10);
+//
+//    [_resultViewModel previewLoadMoreMatchListWithParameters:dict Complete:^(NSArray * _Nonnull loadArr, NSInteger count) {
+//
+//        self.is_last_page = count;
+//
+//        [self.tableView.mj_footer endRefreshing];
+//
+//        [self hiddenNoDataView];
+//
+//        [self updateRateText];
+//
+//        [self.tableView reloadData];
+//    }];
+//}
 
 -(void)updateRateText{
     
@@ -194,7 +215,7 @@
         [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
     }];
     
-//    [self.tableView setContentOffset:CGPointMake(0, 90)];
+    //    [self.tableView setContentOffset:CGPointMake(0, 90)];
     
 }
 
@@ -234,40 +255,78 @@
     [cell setupResultModel:_resultViewModel.listArray[indexPath.row]];
     cell.didActionDelete = ^{
         
-        ResultModel *re = _resultViewModel.listArray[indexPath.row];
-        
-        NSMutableDictionary *dict = [NSMutableDictionary new];
-        dict[@"home"] = re.home;
-        dict[@"homeScore"] = re.homeScore;
-        dict[@"away"] = re.away;
-        dict[@"awayScore"] = re.awayScore;
-        dict[@"hmd"] = [NSString stringWithFormat:@"%@ %@",re.mmdd,re.hhmm];
-        dict[@"league"] = re.league;
-        
-        dict[@"match_id"] = re.match_id;
-        
-        //大小球
-        dict[@"dxq_pk_water"] = re.finishBigDif;//大小球下注水位0.87
-        dict[@"dxq_dxdif"] = re.finishScoreBigDif;//大小球差值
-        dict[@"dxq_money"] = re.finishBigMoney;//大小球下注筹码
-        dict[@"dxq_pk"] = re.dxq_pk;
-        
-        //亚指
-        dict[@"yz_pk_water"] = re.finishYazhiDif;//亚指下注水位0.87
-        dict[@"yz_dxdif"] = re.finishScoreYazhiDif;//大小球差值
-        dict[@"yz_money"] = re.finishYazhiMoney;//大小球下注筹码
-        dict[@"yz_pk"] = re.yp_pk;
-        
-        //转loding
-        [[HUDHelper sharedInstance]syncLoading:@"正在下注"];
-        
-        [Service loadBmobObjectByParameters:dict andByStoreName:@"BetOrderStore" constructingBodyWithBlock:^(CGDataResult *obj, BOOL b) {
-           
-            [[HUDHelper sharedInstance] syncStopLoadingMessage:@"下注完成"];
-            
+        ResultModel *re = self->_resultViewModel.listArray[indexPath.row];
+        NSString *matchInfoText = [NSString stringWithFormat:@"下注%@\n%.2f元",re.league,re.finishYazhiMoney.floatValue + re.finishBigMoney.floatValue];
+        [[RRCAlertManager sharedRRCAlertManager]showChoseWithtitle:matchInfoText array:@[@"取消",@"确认"] DoneBlock:^(NSInteger i) {
+            if (i == 1) {
+                NSMutableDictionary *dict = [NSMutableDictionary new];
+                dict[@"home"] = re.home;
+                dict[@"homeScore"] = @"-";
+                dict[@"away"] = re.away;
+                dict[@"awayScore"] = @"-";
+                dict[@"hmd"] = [NSString stringWithFormat:@"%@ %@",re.mmdd,re.hhmm];
+                dict[@"league"] = re.league;
+                
+                dict[@"match_id"] = re.match_id;
+                
+                //大小球
+                dict[@"dxq_pk_water"] = re.finishBigDif;//大小球下注水位0.87
+                dict[@"dxq_dxdif"] = re.finishScoreBigDif;//大小球差值
+                dict[@"dxq_money"] = re.finishBigMoney;//大小球下注筹码
+                dict[@"dxq_pk"] = re.dxq_pk;
+                
+                //亚指
+                dict[@"yz_pk_water"] = re.finishYazhiDif;//亚指下注水位0.87
+                dict[@"yz_dxdif"] = re.finishScoreYazhiDif;//大小球差值
+                dict[@"yz_money"] = re.finishYazhiMoney;//大小球下注筹码
+                dict[@"yz_pk"] = re.yp_pk;
+                
+                //转loding
+                [[HUDHelper sharedInstance]syncLoading:@"正在下注"];
+                
+                [Service loadBmobObjectByParameters:dict andByStoreName:@"BetOrderStore" constructingBodyWithBlock:^(CGDataResult *obj, BOOL b) {
+                    
+                    [[HUDHelper sharedInstance] syncStopLoadingMessage:@"下注完成"];
+                    
+                }];
+            }else{
+                
+            }
         }];
-//        [self.tableView reloadData];
-    
+        //        ResultModel *re = self->_resultViewModel.listArray[indexPath.row];
+        //
+        //        NSMutableDictionary *dict = [NSMutableDictionary new];
+        //        dict[@"home"] = re.home;
+        //        dict[@"homeScore"] = @"-";
+        //        dict[@"away"] = re.away;
+        //        dict[@"awayScore"] = @"-";
+        //        dict[@"hmd"] = [NSString stringWithFormat:@"%@ %@",re.mmdd,re.hhmm];
+        //        dict[@"league"] = re.league;
+        //
+        //        dict[@"match_id"] = re.match_id;
+        //
+        //        //大小球
+        //        dict[@"dxq_pk_water"] = re.finishBigDif;//大小球下注水位0.87
+        //        dict[@"dxq_dxdif"] = re.finishScoreBigDif;//大小球差值
+        //        dict[@"dxq_money"] = re.finishBigMoney;//大小球下注筹码
+        //        dict[@"dxq_pk"] = re.dxq_pk;
+        //
+        //        //亚指
+        //        dict[@"yz_pk_water"] = re.finishYazhiDif;//亚指下注水位0.87
+        //        dict[@"yz_dxdif"] = re.finishScoreYazhiDif;//大小球差值
+        //        dict[@"yz_money"] = re.finishYazhiMoney;//大小球下注筹码
+        //        dict[@"yz_pk"] = re.yp_pk;
+        //
+        //        //转loding
+        //        [[HUDHelper sharedInstance]syncLoading:@"正在下注"];
+        //
+        //        [Service loadBmobObjectByParameters:dict andByStoreName:@"BetOrderStore" constructingBodyWithBlock:^(CGDataResult *obj, BOOL b) {
+        //
+        //            [[HUDHelper sharedInstance] syncStopLoadingMessage:@"下注完成"];
+        //
+        //        }];
+        //        [self.tableView reloadData];
+        
     };
     return cell;
 }
