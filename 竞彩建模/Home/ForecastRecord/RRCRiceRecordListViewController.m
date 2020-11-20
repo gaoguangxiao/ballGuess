@@ -286,7 +286,7 @@
                 
                 [Service loadBmobObjectByParameters:dict andByStoreName:@"BetOrderStore" constructingBodyWithBlock:^(CGDataResult *obj, BOOL b) {
                     
-                    [[HUDHelper sharedInstance] syncStopLoadingMessage:@"下注完成"];
+                    [[HUDHelper sharedInstance] syncStopLoadingMessage:obj.errorMsg];
                     
                 }];
             }else{

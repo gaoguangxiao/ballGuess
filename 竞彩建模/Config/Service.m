@@ -257,7 +257,7 @@ static AFHTTPSessionManager *manager;
             if (isSuccessful) {
                 result.status   = @(YES);
                 result.data = @[];
-                result.errorMsg = @"执行成功";
+                result.errorMsg = @"下注完成";
             }else{
                 result.status   = @(NO);
                 result.errorMsg = error.userInfo[@"NSLocalizedDescriptionKey"];
@@ -648,7 +648,7 @@ static AFHTTPSessionManager *manager;
     if (needMoney > cureentAmount) {
         NSError *error = [NSError errorWithDomain:@"账户余额不足" code:NSFileWriteInapplicableStringEncodingError userInfo: @{@"NSLocalizedDescriptionKey":@"账户余额不足"}];
         block(NO,error);
-        return;;
+        return;
     }
     BmobObject *flowScore = [BmobObject objectWithClassName:@"BetOrderStore"];
     //订单列表应该插入用户的信息
