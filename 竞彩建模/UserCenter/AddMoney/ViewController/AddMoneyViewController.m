@@ -81,21 +81,21 @@ typedef enum : NSUInteger{
     [_touchViewOnUnionpay addGestureRecognizer:tapUnion];
     
     [self.view addSubview:self.list];
-    CGDataResult *r = [TESTDATA testData:@"EntityPay.json"];
-    if (r.status.boolValue) {
-        EntityCatalog *catalogLog = [EntityCatalog mj_objectWithKeyValues:r.data];
-        flowsArray = catalogLog.flows;
-        [flowsArray enumerateObjectsUsingBlock:^(EntityGoods *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [showCategory addObject:obj.v];
-        }];
-        [self updatePointGoodsData:[catalogLog.flows firstObject]];
-        
-    }
+    
+    [Service loadBmobObjectByParameters:@{} andByStoreName:@"AddMoneyConfigStore" constructingBodyWithBlock:^(CGDataResult *obj, BOOL b) {
+        if (b) {
+            self->flowsArray = obj.data;
+            [self->flowsArray enumerateObjectsUsingBlock:^(EntityGoods *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [self->showCategory addObject:obj.v];
+                }];
+            [self updatePointGoodsData:[self->flowsArray lastObject]];
+        }
+    }];
 }
 #pragma mark - view
 -(AndyDropDownList *)list{
     if (!_list){
-        _list = [[AndyDropDownList alloc]initWithListDataSource:@[@"12RMB",@"30RMB",@"45RMB",@"60RMB",@"108RMB"] rowHeight:35 indexy:65 view:nil];
+        _list = [[AndyDropDownList alloc]initWithListDataSource:@[] rowHeight:35 indexy:65 view:nil];
         _list.delegate = self;
     }
     return _list;

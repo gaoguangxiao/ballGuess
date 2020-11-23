@@ -25,8 +25,11 @@
     NSString *resultStr = @"";
     for (NSString *keyStr in sortArray) {
         NSString *valueStr = parameters[keyStr];
+        if ([valueStr isKindOfClass:[NSArray class]] || valueStr == nil) {
+            continue;
+        }
         if (resultStr.length == 0) {
-            resultStr = valueStr;
+            resultStr = [NSString stringWithFormat:@"%@",valueStr];
         }else{
             resultStr = [NSString stringWithFormat:@"%@%@",resultStr,valueStr];
         }
@@ -48,8 +51,11 @@
         [tempArray addObject:tempDic];
     }
     // 排序
+    NSStringCompareOptions comparisonOptions = NSCaseInsensitiveSearch|NSNumericSearch|NSWidthInsensitiveSearch|NSForcedOrderingSearch;
     [tempArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        return [[obj1 objectForKey:@"pinyin"] compare:[obj2 objectForKey:@"pinyin"]];
+        NSString *obj1Str = [obj1 objectForKey:@"pinyin"];
+        NSString *obj2Str = [obj2 objectForKey:@"pinyin"];
+        return  [obj1Str compare:obj2Str options:comparisonOptions range:NSMakeRange(0,obj1Str.length)];
     }];
     NSMutableArray *resultArray = [[NSMutableArray alloc] init];
     for (NSDictionary *tempDic in tempArray) {

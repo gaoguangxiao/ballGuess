@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dvM-ib-Iyf">
-                    <rect key="frame" x="0.0" y="50" width="375" height="617"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="bkp-a5-nNE"/>
@@ -31,7 +31,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="dvM-ib-Iyf" secondAttribute="trailing" id="gfX-fs-vrd"/>
                 <constraint firstAttribute="bottom" secondItem="dvM-ib-Iyf" secondAttribute="bottom" id="iyv-Uf-xnj"/>
-                <constraint firstItem="dvM-ib-Iyf" firstAttribute="top" secondItem="pGT-90-ebk" secondAttribute="top" constant="50" id="ml1-WD-4jq"/>
+                <constraint firstItem="dvM-ib-Iyf" firstAttribute="top" secondItem="pGT-90-ebk" secondAttribute="top" id="ml1-WD-4jq"/>
                 <constraint firstItem="dvM-ib-Iyf" firstAttribute="leading" secondItem="pGT-90-ebk" secondAttribute="leading" id="sD6-in-GXG"/>
             </constraints>
             <point key="canvasLocation" x="-352" y="-58"/>

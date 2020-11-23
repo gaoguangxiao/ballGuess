@@ -32,12 +32,12 @@
     //充值订单查询
     if ([self.flowExChange isEqualToString:@"2"]) {
         if ([[self.homeOrderEntity objectForKey:@"payType"] isEqualToString:@"Appleng"]) {
-            [self.baseData addObjectsFromArray:@[
-                                                 @{@"text":@"订单号",@"value":[self.homeOrderEntity objectForKey:@"orderId"]},
-                                                 @{@"text":@"充值时间",@"value":[self.homeOrderEntity objectForKey:@"createdAt"]},
-                                                 @{@"text":@"充值名称",@"value":[self.homeOrderEntity objectForKey:@"payType"]},
-                                                 @{@"text":@"充值名称",@"value":[self.homeOrderEntity objectForKey:@"money"]},
-                                                 @{@"text":@"充值状态",@"value":@"成功"}]];
+//            [self.baseData addObjectsFromArray:@[
+//                                                 @{@"text":@"订单号",@"value":[self.homeOrderEntity objectForKey:@"orderId"]},
+//                                                 @{@"text":@"充值时间",@"value":[self.homeOrderEntity objectForKey:@"createdAt"]},
+//                                                 @{@"text":@"充值名称",@"value":[self.homeOrderEntity objectForKey:@"payType"]},
+//                                                 @{@"text":@"充值名称",@"value":[self.homeOrderEntity objectForKey:@"money"]},
+//                                                 @{@"text":@"充值状态",@"value":@"成功"}]];
         }else{
 //            [BmobPay queryWithOrderNumber:[self.homeOrderEntity objectForKey:@"orderId"] result:^(NSDictionary *resultDic, NSError *error) {
 //                if (resultDic[@"trade_state"]) {//订单状态

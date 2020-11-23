@@ -33,12 +33,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     //将充值流量和账户充值合并在一起
-    self.navigationItem.title = @"交易记录";
+    self.navigationItem.title = @"预测记录";
 
-    BSButtonView *bsButtonView = [[BSButtonView alloc]initItemWithFram:CGRectMake(0, 0, SCREEN_WIDTH, 50) andData:@[@"预测记录",@"下注记录"]];
-    bsButtonView.delegate = self;
-    [self.view addSubview:bsButtonView];
-    
     //
     [self afterRefreshView];
 }

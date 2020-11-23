@@ -14,7 +14,7 @@
 #import "EFUser.h"
 
 #import "RRCBetRecordModel.h"
-
+#import "EntityGoods.h"
 
 #import "RRCTScoreModel.h"
 static AFHTTPSessionManager *manager;
@@ -219,6 +219,31 @@ static AFHTTPSessionManager *manager;
             }
             block(result,result.status.boolValue);
         }];
+    }
+    
+    if ([storeName isEqualToString:@"AddMoneyConfigStore"]) {
+        [self userAddMoneyConfigCount:parameters andComplete:^(NSArray *array, NSError *error) {
+            if (error) {
+                result.status   = @(NO);
+                result.errorMsg = [error description];
+            }else{
+                result.status   = @(YES);
+                result.data = array;
+                NSMutableArray *re = [NSMutableArray new];
+                for (NSInteger i = 0; i < array.count; i++) {
+                    
+                    BmobObject * o = array[i];
+                    
+                    EntityGoods *r = [EntityGoods mj_objectWithKeyValues:[o valueForKey:@"dataDic"]];
+                    [re addObject:r];
+                }
+                result.status   = @(YES);
+                result.data = re;
+                result.errorMsg = @"执行成功";
+            }
+            block(result,result.status.boolValue);
+        }];
+        
     }
     
     //预测扣款账户
@@ -605,14 +630,14 @@ static AFHTTPSessionManager *manager;
     
 }
 
-//#pragma mark -预测次数查询
-//+(void)userCheckForecastCount:(NSDictionary *)parameters andComplete:(BmobObjectResultBlock)block{
-//    BmobQuery   *bqueryRate = [BmobQuery queryWithClassName:@"AppConfigStore"];
-//    [bqueryRate getObjectInBackgroundWithId:@"Ow4i6667" block:^(BmobObject *object, NSError *error) {
-//        block(object,error);
-//    }];
-//    
-//}
+#pragma mark -充值配置查询
++(void)userAddMoneyConfigCount:(NSDictionary *)parameters andComplete:(BmobObjectArrayResultBlock)block{
+    BmobQuery   *bqueryRate = [BmobQuery queryWithClassName:@"AddMoneyConfigStore"];
+    [bqueryRate orderByDescending:@"createdAt"];//将序排列
+    [bqueryRate findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        block(array,error);
+    }];
+}
 
 #pragma mark -用户预测订单查询
 +(void)userOrderListLoad:(NSDictionary *)parameters andComplete:(BmobObjectArrayResultBlock)block{
