@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSString *hmd;//月日时分
 @property (nonatomic , strong) NSString *league;//联赛名字
 
-@property (nonatomic , strong) NSString *status;//1 有赛果 0未出赛果
+@property (nonatomic , strong) NSString *status;//2赛果异常 1 有赛果 0未出赛果
 
 @property (nonatomic, strong) NSString *home;//主队名字
 @property (nonatomic , strong) NSString *homeScore;//主队进球数

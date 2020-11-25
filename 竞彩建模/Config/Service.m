@@ -327,31 +327,36 @@ static AFHTTPSessionManager *manager;
     //更新某条数据,只有此接口才能增加
     if ([storeName isEqualToString:@"updateBetOrder"]) {
         [self updateBetOrderListLoad:parameters andComplete:^(BmobObject *object, NSError *error) {
-            if (!error) {
+//            if (!error) {
                 //返回处理完成的数据模型
                 NSDictionary *nDict = [object valueForKey:@"dataDic"];
                 RRCBetRecordModel *r = [RRCBetRecordModel mj_objectWithKeyValues:nDict];
-                if ([r.homeScore isEqualToString:@"-"] && [r.awayScore isEqualToString:@"-"]) {
-                    r.status = @"0";
-                }else{
+                
+                NSInteger stateCode = error.code;//-1才是完结
+                if (stateCode == -1) {
                     r.status = @"1";
+                }else{
+                    if (stateCode == 14) {
+                        r.status = @"2";
+                    }else{
+                        r.status = @"0";
+                    }
+                    
                 }
-                [self handleDxqSmallText:r];
-                [self handleyzpK:r];
+            
                 //根据订单
                 if (r.status.integerValue == 1 && r.orderState.integerValue == 0) {
+                    [self handleDxqSmallText:r];
+                    [self handleyzpK:r];
                     //修改用户金额
                     float allMoney = r.dxq_winMoney.floatValue + r.yz_winMoney.floatValue;//最终盈利
-                    float benMoney = r.dxq_winMoney.floatValue + r.yz_money.floatValue;//此局投入的本金
-                    //处理 100 91赢 +191
-                    if (allMoney >= 0) {
-                        allMoney = benMoney + allMoney;
-                    }else{
-                        //输 200 - 200
-                        allMoney = benMoney - allMoney;
-                    }
+                    float benMoney = r.dxq_money.floatValue + r.yz_money.floatValue;//此局投入的本金
+                    
+                    //最终金额
+                    allMoney = benMoney + allMoney;
+                    
 //                  +191
-                    r.money = [NSString stringWithFormat:@"%.2f",[CustomUtil getUserInfo].amount.floatValue + allMoney];
+                    r.money = [NSString stringWithFormat:@"%.2f",r.money.floatValue + allMoney];
                     
                     [EFUser updateUserMoneyAmount:allMoney andStateAdd:YES andBackResult:^(BOOL isSuccessful, NSError *error) {
                         if (isSuccessful) {
@@ -398,18 +403,85 @@ static AFHTTPSessionManager *manager;
                         }
                     }];
                     
+                }
+                else if (r.status.integerValue == 2 && r.orderState.integerValue == 0) {
+                  
+                    r.dxq_winMoney = @"0";
+                    r.yz_winMoney  = @"0";
+                    //修改用户金额
+                    float allMoney = r.dxq_winMoney.floatValue + r.yz_winMoney.floatValue;//最终盈利
+                    float benMoney = r.dxq_money.floatValue + r.yz_money.floatValue;//此局投入的本金
+                    
+                    allMoney = benMoney + allMoney;
+                  
+                    r.money = [NSString stringWithFormat:@"%.2f",r.money.floatValue + allMoney];
+                    
+                    [EFUser updateUserMoneyAmount:allMoney andStateAdd:YES andBackResult:^(BOOL isSuccessful, NSError *error) {
+                        if (isSuccessful) {
+                            r.orderState = @"3";
+                            BmobQuery  *bquery = [BmobQuery queryWithClassName:@"BetOrderStore"];
+                            [bquery getObjectInBackgroundWithId:parameters[@"objectId"] block:^(BmobObject *object, NSError *error) {
+                                //更新订单状态
+                                [object setObject:r.orderState forKey:@"orderState"];
+                                //更新订单中用户钱
+                                [object setObject:r.money forKey:@"money"];
+                                [object updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                                    if (isSuccessful) {
+                                        result.status   = @(YES);
+                                        result.data = r;
+                                        result.errorMsg = @"执行成功";
+                                    }
+                                    block(result,result.status.boolValue);
+                                }];
+                            }];
+                            
+                            //增加金额记录
+                            //可以查询
+                            BmobObject *flowScore = [BmobObject objectWithClassName:@"orderMoneyStore"];
+                            //订单列表应该插入用户的信息
+                            [flowScore setObject:[CustomUtil getUserInfo].username forKey:@"userName"];
+                            [flowScore setObject:[BmobUser currentUser] forKey:@"author"];
+                            [flowScore setObject:[NSString stringWithFormat:@"%.2f",allMoney] forKey:@"money"];
+                            NSDate *currentDate = [NSDate date];//获取当前时间，日期
+                            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];// 创建一个时间格式化对象
+                            [dateFormatter setDateFormat:@"YYYYMMDDHHMM"];//设定时间格式,这里可以设置成自己需要的格式
+                            NSString *dateString = [dateFormatter stringFromDate:currentDate];
+                            
+                            NSInteger userForecastNum = [[parameters valueForKey:@"userForecastCount"] integerValue];
+                            NSString *oID = [NSString stringWithFormat:@"%@%ldB5",dateString,(long)userForecastNum];
+                            [flowScore setObject:oID forKey:@"orderId"];
+                            [flowScore setObject:r.home forKey:@"home"];
+                            [flowScore setObject:r.away forKey:@"away"];
+                            
+                            [flowScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                                
+                            }];
+                        }else{
+                            
+                        }
+                    }];
+                
+                    
                 }else{
                     result.status   = @(YES);
                     result.data = r;
-                    result.errorMsg = @"执行成功";
+                    result.errorMsg = error.userInfo[@"NSLocalizedDescriptionKey"];;
                     block(result,result.status.boolValue);
                 }
                 
-            }else{
-                result.status   = @(NO);
-                result.errorMsg = error.userInfo[@"NSLocalizedDescriptionKey"];
-                block(result,result.status.boolValue);
-            }
+//            }
+//            else{
+//                result.code = error.code;
+//                result.status   = @(NO);
+//                result.errorMsg = error.userInfo[@"NSLocalizedDescriptionKey"];
+//
+//                if (result.code == 100) {
+//
+//
+//                }
+//
+//                block(result,result.status.boolValue);
+//            }
             
         }];
     }
@@ -707,10 +779,10 @@ static AFHTTPSessionManager *manager;
                 RRCTScoreModel *scModel = [RRCTScoreModel mj_objectWithKeyValues:result.data];
                 
                 if ([scModel.state isEqualToString:@"0"]) {
-                    NSError *error = [NSError errorWithDomain:@"比赛尚未开始" code:NSFileWriteInapplicableStringEncodingError userInfo: @{@"NSLocalizedDescriptionKey":@"比赛尚未开始"}];
+                    NSError *error = [NSError errorWithDomain:@"比赛尚未开始" code:scModel.state.integerValue userInfo: @{@"NSLocalizedDescriptionKey":@"比赛尚未开始"}];
                     block(object,error);
                 }else if ([scModel.state isEqualToString:@"1"] || [scModel.state isEqualToString:@"2"] ||[scModel.state isEqualToString:@"3"]  ){
-                    NSError *error = [NSError errorWithDomain:@"比赛进行中" code:NSFileWriteInapplicableStringEncodingError userInfo: @{@"NSLocalizedDescriptionKey":@"比赛进行中"}];
+                    NSError *error = [NSError errorWithDomain:@"比赛进行中" code:scModel.state.integerValue userInfo: @{@"NSLocalizedDescriptionKey":@"比赛进行中"}];
                     block(object,error);
                 }else if([scModel.state isEqualToString:@"-1"]){
                     //更新两个
@@ -719,13 +791,14 @@ static AFHTTPSessionManager *manager;
                     [object updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                         
                         if (isSuccessful) {
+                            NSError *error = [NSError errorWithDomain:@"比赛完结" code:scModel.state.integerValue userInfo: @{@"NSLocalizedDescriptionKey":@"比赛进行中"}];
                             block(object,error);
                         }else{
                             block(object,error);
                         }
                     }];
                 }else{
-                    NSError *error = [NSError errorWithDomain:@"比赛异常" code:NSFileWriteInapplicableStringEncodingError userInfo: @{@"NSLocalizedDescriptionKey":@"比赛异常"}];
+                    NSError *error = [NSError errorWithDomain:@"比赛异常" code:labs(scModel.state.integerValue) userInfo: @{@"NSLocalizedDescriptionKey":@"比赛异常"}];
                     block(object,error);
                 }
                 

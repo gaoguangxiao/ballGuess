@@ -64,8 +64,8 @@
     float allMoney = _leResultModel.yz_money.floatValue + leResultModel.dxq_money.floatValue;
     _money.text = [NSString stringWithFormat:@"余额%@ 【投%.2f】",kSafeString(leResultModel.money),allMoney];
 
-    _dxqWin.text = [NSString stringWithFormat:@"%@",leResultModel.dxq_winMoney];
-    _yzWin.text = [NSString stringWithFormat:@"%@",leResultModel.yz_winMoney];
+    _dxqWin.text = [NSString stringWithFormat:@"%@",kSafeString(leResultModel.dxq_winMoney)];
+    _yzWin.text = [NSString stringWithFormat:@"%@",kSafeString(leResultModel.yz_winMoney)];
     
     _updateBtn.userInteractionEnabled = YES;
     [_updateBtn setBackgroundColor:RRCThemeViewColor];
@@ -90,7 +90,7 @@
     }else{
         _orderState.text = @"赛事异常";
         _updateBtn.userInteractionEnabled = NO;
-        [_updateBtn setBackgroundColor:RRCSplitViewColor];
+        [_updateBtn setBackgroundColor:RRCGrayViewColor];
     }
 }
 
