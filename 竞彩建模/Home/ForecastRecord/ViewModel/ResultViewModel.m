@@ -7,7 +7,6 @@
 //
 
 #import "ResultViewModel.h"
-#import "ResultModel.h"
 #import "RRCLeaguesModel.h"
 #import "RRCMatchRateModel.h"
 #import "GGXMatchInfo.h"
@@ -381,23 +380,7 @@
                 GGXMatchInfo *matchInfo= [GGXMatchInfo mj_objectWithKeyValues:array[i]];
                 
                 ResultModel *m = [self handleOnlyEndScoreWithData:matchInfo];
-                
-                //处理正常大小球
-                //                if (m.finishBigTextColorNormal.integerValue == 0) {
-                //                    [self.listArray addObject:m];
-                //
-                //                    NSMutableDictionary *dict = [NSMutableDictionary new];
-                //                    [dict setValue:m.finishBigText forKey:@"finishBigText"];
-                //                    [dict setValue:m.finishYazhiText forKey:@"finishYazhiText"];
-                //
-                //                    [dict setValue:m.home forKey:@"home"];
-                //                    [dict setValue:m.away forKey:@"away"];
-                //                    [dict setValue:m.mmdd forKey:@"mmdd"];
-                //
-                //                    [finishArr addObject:dict];
-                //                }
-                
-                //                if (m.finishYazhiTextColorNormal.integerValue != 0) {
+
                 [self.listArray addObject:m];
                 
                 NSMutableDictionary *dict = [NSMutableDictionary new];
@@ -428,6 +411,11 @@
     
 }
 
+-(void)betAmountResultModel:(ResultModel *)re Complete:(loadDataBOOLBlock)blockList{
+    
+    
+}
+
 #pragma mark - 查询赛事胜率
 -(void)sortMatchLeagueWithParameters:(NSArray *)parameters Complete:(nonnull LoadDataArrayBlock)blockList{
     
@@ -450,23 +438,37 @@
     
     //设置注量模式
     NSInteger rateMoneyIndex = [KUserDefault(@"RateMoneyArr") integerValue];
+    NSInteger firstBetAmount = 5;
     if (rateMoneyIndex == 0) {
         submitMoneyArr = @[@"100",@"100",@"100",@"100",@"100",@"100",@"100",@"100",@"100",@"100"];//均注 本金：1000
-    }else if(rateMoneyIndex == 1){//总金额十分之一投注 700一个档次
-        //        本金200 均注200/4 = 50 * 10 = 500。
-        //        本金700 均注700/10 = 70 * 10 = 700
-        //        本金1400 均注1400/10 = 140 * 10 = 1400
-        //        本金2800 均注2800/10 = 280 * 10 = 2800
-        //        NSInteger winMoney = 0;
-        //        if (winMoney%700 == 0) {
-        //            NSInteger submitMoney = winMoney/700;//900
-        //        }
-        submitMoneyArr = @[@"100",@"200",@"600",@"1800",@"5400",@"16200",@"48600",@"145800",@"437400",@"437400"];//最大支持八连黑 总资金65600元
-    }else if(rateMoneyIndex == 2){
-        submitMoneyArr = @[@"25",@"50",@"150",@"450",@"1350",@"4050",@"12150",@"36450",@"109350",@"109350"];//最大支持八连黑 总资金10000。
-    }else if(rateMoneyIndex == 3){
-        submitMoneyArr = @[@"10",@"20",@"60",@"180",@"540",@"1620",@"4860",@"14580",@"43740",@"43740"];//最大支持八连黑 总资金65600元
+    }else if(rateMoneyIndex >= 1 && rateMoneyIndex <= 4){
+        if(rateMoneyIndex == 1){
+            firstBetAmount = 10;
+        }else if(rateMoneyIndex == 2){
+            firstBetAmount = 25;
+        }else if(rateMoneyIndex == 3){
+            firstBetAmount = 50;
+        }else if(rateMoneyIndex == 4){
+            firstBetAmount = 100;
+        }
+    }else if(rateMoneyIndex == 5){//自定义
+        firstBetAmount = [CustomUtil getUserInfo].amount.floatValue/80;
     }
+    
+    if (rateMoneyIndex >= 1 && rateMoneyIndex <= 5) {
+        NSMutableArray *betArray = [NSMutableArray new];
+        [betArray addObject:[NSString stringWithFormat:@"%ld",(long)firstBetAmount]];
+        for (NSInteger i = 1; i < 9; i++) {
+            if (i == 1) {
+                [betArray addObject:[NSString stringWithFormat:@"%ld",[betArray.lastObject integerValue] * 2]];
+            }else{
+                [betArray addObject:[NSString stringWithFormat:@"%ld",[betArray.lastObject integerValue] * 3]];
+            }
+            
+        }
+        submitMoneyArr = betArray.copy;
+    }
+    
     
     ResultModel *lastResultModel;//
     

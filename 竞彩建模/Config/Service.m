@@ -752,7 +752,7 @@ static AFHTTPSessionManager *manager;
     [flowScore setObject:[CustomUtil getUserInfo].username forKey:@"userName"];
     [flowScore setObject:[BmobUser currentUser] forKey:@"author"];
     [flowScore saveAllWithDictionary:parameters];
-    [flowScore setObject:login_M.amount forKey:@"money"];
+    [flowScore setObject:[NSString stringWithFormat:@"%.2f",cureentAmount - needMoney] forKey:@"money"];
     [flowScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         block(isSuccessful,error);
     }];

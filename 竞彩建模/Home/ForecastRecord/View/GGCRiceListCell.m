@@ -85,10 +85,48 @@
 
 #pragma mark - 选中某个
 - (IBAction)BetRow:(id)sender {
-    if (self.didActionDelete) {
-        self.didActionDelete();
-    }
     
+    ResultModel *re = _local_ResultModel;
+    NSString *matchInfoText = [NSString stringWithFormat:@"下注%@\n%.2f元",re.league,re.finishYazhiMoney.floatValue + re.finishBigMoney.floatValue];
+    [[RRCAlertManager sharedRRCAlertManager]showChoseWithtitle:matchInfoText array:@[@"取消",@"确认"] DoneBlock:^(NSInteger i) {
+        if (i == 1) {
+            NSMutableDictionary *dict = [NSMutableDictionary new];
+            dict[@"home"] = re.home;
+            dict[@"homeScore"] = @"-";
+            dict[@"away"] = re.away;
+            dict[@"awayScore"] = @"-";
+            dict[@"hmd"] = [NSString stringWithFormat:@"%@ %@",re.mmdd,re.hhmm];
+            dict[@"league"] = re.league;
+            
+            dict[@"match_id"] = re.match_id;
+            
+            //大小球
+            dict[@"dxq_pk_water"] = re.finishBigDif;//大小球下注水位0.87
+            dict[@"dxq_dxdif"] = re.finishScoreBigDif;//大小球差值
+            dict[@"dxq_money"] = re.finishBigMoney;//大小球下注筹码
+            dict[@"dxq_pk"] = re.dxq_pk;
+            
+            //亚指
+            dict[@"yz_pk_water"] = re.finishYazhiDif;//亚指下注水位0.87
+            dict[@"yz_dxdif"] = re.finishScoreYazhiDif;//大小球差值
+            dict[@"yz_money"] = re.finishYazhiMoney;//大小球下注筹码
+            dict[@"yz_pk"] = re.yp_pk;
+            
+            //转loding
+            [[HUDHelper sharedInstance]syncLoading:@"正在下注"];
+            
+            [Service loadBmobObjectByParameters:dict andByStoreName:@"BetOrderStore" constructingBodyWithBlock:^(CGDataResult *obj, BOOL b) {
+                
+                [[HUDHelper sharedInstance] syncStopLoadingMessage:obj.errorMsg];
+                
+            }];
+        }else{
+            
+        }
+    }];
+//    if (self.didActionDelete) {
+//        self.didActionDelete();
+//    }
 //    _local_ResultModel.isEditDelete = !_local_ResultModel.isEditDelete;
 }
 

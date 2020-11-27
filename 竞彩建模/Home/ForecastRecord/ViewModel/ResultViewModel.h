@@ -7,7 +7,7 @@
 //
 
 #import "RRCViewModel.h"
-
+#import "ResultModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^ResultDataIndexPathBlock)(NSIndexPath *indexPath);
@@ -71,6 +71,11 @@ typedef void(^ResultDataIndexPathBlock)(NSIndexPath *indexPath);
 /// @param blockList <#blockList description#>
 -(void)sortMatchLeagueWithParameters:(NSArray *)parameters Complete:(nonnull LoadDataArrayBlock)blockList;
 
+
+/// 下注某项联赛
+/// @param re 联赛模型
+/// @param blockList <#blockList description#>
+-(void)betAmountResultModel:(ResultModel *)re Complete:(nonnull loadDataBOOLBlock)blockList;
 
 -(void)scrollMatchOpenComplete:(nonnull ResultDataIndexPathBlock)blockList;
 

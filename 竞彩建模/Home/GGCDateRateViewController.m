@@ -92,11 +92,13 @@ static NSString * const leagueCoViewCellIdentifier= @"RRCCheckCollectionCell_ID"
         [[NSUserDefaults standardUserDefaults]synchronize];
         [self reloadData];
     }];
-    RRCAlertAction *itemAction1 = [RRCAlertAction actionWithTitle:@"100倍投" titleColor:rateMoneyIndex == 1 ? RRCHighLightTitleColor : RRCThemeTextColor handler:^(RRCAlertAction *action) {
+   
+    RRCAlertAction *itemAction1 = [RRCAlertAction actionWithTitle:@"10倍投" titleColor:rateMoneyIndex == 1 ? RRCHighLightTitleColor : RRCThemeTextColor handler:^(RRCAlertAction *action) {
         [[NSUserDefaults standardUserDefaults]setValue:@"1" forKey:@"RateMoneyArr"];
         [[NSUserDefaults standardUserDefaults]synchronize];
         [self reloadData];
     }];
+    
     RRCAlertAction *itemAction2 = [RRCAlertAction actionWithTitle:@"25倍投" titleColor:rateMoneyIndex == 2 ? RRCHighLightTitleColor : RRCThemeTextColor handler:^(RRCAlertAction *action) {
         [[NSUserDefaults standardUserDefaults]setValue:@"2" forKey:@"RateMoneyArr"];
         [[NSUserDefaults standardUserDefaults]synchronize];
@@ -104,16 +106,32 @@ static NSString * const leagueCoViewCellIdentifier= @"RRCCheckCollectionCell_ID"
         [self reloadData];
         
     }];
-    RRCAlertAction *itemAction3 = [RRCAlertAction actionWithTitle:@"10为倍投" titleColor:rateMoneyIndex == 3 ? RRCHighLightTitleColor : RRCThemeTextColor handler:^(RRCAlertAction *action) {
+    
+    RRCAlertAction *itemAction3 = [RRCAlertAction actionWithTitle:@"50为倍投" titleColor:rateMoneyIndex == 3 ? RRCHighLightTitleColor : RRCThemeTextColor handler:^(RRCAlertAction *action) {
         [[NSUserDefaults standardUserDefaults]setValue:@"3" forKey:@"RateMoneyArr"];
         [[NSUserDefaults standardUserDefaults]synchronize];
         
         [self reloadData];
     }];
+    
+    RRCAlertAction *itemAction4 = [RRCAlertAction actionWithTitle:@"100为倍投" titleColor:rateMoneyIndex == 4 ? RRCHighLightTitleColor : RRCThemeTextColor handler:^(RRCAlertAction *action) {
+        [[NSUserDefaults standardUserDefaults]setValue:@"4" forKey:@"RateMoneyArr"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        [self reloadData];
+    }];
+    
+    RRCAlertAction *itemAction5 = [RRCAlertAction actionWithTitle:@"自定义（根据当前资金支持四连黑）" titleColor:rateMoneyIndex == 5 ? RRCHighLightTitleColor : RRCThemeTextColor handler:^(RRCAlertAction *action) {
+        [[NSUserDefaults standardUserDefaults]setValue:@"5" forKey:@"RateMoneyArr"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        [self reloadData];
+    }];
+    
     RRCAlertAction *cancelAction = [RRCAlertAction actionWithTitle:@"取消" handler:^(RRCAlertAction *action) {
     }];
     
-    NSMutableArray *actionArrAll = [NSMutableArray arrayWithObjects:@[itemAction0,itemAction1,itemAction2,itemAction3], @[cancelAction], nil];
+    NSMutableArray *actionArrAll = [NSMutableArray arrayWithObjects:@[itemAction0,itemAction1,itemAction2,itemAction3,itemAction4,itemAction5], @[cancelAction], nil];
     [alertView showWithActions:actionArrAll];
 }
 
