@@ -302,7 +302,7 @@
                 BOOL isconstain = NO;
                 RRCMatchRateModel *lastMatchRateModel;
                 for (RRCMatchRateModel *date_M in dateMatchArray) {
-                    //相等说明，包含
+                    //相等说明，包含 当前为 11-24 6:00 ~ 11-25 6:00
                     if ([date_M.mmdd isEqualToString:m_r.mmdd]) {
                         isconstain = YES;
                         lastMatchRateModel = date_M;
@@ -479,14 +479,13 @@
     float dxqRemainPoint  = 0;//盈利点数 单位1
     float yzRemainPoint  = 0;
     
-    float benjinMoney = 501;//2000
+    float benjinMoney = 500;//2000
     float benjinDxqMoney = 200;//2000
     
     
     for (NSInteger i = 0; i < parameters.count; i++) {
         
         ResultModel *m = parameters[parameters.count - i - 1];
-        
         if ([m.status integerValue] == 1) {
             //1、上场比赛是否黑。如果黑了，那么本场翻倍。而本场下注倍数根据黑的场数计算。把本场 黑红次数保存下来，下场用于计算
             //2、上场比赛是否红。如果红了，那么本场均注。值为1
@@ -508,15 +507,17 @@
                         dxqSortRedCount ++;
                         dxqSortAllCount ++;
                         dxqRedCount = 1;
-                        dxqRemainPoint += firstDxqRedMoney.floatValue;//
+                        dxqRemainPoint += firstDxqRedMoney.floatValue;
+                        m.dxqWinMoney = [NSString stringWithFormat:@"+%@",firstDxqRedMoney];
                         //                        NSLog(@"大小球本次盈利指数：%@",firstDxqRedMoney);
                     }else if (m.finishBigSuc.integerValue == 0){//本场黑了
                         dxqRedCount = -1;
                         dxqSortAllCount ++;
                         dxqRemainPoint -= firstMoney.floatValue;
+                        m.dxqWinMoney = [NSString stringWithFormat:@"-%@",firstMoney];
                         //                        NSLog(@"大小球本次盈利指数：-%@",firstMoney);
-                    }else{
-                        
+                    }else if(m.finishBigSuc.integerValue == 2){
+                        m.dxqWinMoney = [NSString stringWithFormat:@"0"];
                     }
                     
                 }
@@ -533,12 +534,16 @@
                         dxqSortAllCount ++;
                         dxqRedCount = 1;
                         dxqRemainPoint += dxqRedNextMoney.floatValue;
+                        m.dxqWinMoney = [NSString stringWithFormat:@"+%@",dxqRedNextMoney];
                         //                        NSLog(@"大小球本次盈利指数：%@",dxqRedNextMoney);
                     }else if (m.finishBigSuc.integerValue == 0){//本场黑了
                         dxqRedCount -= 1;
                         dxqSortAllCount ++;
                         dxqRemainPoint -= dxqBlackNextMoney.floatValue;
+                        m.dxqWinMoney = [NSString stringWithFormat:@"-%@",dxqBlackNextMoney];
                         //                        NSLog(@"大小球本次盈利指数：-%@",dxqBlackNextMoney);
+                    }else if(m.finishBigSuc.integerValue == 2){
+                        m.dxqWinMoney = [NSString stringWithFormat:@"0"];
                     }
                     
                 }
@@ -550,15 +555,17 @@
                         yzSortAllCount ++;
                         yzRedCount = 1;
                         yzRemainPoint += firstYzRedMoney.floatValue;
+                        m.yzWinMoney = [NSString stringWithFormat:@"+%@",firstYzRedMoney];
                         //                        NSLog(@"亚指本次盈利指数：%@,总盈利：%f.2",firstYzRedMoney,yzRemainPoint);
                     }else if (m.finishYazhiSuc.integerValue == 0){//本场黑了
                         yzRedCount = -1;
                         yzSortAllCount ++;
                         yzRemainPoint -= firstMoney.floatValue;
+                        m.yzWinMoney = [NSString stringWithFormat:@"-%@",firstMoney];
                         //                        NSLog(@"亚指本次盈利指数：-%@,总盈利：%f.2",firstMoney,yzRemainPoint);
                     }else if (m.finishYazhiSuc.integerValue == 2){
                         //走水不计场次
-                        
+                        m.yzWinMoney = @"0";
                     }
                     m.finishYazhiMoney = firstMoney;
                 }
@@ -580,16 +587,23 @@
                         yzRedCount = 1;
                         
                         NSString *yzRedNextMoney = [NSString stringWithFormat:@"%.2f",[yzNextMoney integerValue] * m.finishYazhiDif.floatValue];
+                        
+                        m.yzWinMoney = [NSString stringWithFormat:@"+%@",yzRedNextMoney];
+                        
                         yzRemainPoint += yzRedNextMoney.floatValue;
+                        
                         //                        NSLog(@"亚指本次盈利指数：%@,总盈利：%f.2",yzRedNextMoney,yzRemainPoint);
                     }else if (m.finishYazhiSuc.integerValue == 0){//本场黑了
                         yzRedCount -= 1;
                         yzSortAllCount ++;
+                        
+                        m.yzWinMoney = [NSString stringWithFormat:@"-%@",yzNextMoney];
+                        
                         yzRemainPoint -= yzNextMoney.floatValue;
                         //                        NSLog(@"亚指本次盈利指数：-%@,总盈利：%f.2",yzBlackNextMoney,yzRemainPoint);
                     }else if (m.finishYazhiSuc.integerValue == 2){
                         //走水不计场次
-                        
+                        m.yzWinMoney = [NSString stringWithFormat:@"0"];
                     }
                     
                 }
@@ -603,12 +617,18 @@
                     dxqSortAllCount ++;
                     dxqRedCount = 1;
                     dxqRemainPoint += firstDxqRedMoney.floatValue;
+                    
+                    m.dxqWinMoney = [NSString stringWithFormat:@"+%@",firstDxqRedMoney];
                     //                    NSLog(@"大小球本次盈利指数：%@",firstDxqRedMoney);
                 }else if (m.finishBigSuc.integerValue == 0){//本场黑了
                     dxqRedCount = -1;
                     dxqSortAllCount ++;
                     dxqRemainPoint -= firstMoney.floatValue;
+                    m.dxqWinMoney = [NSString stringWithFormat:@"-%@",firstMoney];
                     //                    NSLog(@"大小球本次盈利指数：-%@",firstMoney);
+                }else if (m.finishYazhiSuc.integerValue == 2){
+                    //走水不计场次
+                    m.dxqWinMoney = [NSString stringWithFormat:@"0"];
                 }
                 m.finishBigMoney = firstMoney;
                 
@@ -618,16 +638,17 @@
                     yzSortAllCount ++;
                     yzRedCount = 1;
                     yzRemainPoint += firstYzRedMoney.floatValue;
-                    
+                    m.yzWinMoney = [NSString stringWithFormat:@"+%@",firstYzRedMoney];
                     //                    NSLog(@"亚指本次盈利指数：%@,总盈利：%f.2",firstYzRedMoney,yzRemainPoint);
                 }else if (m.finishYazhiSuc.integerValue == 0){//本场黑了
                     yzRedCount = -1;
                     yzSortAllCount ++;
                     yzRemainPoint -= firstMoney.floatValue;
+                    m.yzWinMoney = [NSString stringWithFormat:@"-%@",firstMoney];
                     //                    NSLog(@"亚指本次盈利指数：-%@,总盈利：%f.2",firstMoney,yzRemainPoint);
                 }else if (m.finishYazhiSuc.integerValue == 2){
                     //走水不计场次
-                    
+                    m.yzWinMoney = [NSString stringWithFormat:@"0"];
                 }
                 m.finishYazhiMoney = firstMoney;
             }
@@ -647,9 +668,9 @@
             
             lastResultModel = m;//保存下次
             
-            float remainM = benjinMoney + dxqRemainPoint + yzRemainPoint;
-            m.benjinMoney = [NSString stringWithFormat:@"剩余本金：%.2f\n大小球：%.2f",remainM,benjinDxqMoney + dxqRemainPoint];
-            m.benjinDXQMoney = [NSString stringWithFormat:@"%.2f",benjinDxqMoney + dxqRemainPoint];
+//            float remainM = benjinMoney + dxqRemainPoint + yzRemainPoint;
+//            m.benjinMoney = [NSString stringWithFormat:@"剩余本金：%.2f\n大小球：%.2f",remainM,benjinDxqMoney + dxqRemainPoint];
+//            m.benjinDXQMoney = [NSString stringWithFormat:@"%.2f",benjinDxqMoney + dxqRemainPoint];
         }
         else{
             //建议倍投额
@@ -668,7 +689,9 @@
                 m.finishYazhiMoney = [NSString stringWithFormat:@"%@",submitMoneyArr[submitMoneyIndex]];
             }
         }
-        
+        float remainM = benjinMoney + dxqRemainPoint + yzRemainPoint;
+        m.benjinMoney = [NSString stringWithFormat:@"剩余本金：%.2f\n大小球：%.2f",remainM,benjinDxqMoney + dxqRemainPoint];
+        m.benjinDXQMoney = [NSString stringWithFormat:@"%.2f",benjinDxqMoney + dxqRemainPoint];
     }
     //100注 60%胜率 200 * 100 * (60% * 0.85 - 1 + 60%) = 盈利百分比 60 * 200 * 0.85 - 40 * 200
     

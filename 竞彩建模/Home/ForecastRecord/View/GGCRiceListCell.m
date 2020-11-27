@@ -34,9 +34,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *homeWinSecondScore;
 
 @property (weak, nonatomic) IBOutlet UILabel *resultBigMoney;//大小球建议下注量
+@property (weak, nonatomic) IBOutlet UILabel *resultBigRMoney;//大小球最终净赢
 @property (weak, nonatomic) IBOutlet UILabel *resultBigSmallCompany;//大小球盘口
 
 @property (weak, nonatomic) IBOutlet UILabel *resultYazhiMoney;
+@property (weak, nonatomic) IBOutlet UILabel *resultYazhiRMoney;//亚指最终净赢
 @property (weak, nonatomic) IBOutlet UILabel *resultYazhiCompany; //亚指预测
 
 @property (weak, nonatomic) IBOutlet UIView *resultScoreBd;//波胆预测结果
@@ -186,7 +188,6 @@
         self.betBtn.enabled = YES;
         self.betBtn.backgroundColor = RRCThemeViewColor;
     }
-//    self.awayBdBallScore.attributedText = [[NSString stringWithFormat:@"虚：%.2f\n实：%@", resultModel.awayCompositeScore,resultModel.awayScore] changeLineSpace:5];
     
     //胜平负
     self.homeWinScore.text = resultModel.finishWinText;
@@ -198,6 +199,7 @@
     
     //大小球盘口
     self.resultBigMoney.text = [NSString stringWithFormat:@"%@",resultModel.finishBigMoney];
+    self.resultBigRMoney.text = [NSString stringWithFormat:@"%@",kSafeString(resultModel.dxqWinMoney)];
     self.resultBigSmallCompany.attributedText = [resultModel.finishBigText changeLineSpace:5];
     self.resultBigSmallCompany.textAlignment = NSTextAlignmentCenter;
     self.resultBigSmallCompany.backgroundColor = resultModel.finishBigViewColor;
@@ -205,6 +207,7 @@
     
     //亚指结果
     self.resultYazhiMoney.text = [NSString stringWithFormat:@"%@",resultModel.finishYazhiMoney];
+    self.resultYazhiRMoney.text = [NSString stringWithFormat:@"%@",kSafeString(resultModel.yzWinMoney)];
     self.resultYazhiCompany.attributedText = [resultModel.finishYazhiText changeLineSpace:5];
     self.resultYazhiCompany.textAlignment = NSTextAlignmentCenter;
     self.resultYazhiCompany.backgroundColor = resultModel.finishYazhiViewColor;
@@ -217,7 +220,7 @@
         //否则为绿色
         self.remainMoney.textColor = RRC0F9958Color;
     }
-    self.remainMoney.text = [NSString stringWithFormat:@"%@",resultModel.benjinMoney];
+    self.remainMoney.text = [NSString stringWithFormat:@"%@",kSafeString(resultModel.benjinMoney)];
     
     //进球数由双方份数比例计算而得
     self.BdBallScore.text = [NSString stringWithFormat:@"赛果：%@ : %@", resultModel.homeScore,resultModel.awayScore];

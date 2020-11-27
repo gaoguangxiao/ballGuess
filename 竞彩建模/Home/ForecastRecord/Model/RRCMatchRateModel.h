@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RRCMatchRateModel : NSObject
 
 @property (nonatomic , strong) NSString *mmdd;//月日
+@property (nonatomic , strong) NSString *hhmm;//时分
 
 @property (nonatomic , assign) NSInteger counts;//每天数量 0 ~ 24 天
 

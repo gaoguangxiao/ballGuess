@@ -75,6 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //大小球
 @property (nonatomic , strong) NSString *finishBigMoney;//未出赛果比赛投注额
+@property (nonatomic , strong) NSString *dxqWinMoney;//预测净赢数额
 @property (nonatomic , strong) NSString *finishBigText;//最终大小推荐
 @property (nonatomic , strong) NSString *finishBigSuc; //结果是否成功 -1未出赛果 0失败 1 成功 2走水
 @property (nonatomic , strong) NSString *finishBigDif; //大小球预测水位 如果大球那么就为大球水位，小球为小球水位
@@ -86,6 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //亚指
 @property (nonatomic , strong) NSString *finishYazhiMoney;//未出赛果比赛投注额
+@property (nonatomic , strong) NSString *yzWinMoney;//预测净赢数额
 @property (nonatomic , strong) NSString *finishYazhiText;//最终胜平负
 @property (nonatomic , strong) NSString *finishYazhiSuc;//结果是否成功 -1未出赛果 0失败 1 成功 2走水
 @property (nonatomic , strong) NSString *finishYazhiDif; //亚指预测差值 预测赛果水位
