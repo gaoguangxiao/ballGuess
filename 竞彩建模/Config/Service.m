@@ -341,7 +341,6 @@ static AFHTTPSessionManager *manager;
                     }else{
                         r.status = @"0";
                     }
-                    
                 }
             
                 //根据订单
@@ -462,7 +461,15 @@ static AFHTTPSessionManager *manager;
                     }];
                 
                     
-                }else{
+                }
+                else if(r.status.integerValue == 0){
+                    //未开赛
+                    result.status   = @(NO);
+                    result.data = r;
+                    result.errorMsg = error.userInfo[@"NSLocalizedDescriptionKey"];;
+                    block(result,result.status.boolValue);
+                }
+                else{
                     result.status   = @(YES);
                     result.data = r;
                     result.errorMsg = error.userInfo[@"NSLocalizedDescriptionKey"];;
