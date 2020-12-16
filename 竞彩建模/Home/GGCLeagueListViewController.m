@@ -51,22 +51,22 @@
         [weakSelf refreshData];
     }];
     
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        if (!weakSelf.is_last_page) {
-            [weakSelf loadMore];
-        }else{
-            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
-        }
-    }];
+//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//        if (!weakSelf.is_last_page) {
+//            [weakSelf loadMore];
+//        }else{
+//            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+//        }
+//    }];
     
-    if (self.leagueName) {
+//    if (self.leagueName) {
         //跳转某条联赛
         
         [self loadLeagueName];
         
-    }else{
-        [self loadData];
-    }
+//    }else{
+//        [self loadData];
+//    }
     
     
 }

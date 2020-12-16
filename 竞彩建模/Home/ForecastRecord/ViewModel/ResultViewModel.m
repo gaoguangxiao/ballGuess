@@ -15,6 +15,7 @@
 #import "YBColorConfigure.h"
 #import "RRCDeviceConfigure.h"
 #import "RRCConfigManager.h"
+#import "CheckValid.h"
 @interface ResultViewModel ()
 
 @end
@@ -388,8 +389,8 @@
                 [dict setValue:m.finishYazhiText forKey:@"finishYazhiText"];
                 
                 [dict setValue:m.home forKey:@"home"];
-                [dict setValue:m.away forKey:@"away"];
-                [dict setValue:m.mmdd forKey:@"mmdd"];
+                [dict setValue:m.away forKey:@"away"];//2020-12-10 18:00:00
+                [dict setValue:[CheckValid removeSpaceAndNewline:m.mmdd] forKey:@"mmdd"];
                 
                 [finishArr addObject:dict];
                 //                }
@@ -431,33 +432,24 @@
     float sortAllCount = 0;
     
     //原始数据，赛前下注，如果进行了，没下注就需要删除。每天最多12场。一场接一场
-    //    NSArray *submitMoneyArr = @[@"10",@"20",@"60",@"180",@"540",@"1620",@"4860",@"14580",@"43740"];//最大支持八连黑 总资金65600元
-    //    NSArray *submitMoneyArr = @[@"100",@"200",@"300",@"600",@"900",@"1500",@"2500",@"4000",@"6500"];//最大支持八连黑 总资金16600。
-    //    NSArray *submitMoneyArr = @[@"150",@"250",@"500",@"600",@"1000",@"1500",@"2000",@"2000",@"2000"];//最大支持八连黑 总资金10000。
-    NSArray *submitMoneyArr = @[@"100",@"100",@"100",@"100",@"100",@"100",@"100",@"100",@"100"];//最大支持八连黑 总资金1000。
+    NSArray *submitMoneyArr = @[@"50",@"50",@"50",@"50",@"50",@"50",@"50",@"50",@"50"];//最大支持八连黑 总资金1000。
     
     //设置注量模式
     NSInteger rateMoneyIndex = [KUserDefault(@"RateMoneyArr") integerValue];
     NSInteger firstBetAmount = 5;
     if (rateMoneyIndex == 0) {
-        submitMoneyArr = @[@"100",@"100",@"100",@"100",@"100",@"100",@"100",@"100",@"100",@"100"];//均注 本金：1000
-    }else if(rateMoneyIndex >= 1 && rateMoneyIndex <= 4){
+        submitMoneyArr = @[@"50",@"50",@"50",@"50",@"50",@"50",@"50",@"50",@"50"];//均注 本金：1000
+    }else if(rateMoneyIndex == 1 || rateMoneyIndex == 2 || rateMoneyIndex == 3){
         if(rateMoneyIndex == 1){
             firstBetAmount = 10;
         }else if(rateMoneyIndex == 2){
             firstBetAmount = 25;
         }else if(rateMoneyIndex == 3){
             firstBetAmount = 50;
-        }else if(rateMoneyIndex == 4){
-            firstBetAmount = 100;
         }
-    }else if(rateMoneyIndex == 5){//自定义
-        firstBetAmount = [CustomUtil getUserInfo].amount.floatValue/80;
-    }
-    
-    if (rateMoneyIndex >= 1 && rateMoneyIndex <= 5) {
         NSMutableArray *betArray = [NSMutableArray new];
         [betArray addObject:[NSString stringWithFormat:@"%ld",(long)firstBetAmount]];
+        
         for (NSInteger i = 1; i < 9; i++) {
             if (i == 1) {
                 [betArray addObject:[NSString stringWithFormat:@"%ld",[betArray.lastObject integerValue] * 2]];
@@ -467,8 +459,18 @@
             
         }
         submitMoneyArr = betArray.copy;
+    }else if (rateMoneyIndex == 4){//1-1-2-3-5-8-13
+        
+        submitMoneyArr = @[@"25",@"25",@"50",@"75",@"125",@"200",@"325",@"525",@"850"];
+        
+    }else if(rateMoneyIndex == 5){//
+        firstBetAmount = [CustomUtil getUserInfo].amount.floatValue/80;
+        NSMutableArray *betArray = [NSMutableArray new];
+        for (NSInteger i = 1; i < 9; i++) {
+            [betArray addObject:[NSString stringWithFormat:@"%ld",(long)firstBetAmount]];
+        }
+        submitMoneyArr = betArray.copy;
     }
-    
     
     ResultModel *lastResultModel;//
     

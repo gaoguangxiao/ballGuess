@@ -241,7 +241,7 @@
             
             for (ResultModel *resultModel in newFinishArr) {
                 //大小球赛果以及比分赛果合入比分列表
-                if ([_tempScore.home containsString:resultModel.home] && [_tempScore.away containsString:resultModel.away]) {
+                if ([_tempScore.time containsString:resultModel.mmdd] && [_tempScore.home containsString:resultModel.home] && [_tempScore.away containsString:resultModel.away]) {
                     
                     NSArray *yzArr = [resultModel.finishYazhiText componentsSeparatedByString:@"\n"];
                     
@@ -430,7 +430,7 @@
     
     for (NSDictionary *resultModel in matchSet.matchScoreListArr) {
         //大小球赛果以及比分赛果合入比分列表
-        if ([scoreModel.home containsString:resultModel[@"home"]] && [scoreModel.away containsString:resultModel[@"away"]]) {
+        if ([scoreModel.time containsString:resultModel[@"mmdd"]] && [scoreModel.home containsString:resultModel[@"home"]] && [scoreModel.away containsString:resultModel[@"away"]]) {
             
             NSArray *yzArr = [resultModel[@"finishYazhiText"] componentsSeparatedByString:@"\n"];
             

@@ -128,7 +128,7 @@
         return;
     }
     
-    float changeAmount = userForecastNum * 5;//
+    float changeAmount = userForecastNum * 0;//
     [self updateUserMoneyAmount:changeAmount andStateAdd:isAdd andBackResult:^(BOOL isSuccessful, NSError *error) {
         block(isSuccessful,error);
     }];
