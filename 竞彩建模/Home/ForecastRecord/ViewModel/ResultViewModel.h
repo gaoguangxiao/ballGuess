@@ -72,11 +72,6 @@ typedef void(^ResultDataIndexPathBlock)(NSIndexPath *indexPath);
 -(void)sortMatchLeagueWithParameters:(NSArray *)parameters Complete:(nonnull LoadDataArrayBlock)blockList;
 
 
-/// 下注某项联赛
-/// @param re 联赛模型
-/// @param blockList <#blockList description#>
--(void)betAmountResultModel:(ResultModel *)re Complete:(nonnull loadDataBOOLBlock)blockList;
-
 -(void)scrollMatchOpenComplete:(nonnull ResultDataIndexPathBlock)blockList;
 
 //测试脚本

@@ -34,10 +34,10 @@
     
     [self.contentView addSubview:self.nameLab];
     [self.nameLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(Device_Ccale);
+        make.left.mas_equalTo(8 * Device_Ccale);
         make.top.mas_offset(5 * Device_Ccale);
-        make.height.mas_equalTo(20 * Device_Ccale);
-//        make.right.mas_offset(-8*Device_Ccale);
+//        make.height.mas_equalTo(20 * Device_Ccale);
+        make.right.mas_offset(-8*Device_Ccale);
     }];
     
     [self.contentView addSubview:self.resultLab];
@@ -49,12 +49,14 @@
     [self.contentView addSubview:self.yzLab];
     [self.yzLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_offset(8*Device_Ccale);
+        make.right.mas_offset(-8 * Device_Ccale);
         make.top.mas_equalTo(self.nameLab.mas_bottom).offset(5 * Device_Ccale);
     }];
     
     [self.contentView addSubview:self.dxqLab];
     [self.dxqLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_offset(8*Device_Ccale);
+        make.right.mas_offset(-8 * Device_Ccale);
         make.top.mas_equalTo(self.yzLab.mas_bottom).offset(5 * Device_Ccale);
     }];
     
@@ -135,7 +137,7 @@
         _nameLab = [[UILabel alloc] init];
         _nameLab.font = [UIFont systemFontOfSize:12*Device_Ccale];
         _nameLab.textColor = RRCHighLightTitleColor;
-        _nameLab.textAlignment = NSTextAlignmentCenter;
+//        _nameLab.textAlignment = NSTextAlignmentCenter;
     }
     return _nameLab;
 }
@@ -154,7 +156,7 @@
         _dxqLab = [[UILabel alloc] init];
         _dxqLab.textColor = RRCGrayTextColor;
         _dxqLab.font = [UIFont systemFontOfSize:12*Device_Ccale];
-        _dxqLab.numberOfLines = 2;
+        _dxqLab.numberOfLines = 0;
     }
     return _dxqLab;
 }
@@ -164,7 +166,7 @@
         _yzLab = [[UILabel alloc] init];
         _yzLab.textColor = RRCGrayTextColor;
         _yzLab.font = [UIFont systemFontOfSize:12*Device_Ccale];
-        _yzLab.numberOfLines = 2;
+        _yzLab.numberOfLines = 0;
     }
     return _yzLab;
 }

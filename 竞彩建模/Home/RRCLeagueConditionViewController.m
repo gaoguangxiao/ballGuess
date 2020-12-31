@@ -38,7 +38,7 @@ static NSString * const leagueCoViewCellIdentifier= @"RRCCheckCollectionCell_ID"
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 12 * Device_Ccale;
     layout.minimumInteritemSpacing = 4*Device_Ccale;  //每个的横向间距
-    _collection.contentInset = UIEdgeInsetsMake(12 * Device_Ccale, 12 * Device_Ccale, -12 * Device_Ccale, 12 * Device_Ccale);
+    _collection.contentInset = UIEdgeInsetsMake(12 * Device_Ccale, 12 * Device_Ccale, 12 * Device_Ccale, 12 * Device_Ccale);
     _collection.collectionViewLayout = layout;
     [_collection registerClass:[RRCCheckCollectionCell class] forCellWithReuseIdentifier:leagueCoViewCellIdentifier];
     
@@ -106,7 +106,7 @@ static NSString * const leagueCoViewCellIdentifier= @"RRCCheckCollectionCell_ID"
     RRCLeaguesModel *temp_m = self.dataArrayList[indexPath.row];
     cell.nameLab.text =  [NSString stringWithFormat:@"%@【%ld场】",kSafeString(temp_m.name),temp_m.leagueList.count];
     cell.yzLab.text = [NSString stringWithFormat:@"亚指：%@",temp_m.yzRate];
-    cell.dxqLab.text = [NSString stringWithFormat:@"大小球：%@",temp_m.dxqRate];
+    cell.dxqLab.text = [NSString stringWithFormat:@"球数：%@",temp_m.dxqRate];
     cell.bdLab.text = [NSString stringWithFormat:@"波胆：%@",temp_m.bdRate];
     cell.jcLab.text = [NSString stringWithFormat:@"竞彩：%@",temp_m.jcRate];
     cell.selectStatus = [temp_m.isSelect integerValue] ? YES : NO;
@@ -141,7 +141,7 @@ static NSString * const leagueCoViewCellIdentifier= @"RRCCheckCollectionCell_ID"
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake((kScreenWidth - 42*Device_Ccale - 24*Device_Ccale)/3, 105*Device_Ccale);
+    return CGSizeMake((kScreenWidth - 24*Device_Ccale - 24*Device_Ccale)/3, 105*Device_Ccale);
 }
 
 -(NSMutableArray *)allCountArr{

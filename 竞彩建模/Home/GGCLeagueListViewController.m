@@ -45,56 +45,8 @@
     
     _resultViewModel = [[ResultViewModel alloc]init];
     
-    kWeakSelf;
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    [self loadLeagueName];
         
-        [weakSelf refreshData];
-    }];
-    
-//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-//        if (!weakSelf.is_last_page) {
-//            [weakSelf loadMore];
-//        }else{
-//            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
-//        }
-//    }];
-    
-//    if (self.leagueName) {
-        //跳转某条联赛
-        
-        [self loadLeagueName];
-        
-//    }else{
-//        [self loadData];
-//    }
-    
-    
-}
-
--(void)loadData{
-    
-    self.current_page = 1;
-    
-    [RRCProgressHUD showLoadView:self.view andHeight:kScreenHeight];
-    
-    NSMutableDictionary *dict = [NSMutableDictionary new];
-    dict[@"page_num"] = @(self.current_page);
-    dict[@"page_size"] = @(10);
-    
-    [_resultViewModel previewMatchListWithParameters:dict Complete:^(NSArray * _Nonnull loadArr, NSInteger count) {
-        if (loadArr.count == 0) {
-            [self listZeroViewText:@"暂无数据" andImageName:@"" andView:self.tableView];
-        }else{
-            [self hiddenNoDataView];
-        }
-        self.is_last_page = count;
-        
-        [RRCProgressHUD hideRRCForView:self.view animated:YES];
-        
-        [self updateRateText];
-        
-        [self.tableView reloadData];
-    }];
 }
 
 -(void)loadLeagueName{
@@ -132,52 +84,6 @@
             
         }];
 
-    }];
-    
-}
--(void)refreshData{
-    self.current_page = 1;
-    NSMutableDictionary *dict = [NSMutableDictionary new];
-    dict[@"page_num"] = @(self.current_page);
-    dict[@"page_size"] = @(10);
-    [_resultViewModel previewMatchListWithParameters:dict Complete:^(NSArray * _Nonnull loadArr, NSInteger count) {
-        
-        self.navigationItem.title = [NSString stringWithFormat:@"【%@/%lu场】",self.resultViewModel.matchRateCount,(unsigned long)loadArr.count];
-        
-        [self.tableView.mj_header endRefreshing];
-        
-        if (loadArr.count == 0) {
-            [self listZeroViewText:@"暂无数据" andImageName:@"" andView:self.tableView];
-        }else{
-            [self hiddenNoDataView];
-        }
-        
-        [self updateRateText];
-        
-        self.is_last_page = count;
-        
-        [self.tableView reloadData];
-    }];
-}
-
--(void)loadMore{
-    self.current_page ++;
-    
-    NSMutableDictionary *dict = [NSMutableDictionary new];
-    dict[@"page_num"] = @(self.current_page);
-    dict[@"page_size"] = @(10);
-    
-    [_resultViewModel previewLoadMoreMatchListWithParameters:dict Complete:^(NSArray * _Nonnull loadArr, NSInteger count) {
-        
-        self.is_last_page = count;
-        
-        [self.tableView.mj_footer endRefreshing];
-        
-        [self hiddenNoDataView];
-        
-        [self updateRateText];
-        
-        [self.tableView reloadData];
     }];
 }
 

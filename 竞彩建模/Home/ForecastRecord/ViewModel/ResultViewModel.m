@@ -63,7 +63,7 @@
                     m.yp_xpk = waterModel.yp_xpk;
                     m.dxq_dpk = waterModel.dxq_dpk;
                     m.dxq_xpk = waterModel.dxq_xpk;
-                    }
+                }
                 ResultModel *resultModel = [self onlyHandleScoreWithData:m];
                 
                 if (queryWaterArray.count == locaArray.count) {
@@ -225,7 +225,6 @@
             
             float tempDxqRate =  dxqSortRedCount/sortAllCount * 100;
             float tempYzRate =  yzSortRedCount/sortAllCount * 100;
-            float tempJcRate =  jcSortRedCount/sortAllCount * 100;
             
             leModel.dxqRate = [NSString stringWithFormat:@"%.2f%%",dxqSortRedCount/sortAllCount * 100];
             leModel.yzRate  = [NSString stringWithFormat:@"%.2f%%",yzSortRedCount/sortAllCount * 100];
@@ -381,7 +380,7 @@
                 GGXMatchInfo *matchInfo= [GGXMatchInfo mj_objectWithKeyValues:array[i]];
                 
                 ResultModel *m = [self handleOnlyEndScoreWithData:matchInfo];
-
+                
                 [self.listArray addObject:m];
                 
                 NSMutableDictionary *dict = [NSMutableDictionary new];
@@ -409,11 +408,6 @@
         }
         
     }];
-    
-}
-
--(void)betAmountResultModel:(ResultModel *)re Complete:(loadDataBOOLBlock)blockList{
-    
     
 }
 
@@ -525,6 +519,9 @@
                 }
                 else{//上场黑了
                     NSInteger submitMoneyIndex = labs(dxqRedCount);
+                    if (submitMoneyIndex > submitMoneyArr.count - 1) {
+                        submitMoneyIndex = submitMoneyArr.count - 1;
+                    }
                     NSString *dxqRedNextMoney = [NSString stringWithFormat:@"%.2f",[submitMoneyArr[submitMoneyIndex] integerValue] * m.finishBigDif.floatValue];
                     NSString *dxqBlackNextMoney = submitMoneyArr[submitMoneyIndex];
                     m.finishBigMoney = [NSString stringWithFormat:@"%@",submitMoneyArr[submitMoneyIndex]];
@@ -666,13 +663,7 @@
             //                jcSortRedCount ++;
             //            }
             sortAllCount ++;
-            
-            
             lastResultModel = m;//保存下次
-            
-//            float remainM = benjinMoney + dxqRemainPoint + yzRemainPoint;
-//            m.benjinMoney = [NSString stringWithFormat:@"剩余本金：%.2f\n大小球：%.2f",remainM,benjinDxqMoney + dxqRemainPoint];
-//            m.benjinDXQMoney = [NSString stringWithFormat:@"%.2f",benjinDxqMoney + dxqRemainPoint];
         }
         else{
             //建议倍投额
@@ -688,7 +679,13 @@
                 m.finishYazhiMoney = [NSString stringWithFormat:@"%@",submitMoneyArr.firstObject];
             }else{//上场黑了
                 NSInteger submitMoneyIndex = labs(yzRedCount);
-                m.finishYazhiMoney = [NSString stringWithFormat:@"%@",submitMoneyArr[submitMoneyIndex]];
+                NSString *yzNextMoney = @"";
+                if (submitMoneyIndex >= submitMoneyArr.count){
+                    yzNextMoney = submitMoneyArr.lastObject;
+                }else{
+                    yzNextMoney = submitMoneyArr[submitMoneyIndex];
+                }
+                m.finishYazhiMoney = [NSString stringWithFormat:@"%@",yzNextMoney];
             }
         }
         float remainM = benjinMoney + dxqRemainPoint + yzRemainPoint;
@@ -696,14 +693,17 @@
         m.benjinDXQMoney = [NSString stringWithFormat:@"%.2f",benjinDxqMoney + dxqRemainPoint];
     }
     //100注 60%胜率 200 * 100 * (60% * 0.85 - 1 + 60%) = 盈利百分比 60 * 200 * 0.85 - 40 * 200
+    NSString *tempDxq = [NSString stringWithFormat:@"%.2f%% %.f",dxqSortRedCount/dxqSortAllCount * 100,dxqRemainPoint];
+    self.dxqRateText = [NSString stringWithFormat:@"%.0f/%.0f %.2f%%[%.f]",dxqSortRedCount,dxqSortAllCount,dxqSortRedCount/dxqSortAllCount * 100,dxqRemainPoint];
     
-    self.dxqRateText = [NSString stringWithFormat:@"%.0f/%.0f %.2f%%【%.f】",dxqSortRedCount,dxqSortAllCount,dxqSortRedCount/dxqSortAllCount * 100,dxqRemainPoint];
-    self.yzRateText  = [NSString stringWithFormat:@"%.0f/%.0f %.2f%%【%.f】",yzSortRedCount,yzSortAllCount,yzSortRedCount/yzSortAllCount * 100,yzRemainPoint];
+    NSString *tempYz = [NSString stringWithFormat:@"%.2f%% %.f",yzSortRedCount/yzSortAllCount * 100,yzRemainPoint];
+    self.yzRateText  = [NSString stringWithFormat:@"%.0f/%.0f %.2f%%[%.f]",yzSortRedCount,yzSortAllCount,yzSortRedCount/yzSortAllCount * 100,yzRemainPoint];
+    
     self.bdRateText  = [NSString stringWithFormat:@"%.2f%%",scoreSortRedCount/sortAllCount* 100];
     self.yzdxqRRateText = [NSString stringWithFormat:@"%@",@(dxqRemainPoint + yzRemainPoint)];
     self.jcRateText  = [NSString stringWithFormat:@"%.2f%%",jcSortRedCount/sortAllCount * 100];
     self.matchRateCount = [NSString stringWithFormat:@"%.0f",sortAllCount];
-    blockList(@[parameters,self.dxqRateText,self.yzRateText,self.bdRateText,self.jcRateText,@(dxqRemainPoint + yzRemainPoint),@(sortAllCount)]);//6
+    blockList(@[parameters,tempDxq,tempYz,self.bdRateText,self.jcRateText,@(dxqRemainPoint + yzRemainPoint),@(sortAllCount)]);//6
     
 }
 
@@ -747,9 +747,9 @@
     
     //保存赛事
     [[RRCNetWorkManager sharedTool]loadRequestWithURLString:@"saveMatch" parameters:parameters success:^(CGDataResult * _Nonnull result) {
-       
+        
         blockList(YES);
-    
+        
     }];
     
     //增加订单保存
@@ -767,13 +767,13 @@
     [dateFormatter setDateFormat:@"YYYYMMDDHHMM"];//设定时间格式,这里可以设置成自己需要的格式
     NSString *dateString = [dateFormatter stringFromDate:currentDate];
     NSString *oID = [NSString stringWithFormat:@"%@",dateString];
-
+    
     mDict[@"order_no"] = oID;
     
     [[RRCNetWorkManager sharedTool]loadRequestWithURLString:@"order/save" parameters:mDict success:^(CGDataResult * _Nonnull result) {
-
+        
         blockList(YES);
-
+        
     }];
     
 }
@@ -971,17 +971,17 @@
     scoreModel.homeCompositeScore = matchInfo.forecast_home_score.floatValue;
     scoreModel.awayCompositeScore = matchInfo.forecast_away_score.floatValue;
     
-    //计算胜平负
-    [self handleHomeScoreText:scoreModel];
-    //计算第二选项胜平负
-    [self handleHomeSScoreText:scoreModel];
-    
     //计算波胆
     [self handleScoreText:scoreModel];
     //计算大小球
     [self handleBigSmallText:scoreModel];
     //亚指
     [self handleyzJK:scoreModel];
+    //计算胜平负
+    [self handleHomeScoreText:scoreModel];
+    //计算让球胜平负
+    [self handleHomeSScoreText:scoreModel];
+    
     
     return scoreModel;
 }
@@ -991,7 +991,7 @@
 #pragma mark -计算胜平负
 -(void)handleHomeScoreText:(ResultModel *)scoreModel{
     
-    float home_wheight = scoreModel.homeCompositeScore - scoreModel.awayCompositeScore;
+    float home_wheight = scoreModel.bd_home_score.floatValue - scoreModel.bd_away_score.floatValue;
     if (home_wheight > 0) {
         scoreModel.finishWinText = @"胜";
     }else if (home_wheight == 0){
@@ -1054,6 +1054,10 @@
     //保持第二选项和第一不一样
     float absFCom = fabsf(scoreModel.yp_pk.floatValue);
     if ([scoreModel.finishWinText isEqualToString:@"胜"]) {
+        //看盘口
+        if (scoreModel.finishScoreYazhiDif.floatValue > 0) {
+            
+        }
         if (home_wheight > 0) {
             //胜平负基础，如果盘口小于0.5，那么为平局
             if (absFCom < 0.5) {
@@ -1147,6 +1151,8 @@
         scoreModel.finishWinSViewColor = RRCGrayTextColor;
         
     }
+    
+    
 }
 #pragma mark -计算波胆
 -(void)handleScoreText:(ResultModel *)scoreModel{

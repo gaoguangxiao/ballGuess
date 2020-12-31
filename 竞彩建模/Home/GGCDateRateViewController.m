@@ -162,7 +162,7 @@ static NSString * const leagueCoViewCellIdentifier= @"RRCCheckCollectionCell_ID"
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     RRCCheckCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:leagueCoViewCellIdentifier forIndexPath:indexPath];
     RRCMatchRateModel *temp_m = self.dataArrayList[indexPath.row];
-    cell.nameLab.text =  [NSString stringWithFormat:@"%@【%ld场】",kSafeString(temp_m.mmdd),temp_m.dateMartchList.count];
+    cell.nameLab.text =  [NSString stringWithFormat:@"%@：%ld场",kSafeString(temp_m.mmdd),temp_m.dateMartchList.count];
     cell.yzLab.attributedText = [[NSString stringWithFormat:@"亚指：\n%@",temp_m.yzRate] changeLineSpace:5];
     cell.dxqLab.attributedText = [[NSString stringWithFormat:@"大小球：\n%@",temp_m.dxqRate] changeLineSpace:5
                         ];
